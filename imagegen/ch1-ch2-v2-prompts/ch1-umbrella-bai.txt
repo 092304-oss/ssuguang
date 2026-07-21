@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 1 emotional exit CG
+Input images: Image 1 is Shen Zhi reference. Image 2 is Bai Qi reference. Preserve both identities.
+Primary request: at Lu family doorway late at night, Bai Qi reopens the door and hands Shen Zhi a black umbrella that Lu Mian used to keep for her, a quiet romantic/emotional beat before Shen Zhi leaves.
+Scene/backdrop: rainy apartment corridor, elevator light in distance, open apartment door.
+Subject: Bai Qi holding out a black umbrella, guarded but soft; Shen Zhi receiving it, surprised and quiet.
+Style/medium: polished modern female-oriented suspense visual novel CG, cinematic emotional close-up.
+Composition/framing: 16:9, umbrella crossing the threshold between them, faces visible but restrained, lower dialogue area clear.
+Lighting/mood: cool rainy corridor with warm doorway light, bittersweet.
+Constraints: preserve identities; no readable text; no watermark; no gore; no overt romance pose.
+Avoid: melodramatic embrace, glamour styling, text artifacts.

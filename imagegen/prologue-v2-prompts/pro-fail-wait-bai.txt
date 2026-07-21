@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: failure-route character CG
+Input image: use the Bai Qi reference as the identity reference.
+Primary request: quiet morning failure scene, Bai Qi comes to take the old phone away, his expression tired and guarded, while the heroine has missed the timing and the room feels empty.
+Scene/backdrop: pale dawn apartment interior, empty table, thin curtains, the feeling that something important has already slipped away.
+Subject: Bai Qi, same identity as the reference, black hair, pale skin, younger but tense, protective and regretful energy.
+Style/medium: polished visual novel CG, emotional and restrained, not melodramatic.
+Composition/framing: 16:9, Bai Qi near the doorway or table, phone as the focal object.
+Lighting/mood: soft dawn, cool after-rain light, quiet loss.
+Constraints: preserve identity, no readable text, no watermark, no gore, no extra characters.
+Avoid: adult fashion shoot styling, heavy blood, generic face, overexposed sunshine.

@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 1 character tension CG
+Input image: Bai Qi reference. Preserve identity.
+Primary request: Bai Qi leaning against the doorframe of Lu Mian's bedroom, saying not to search too quickly, looking exhausted and protective, as if he knows the room has a wound inside.
+Scene/backdrop: doorway of a young woman's bedroom at night, desk and wardrobe blurred behind him.
+Subject: Bai Qi, same face identity, dark messy hair, pale skin, guarded eyes, simple dark clothes, sleepless.
+Style/medium: polished suspense-romance visual novel CG, cinematic portrait integrated into background.
+Composition/framing: 16:9 medium shot, Bai Qi at one side of the doorframe, bedroom depth behind him, lower dialogue-safe area.
+Lighting/mood: warm hallway edge light and cool blue room shadows, quiet pressure.
+Constraints: preserve identity; no readable text; no watermark; no gore; non-sexual styling.
+Avoid: generic handsome face, action pose, adult fashion ad.

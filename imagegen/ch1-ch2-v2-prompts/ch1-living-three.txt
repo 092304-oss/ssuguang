@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 1 alternate route character CG
+Input images: Image 1 is Shen Zhi reference. Image 2 is Bai Qi reference. Image 3 is Zhou Xu reference. Preserve all identities.
+Primary request: Lu family living room at night with Shen Zhi, Bai Qi, and Zhou Xu together, three people sitting in silence before entering Lu Mian's room, each hiding a different piece of the past.
+Scene/backdrop: tidy modern family living room after rain, one night lamp, sofa, coffee table, framed photos blurred.
+Subject: Shen Zhi tense in the foreground, Bai Qi guarded near the doorway, Zhou Xu restrained and quiet near the sofa.
+Style/medium: polished suspense-romance visual novel CG, cinematic ensemble scene.
+Composition/framing: 16:9 wide interior, triangular blocking, dialogue-safe lower area.
+Lighting/mood: cold blue rain outside, warm lamp isolating faces, heavy silence.
+Constraints: preserve identities; no readable text; no watermark; no gore; non-sexual adult clothing.
+Avoid: group selfie, action pose, fantasy styling, obvious AI hands.

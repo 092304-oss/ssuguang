@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 2 emotional support CG
+Input images: Image 1 is Shen Zhi high school reference. Image 2 is Lu Mian high school reference. Preserve both identities.
+Primary request: after the corridor encounter, Lu Mian stands at a school bathroom mirror with trembling hands, Shen Zhi stands beside her and chooses not to leave or force answers, creating a strong trust moment.
+Scene/backdrop: clean Chinese high school bathroom mirror area, tiled wall, noon light, empty sinks.
+Subject: Lu Mian shaken but trying to smile; Shen Zhi calm, protective, gently present, both in school uniforms.
+Style/medium: polished emotional suspense visual novel CG, female-oriented tenderness.
+Composition/framing: 16:9 mirror/reflection composition, both faces visible through mirror, hands near sink, lower dialogue area clear.
+Lighting/mood: cool bathroom light softened by warm window reflection, vulnerable and intimate.
+Constraints: preserve identities; high school safe non-sexual scene; no readable text; no watermark; no gore.
+Avoid: horror mirror monster, melodramatic crying, adult styling.

@@ -1,0 +1,12 @@
+Use case: identity-preserve
+Asset type: visual novel character portrait for a Chinese suspense romance game
+Input image: use the provided image as the identity reference for Zhou Xu.
+Primary request: create a high-school era portrait of the same character, age-appropriate and non-sexualized, as if this is a treasured school photo from before the main mystery begins.
+Scene/backdrop: quiet Chinese high school corridor after class, pale afternoon light through windows, soft dust in the air, subtle melancholic atmosphere.
+Subject: the same beautiful Chinese male character with silver-white tousled layered hair, pale skin, cool distant eyes, delicate facial features, and a restrained unreadable expression.
+Style/medium: polished semi-realistic otome visual novel illustration, cinematic game CG quality, refined linework, soft skin rendering, elegant but grounded.
+Composition/framing: vertical bust-up portrait, eye-level, slight three-quarter angle, generous headroom, clean readable silhouette.
+Lighting/mood: cool white window light with a faint warm rim, intimate, lonely, quietly magnetic.
+Color palette: white, cool gray, ink black, muted navy school uniform accents, a tiny red detail allowed as a memory motif.
+Constraints: preserve the face identity, eye shape, nose, lips, pale complexion, silver-white messy hair, and cold-but-fragile aura from the reference. Change only age styling, clothes, and background. Use a neat Chinese high school uniform shirt and blazer; reduce adult jewelry and remove heavy chain necklaces. No text, no logo, no watermark.
+Avoid: sexy clothing, exposed chest, adult nightclub styling, fantasy armor, excessive accessories, gore, blood, smoking, tattoos, extra characters.

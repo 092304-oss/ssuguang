@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 1 present-day character CG
+Input images: Image 1 is Shen Zhi reference. Image 2 is Bai Qi reference. Preserve both identities.
+Primary request: late-night Lu family apartment doorway, Bai Qi opens the door for Shen Zhi after she arrives with Lu Mian's old phone, tense but intimate first step into the investigation.
+Scene/backdrop: rainy apartment corridor, warm light spilling from inside, quiet residential hallway.
+Subject: Shen Zhi, adult Chinese woman, tired and determined, dark coat; Bai Qi, same identity as reference, pale guarded face, dark hair, simple dark home clothes, protective but exhausted.
+Style/medium: polished modern Chinese suspense-romance visual novel CG, cinematic, premium game background.
+Composition/framing: 16:9, Shen Zhi seen from behind or side in foreground, Bai Qi at the half-open door, enough lower negative space for dialogue UI.
+Lighting/mood: cold rain hallway plus warm interior light, emotional restraint.
+Constraints: preserve identities; no readable text; no watermark; no gore; do not sexualize anyone.
+Avoid: generic faces, fashion shoot pose, overdramatic action, horror blood.

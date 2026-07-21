@@ -1,0 +1,12 @@
+Use case: identity-preserve
+Asset type: visual novel character portrait for a Chinese suspense romance game
+Input images: Image 1 is the identity reference for Lu Mian. Image 2 is Zhou Xu's high-school portrait for matching composition, framing, and uniform style.
+Primary request: create a high-school era portrait of the same character, age-appropriate, handsome, and non-sexualized, matching the same visual language as Zhou Xu's school photo.
+Scene/backdrop: the same Chinese high school corridor after class, bright window light, muted gray-blue hallway, quiet campus atmosphere.
+Subject: the same Chinese girl with loose black hair, brighter open smile, lively expressive eyes, small beauty mark near the eye, confident and cheerful but still slightly mysterious.
+Style/medium: polished semi-realistic otome visual novel illustration, premium game CG quality, same rendering finish as Zhou Xu, clean and cohesive.
+Composition/framing: vertical bust-up portrait, eye-level, slight three-quarter angle, same camera distance as Zhou Xu, school uniform clearly visible.
+Lighting/mood: cool daylight with a soft warm rim, energetic, approachable, charming, and a little teasing.
+Color palette: black hair, ivory skin, white shirt, navy blazer, striped school tie, subtle gray-blue shadows, small gold highlights.
+Constraints: preserve the face identity, eye shape, smile, beauty mark, hair texture, and core aura from the reference. Change only age styling, clothes, expression, and school background. Use the same Chinese high school uniform style as Zhou Xu. Make her look more open, lively, and easy to like. No text, no logo, no watermark.
+Avoid: lingerie, exposed shoulders/chest, mature nightlife styling, smoking, alcohol, overly seductive poses, gore, extra characters.

@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 2 high school arrival CG
+Input images: Image 1 is Shen Zhi high school reference. Image 2 is Lu Mian high school reference. Preserve both identities.
+Primary request: high school running track in afternoon, Shen Zhi has just time-traveled into a transfer student's body and sees seventeen-year-old Lu Mian stop and turn back toward her, alive and bright.
+Scene/backdrop: Chinese high school track, classroom buildings, late afternoon wind.
+Subject: Shen Zhi in matching school uniform, stunned; Lu Mian in matching school uniform, lively and curious, approachable, not knowing the tragedy.
+Style/medium: polished romantic suspense visual novel CG, youthful but safe, premium game art.
+Composition/framing: 16:9 wide-medium, Lu Mian turning back in midground, Shen Zhi viewpoint/side in foreground, dialogue-safe lower area.
+Lighting/mood: golden afternoon sunlight, warm hope with slight unreal glow.
+Constraints: preserve identities and school uniform consistency; all characters look like high school students; no readable text; no watermark; non-sexual.
+Avoid: adult styling, revealing uniforms, generic faces, fantasy effects.

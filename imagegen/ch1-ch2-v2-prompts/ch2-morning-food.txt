@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 2 morning classroom intimacy CG
+Input images: Image 1 is Shen Zhi high school reference. Image 2 is Lu Mian high school reference. Preserve both identities.
+Primary request: early morning classroom, sleepy Lu Mian at her desk and Shen Zhi quietly shares breakfast with her, Lu Mian only takes half and pushes the rest back, a caring relationship beat.
+Scene/backdrop: Chinese high school classroom before class, soft morning light, empty desks, chalk dust.
+Subject: Lu Mian tired but gentle; Shen Zhi worried and careful; both in matching school uniforms.
+Style/medium: polished school visual novel CG, soft emotional realism.
+Composition/framing: 16:9 close-medium across two desks, breakfast bag split between them, lower dialogue area clear.
+Lighting/mood: pale morning sunlight, quiet and tender.
+Constraints: preserve identities; high school non-sexual scene; no readable text; no watermark.
+Avoid: adult styling, over-smiling, text on packaging, obvious AI hands.

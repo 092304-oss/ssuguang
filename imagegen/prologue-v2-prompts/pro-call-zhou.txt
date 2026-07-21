@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: prologue character CG
+Input image: use the Zhou Xu reference as the identity reference.
+Primary request: tense rainy-night call or reunion scene with Zhou Xu, same silver-white hair, cool gaze, and quiet restraint, standing near an apartment doorway or outside in the rain while the heroine listens on the phone.
+Scene/backdrop: apartment doorway at night, rain reflection, hallway light spilling out.
+Subject: Zhou Xu, same identity as reference, silver-white messy hair, pale skin, distant but attentive expression, elegant and emotionally restrained.
+Style/medium: polished modern visual novel CG, cinematic suspense-romance quality.
+Composition/framing: 16:9 with the heroine's phone implied in foreground and Zhou Xu visible in the midground.
+Lighting/mood: cold rain with soft warm hall light, quiet tension, emotional and controlled.
+Constraints: preserve identity, no readable text, no watermark, no extra characters, no gore.
+Avoid: overdramatic hero pose, generic handsome face, fantasy armor, text on walls.

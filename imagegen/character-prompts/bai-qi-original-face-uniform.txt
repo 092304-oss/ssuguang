@@ -1,0 +1,12 @@
+Use case: identity-preserve
+Asset type: visual novel high-school character portrait
+Input images: Image 1 is Bai Qi's original identity reference and must control the face, hair, gaze, and memorable character aura. Image 2 is Zhou Xu's high-school portrait and should be used only as a reference for the navy school uniform system, corridor lighting, and cohesive visual style.
+Primary request: keep Bai Qi's original face, black tousled hair, sharp wounded eyes, pale skin, guarded expression, and unforgettable rebellious feeling. Change his clothes into a Chinese high school uniform and place him in the same school corridor visual style as Zhou Xu.
+Scene/backdrop: quiet Chinese high school corridor after class, bright window light, cool gray-blue hallway, subtle suspense atmosphere.
+Subject: Bai Qi, a handsome 16-year-old Chinese high school boy. He should keep the original reference's memorable wounded/guarded look, but read as a student through the uniform and styling.
+Style/medium: polished semi-realistic otome visual novel illustration, premium game CG quality, romantic suspense, cohesive with Zhou Xu's high-school portrait.
+Composition/framing: close vertical bust portrait with a large face in frame, emotionally intimate, viewer feels close enough to notice his eyes. Do not pull the character far away. Keep the crop closer than the current school hallway version.
+Clothing: navy Chinese high school blazer with subtle piping, white shirt, striped tie, gray sweater vest if needed; the uniform should look like the same school as Zhou Xu's.
+Lighting/mood: cool daylight from the corridor windows, soft rim light on hair, lonely, dangerous, memorable, and emotionally magnetic.
+Constraints: use the mask to change only the background and clothing area where possible. Preserve the original head, face, hair, gaze, lips, and character identity as much as possible. Do not average his face with Zhou Xu. Make him handsome with a strong memory point, not generic. No text, no logo, no watermark.
+Avoid: bland pretty-boy face, losing the original wounded eyes, making the face too small, adult fashion shoot styling, hoodie, denim jacket, fresh blood, gore, weapons, smoking, extra characters.

@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: nostalgic memory CG
+Input images: Image 1 is the Shen Zhi reference. Image 2 is the Lu Mian reference. Use both as identity references for the two women in the memory photo.
+Primary request: warm nostalgic memory at a convenience store window, Shen Zhi and Lu Mian sitting side by side with drinks, one tired and thoughtful, one warm and faintly smiling, both still carrying the emotional weight of the story.
+Scene/backdrop: convenience store at dusk, glass window, reflections, simple table, warm amber interior.
+Subject: Shen Zhi and Lu Mian, same identities as the references, natural casual clothing, believable emotional chemistry.
+Style/medium: polished romantic suspense visual novel CG, memory-laden and cinematic.
+Composition/framing: 16:9 side-by-side composition, window reflections, two-character intimacy.
+Lighting/mood: warm interior light against cool dusk outside, bittersweet and intimate.
+Constraints: preserve both identities, no readable text, no watermark, no extra characters, no glamour posing.
+Avoid: overexposed smiles, fashion shoot look, text artifacts, obvious AI hands.

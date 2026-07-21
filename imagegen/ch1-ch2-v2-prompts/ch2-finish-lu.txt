@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 2 sports day emotional CG
+Input images: Image 1 is Shen Zhi high school reference. Image 2 is Lu Mian high school reference. Preserve both identities.
+Primary request: Lu Mian crosses the relay finish line and immediately looks for Shen Zhi in the crowd, breathless and smiling, building the first beautiful relationship memory.
+Scene/backdrop: high school track finish area, blurred classmates cheering, relay lane markings with no readable text.
+Subject: Lu Mian in school sports uniform or uniform jacket, alive and bright; Shen Zhi visible near the finish line holding a water bottle or towel.
+Style/medium: polished romantic visual novel CG, emotional school memory, premium.
+Composition/framing: 16:9 dynamic mid-shot, Lu Mian just past finish line, Shen Zhi in her line of sight, dialogue UI area clear.
+Lighting/mood: sunlit, energetic, warm, hopeful.
+Constraints: preserve identities; high school age, non-sexual; no readable text; no watermark.
+Avoid: sports brand logos, adult styling, exaggerated victory pose.

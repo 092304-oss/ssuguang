@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: prologue character CG
+Input image: use the Shen Zhi reference as the identity reference.
+Primary request: a close modern suspense CG of Shen Zhi sitting alone in a dim living room, holding an old phone that just lit up with a final memo, her face half-lit by the screen, tense and very quiet.
+Scene/backdrop: dark apartment living room at night, rain on the window, small table lamp.
+Subject: Shen Zhi, black hair, pale skin, tired eyes, restrained panic, same face as reference, one hand on the phone.
+Style/medium: polished visual novel CG, intimate close framing, emotional and cinematic.
+Composition/framing: wide 16:9 but close enough to feel personal, phone and face both important, slight three-quarter angle.
+Lighting/mood: phone glow + cool window rain light, isolated and anxious.
+Constraints: preserve identity, no readable text, no watermark, no extra characters, no gore.
+Avoid: overacting, generic beauty pose, text artifacts, horror effects.

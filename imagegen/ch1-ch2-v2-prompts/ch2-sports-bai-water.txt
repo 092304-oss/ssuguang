@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 2 sports day group CG
+Input images: Image 1 is Shen Zhi high school reference. Image 2 is Lu Mian high school reference. Image 3 is Bai Qi school uniform reference. Preserve all identities.
+Primary request: sports day bleachers, Bai Qi brings two bottles of ice water and lightly presses one to Lu Mian's cheek, Lu Mian startles and laughs, Shen Zhi watches the warm sibling-like moment while noticing a suspicious gaze in the far background.
+Scene/backdrop: high school sports day stands, track in background, distant students blurred.
+Subject: Bai Qi as a handsome but believable high school student in matching uniform, guarded but playful for one second; Lu Mian warm and alive; Shen Zhi nearby with soft surprise.
+Style/medium: polished female-oriented suspense romance visual novel CG.
+Composition/framing: 16:9 group scene, warm trio foreground, one indistinct taller student silhouette far background; dialogue-safe lower area.
+Lighting/mood: bright daylight with a thin thread of suspense.
+Constraints: preserve identities; school uniforms aligned; no readable text; no watermark; no explicit threat; non-sexual.
+Avoid: adult styling, horror, generic faces, legible banners.

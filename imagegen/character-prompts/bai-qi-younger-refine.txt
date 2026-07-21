@@ -1,0 +1,10 @@
+Use case: identity-preserve
+Asset type: targeted revision of a visual novel high-school portrait
+Input images: Image 1 is the current Bai Qi high-school portrait to revise. Image 2 is Bai Qi's original identity reference.
+Primary request: revise Image 1 so Bai Qi looks unmistakably 16 years old, smaller, boyish, and more like a real high school student, while keeping the same school corridor, uniform system, lighting, and overall composition.
+Subject: the same Chinese boy with black tousled hair, pale skin, guarded eyes, and rebellious fragility, but with softer teenage facial proportions, slightly rounder cheeks, a smaller chin, less angular jaw, narrower shoulders, and a school blazer that feels a little loose on him.
+Style/medium: polished semi-realistic otome visual novel illustration, premium game CG quality, cohesive with Zhou Xu's high-school portrait.
+Composition/framing: keep the vertical bust-up portrait, eye-level angle, high school corridor, navy blazer, white shirt, striped tie, and cool window light from Image 1.
+Lighting/mood: restrained campus daylight, lonely but not adult, vulnerable and protective.
+Constraints: change only the apparent age, facial softness, expression, and smaller body proportions. Preserve identity, black hair, uniform, background, lighting, and clean school-photo style. He must read as a 16-year-old student, not a mature adult model. No text, no logo, no watermark.
+Avoid: adult male model proportions, broad shoulders, long adult neck, sharp adult jawline, fresh wounds, blood, weapons, gang imagery, smoking, extra characters.

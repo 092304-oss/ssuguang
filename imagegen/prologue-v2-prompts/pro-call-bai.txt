@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: prologue character CG
+Input image: use the Bai Qi reference as the identity reference.
+Primary request: a late-night phone call scene in a quiet apartment, with Bai Qi appearing at the edge of the frame or as a reflected silhouette near a dark doorway, pale and guarded, while the heroine holds the phone in the foreground.
+Scene/backdrop: rainy apartment interior, dark doorway, soft lamp, quiet tension.
+Subject: Bai Qi, same identity as the reference, black hair, pale skin, wounded but controlled expression, quietly protective aura.
+Style/medium: polished visual novel CG, emotional suspense, premium game art.
+Composition/framing: 16:9, phone foreground, Bai Qi on the side/background, strong depth.
+Lighting/mood: moody blue-gray with a soft warm lamp edge, intimate and uneasy.
+Constraints: preserve identity, no readable text, no watermark, no gore, no extra characters.
+Avoid: generic pretty-boy face, exaggerated blood, action pose, call screen typography.

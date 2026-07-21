@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 2 school store relationship CG
+Input images: Image 1 is Shen Zhi high school reference. Image 2 is Lu Mian high school reference. Image 3 is Bai Qi school uniform reference. Preserve all identities.
+Primary request: after sports day at the school convenience store, Lu Mian hands Shen Zhi an ice pop, Bai Qi stands beside them with a protective expression, a warm ordinary afternoon that the heroine wants to remember.
+Scene/backdrop: school store window, freezers, warm late afternoon light, no brand labels.
+Subject: Lu Mian teasing and bright; Shen Zhi accepting the ice pop, moved; Bai Qi younger, handsome, a little guarded, standing close to Lu Mian.
+Style/medium: polished modern visual novel CG, school-life sweetness with hidden suspense.
+Composition/framing: 16:9 medium group shot around store counter/window, lower dialogue space clear.
+Lighting/mood: warm amber store light and soft summer shadows, intimate.
+Constraints: preserve identities; matching safe school uniforms; no readable text; no watermark; non-sexual.
+Avoid: product logos, adult fashion shoot, obvious AI hands.

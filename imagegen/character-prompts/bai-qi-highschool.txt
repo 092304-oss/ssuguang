@@ -1,0 +1,12 @@
+Use case: identity-preserve
+Asset type: visual novel character portrait for a Chinese suspense romance game
+Input images: Image 1 is the identity reference for Bai Qi. Image 2 is Zhou Xu's high-school portrait for matching composition, framing, and uniform style.
+Primary request: create a high-school era portrait of the same boy, exactly age 16, clearly younger than Zhou Xu, smaller, boyish, school-like, handsome in a youthful way, and non-sexualized, matching the same visual language as Zhou Xu's school photo.
+Scene/backdrop: the same Chinese high school corridor after class, bright window light, muted gray-blue hallway, quiet campus atmosphere.
+Subject: the same Chinese male character with black tousled hair, pale skin, teenage facial proportions, slightly rounder cheeks, a smaller chin, narrower jaw, larger but guarded eyes, and a fragile rebellious aura softened by youth.
+Style/medium: polished semi-realistic otome visual novel illustration, premium game CG quality, same rendering finish as Zhou Xu, clean and cohesive.
+Composition/framing: vertical bust-up portrait, eye-level, slight three-quarter angle, same camera distance as Zhou Xu, school uniform clearly visible, narrower shoulders, smaller build, less adult neck and jawline.
+Lighting/mood: cool daylight with a soft warm rim, tense, protective, lonely, and youthful.
+Color palette: black hair, gray-blue shadows, white shirt, navy blazer, striped school tie, subtle gold highlights.
+Constraints: preserve the face identity, black hair volume, eye shape, pale complexion, and core rebellious aura from the reference. Change only age styling, clothes, expression, and school background. Make him look smaller, younger, and unmistakably like a 16-year-old high school student, not an adult model. Use the same Chinese high school uniform style as Zhou Xu. If a mystery clue is needed, use only a tiny clean bandage or faint healed mark; no fresh wound. No text, no logo, no watermark.
+Avoid: blood, gore, fresh wounds, weapons, gang imagery, adult styling, smoking, broad adult shoulders, long adult neck, sharp adult jawline, extra characters.

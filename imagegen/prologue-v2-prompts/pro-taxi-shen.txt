@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: prologue game background with character
+Input image: use the Shen Zhi reference as the identity reference for the heroine in this scene.
+Primary request: modern Chinese taxi interior at night, rainy window, Shen Zhi reflected in the glass with wet city lights outside, exhausted but determined, clutching a phone and a folded note, cinematic suspense visual novel CG.
+Scene/backdrop: taxi back seat, rain streaks on window, blurred neon city lights.
+Subject: Shen Zhi, adult Chinese woman with long black hair, pale tired face, dark coat, subtle emotional tension, same identity as the reference.
+Style/medium: polished modern visual novel CG, realistic but elegant, premium game background.
+Composition/framing: wide 16:9 interior shot, heroine seated in back seat, reflection emphasized, enough negative space for dialogue.
+Lighting/mood: blue-gray rain with faint amber city glow, lonely and tense.
+Constraints: preserve Shen Zhi's face identity, hair, and restrained expression. No readable text, no watermark, no extra characters, no gore.
+Avoid: generic face, over-shiny glamour styling, horror blood, text on signs, watermarked UI.

@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 2 Zhou Xu library CG
+Input images: Image 1 is Shen Zhi high school reference. Image 2 is Zhou Xu high school reference. Preserve both identities.
+Primary request: evening school library, Zhou Xu quietly pulls out a chair for Shen Zhi while pretending to be cold, a restrained relationship beat with clue tension about Zhang Heng.
+Scene/backdrop: Chinese high school library at dusk, bookshelves, study desks, fluorescent lights starting to dim.
+Subject: Zhou Xu in school uniform, silver-white hair, cool gaze, restrained; Shen Zhi in matching uniform, cautious but drawn closer.
+Style/medium: polished female-oriented suspense romance visual novel CG.
+Composition/framing: 16:9 medium shot, chair movement and unopened water bottle visible, faces controlled, dialogue-safe lower area.
+Lighting/mood: cool dusk library light with soft warm desk lamp, quiet tension.
+Constraints: preserve identities; high school age and non-sexual; no readable text; no watermark.
+Avoid: fantasy styling, adult suit, overdramatic romance pose.

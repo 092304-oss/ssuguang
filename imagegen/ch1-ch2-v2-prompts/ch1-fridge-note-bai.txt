@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 1 emotional clue CG
+Input images: Image 1 is Shen Zhi reference. Image 2 is Bai Qi reference. Preserve both identities.
+Primary request: Bai Qi peels a faded sticky note from the refrigerator and hands it to Shen Zhi, a small memory of Lu Mian caring for her, soft emotional clue in a suspense scene.
+Scene/backdrop: dim kitchen corner in Lu family home, refrigerator door, small magnets, night rain beyond window.
+Subject: Bai Qi tired but gentle for one second; Shen Zhi's hand receiving the faded note, moved and restrained.
+Style/medium: polished modern visual novel CG, intimate clue close-up, female-oriented emotional suspense.
+Composition/framing: 16:9 close-medium, hands and note central, faces partly visible, dialogue-safe lower area.
+Lighting/mood: warm refrigerator light with cool rainy room shadows.
+Constraints: preserve identities; no readable text on note; no watermark; no gore; avoid making the note legible.
+Avoid: text artifacts, exaggerated crying, romance poster staging.

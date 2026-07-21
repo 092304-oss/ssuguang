@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: prologue character CG
+Input image: use the Shen Zhi reference as the identity reference.
+Primary request: psychological suspense mirror scene in a modern bathroom or bedroom mirror, Shen Zhi looking at her reflection and realizing the death was not an accident, expression controlled but shaken.
+Scene/backdrop: steamed mirror, cold bathroom tile, rain-muted apartment background.
+Subject: Shen Zhi, same face identity, black hair, pale complexion, sharp eyes, quiet realization.
+Style/medium: polished modern visual novel CG, atmospheric and tense.
+Composition/framing: 16:9 with reflection dominant, heroine centered, mirror distortion subtle.
+Lighting/mood: cold blue-green with a faint warm edge, eerie but elegant.
+Constraints: preserve identity, no readable text, no watermark, no gore, no extra characters.
+Avoid: horror monster imagery, overblown steam, generic mirror cliché.

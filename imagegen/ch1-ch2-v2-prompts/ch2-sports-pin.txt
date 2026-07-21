@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 2 high school sports day intimacy CG
+Input images: Image 1 is Shen Zhi high school reference. Image 2 is Lu Mian high school reference. Preserve both identities.
+Primary request: sports day before relay, Lu Mian gently fixes Shen Zhi's crooked number bib, their fingers almost touch through the school uniform, a sweet female-oriented bond-building moment.
+Scene/backdrop: Chinese high school track, relay teams, blurred classmates and banners without readable text.
+Subject: Lu Mian lively, warm, slightly teasing; Shen Zhi shy and moved, trying to stay calm.
+Style/medium: polished modern visual novel CG, youthful school romance atmosphere without sexualization.
+Composition/framing: 16:9 close-medium, hands and number bib central, faces visible, lower dialogue-safe area.
+Lighting/mood: bright summer afternoon, soft wind, tender and safe.
+Constraints: preserve identities; matching school uniforms; no readable text or legible numbers; no watermark; non-sexual high school scene.
+Avoid: adult glamour, seductive posing, text artifacts, obvious AI hands.

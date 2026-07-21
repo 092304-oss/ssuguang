@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 2 evening bond CG
+Input images: Image 1 is Shen Zhi high school reference. Image 2 is Lu Mian high school reference. Preserve both identities.
+Primary request: sunset beside the high school track, Lu Mian gives Shen Zhi her loosened hair tie and says to walk back together, a beautiful relationship memory before the time pull.
+Scene/backdrop: high school track at sunset, empty bleachers, warm wind after sports day.
+Subject: Lu Mian softly smiling, open for the first time; Shen Zhi holding the hair tie, moved and scared of losing the moment.
+Style/medium: polished romantic suspense visual novel CG, emotional and cinematic.
+Composition/framing: 16:9 close-medium, hair tie between their hands, track fading behind, lower dialogue space clear.
+Lighting/mood: golden sunset, bittersweet, gentle.
+Constraints: preserve identities; school uniforms safe and non-sexual; no readable text; no watermark.
+Avoid: adult romance pose, kissing, melodrama, text artifacts.

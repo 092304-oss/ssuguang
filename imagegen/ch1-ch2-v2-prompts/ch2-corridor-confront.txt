@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 2 suspense corridor CG
+Input images: Image 1 is Lu Mian high school reference. Image 2 is Zhou Xu high school reference. Preserve both identities.
+Primary request: high school water-room corridor, an unknown taller male student has cornered Lu Mian near the wall, Zhou Xu steps in from the side and calls his name, interrupting without violence.
+Scene/backdrop: Chinese high school corridor near water room at noon, window bars, students blurred far away.
+Subject: Lu Mian tense and backed against the wall; Zhou Xu controlled and protective; unknown boy Zhang Heng shown from back or side, face indistinct, no glamor.
+Style/medium: polished suspense visual novel CG, realistic school tension.
+Composition/framing: 16:9, Lu Mian and Zhou Xu visible, Zhang Heng partially obscured, strong corridor perspective, lower dialogue area clear.
+Lighting/mood: hard midday light, oppressive shadows.
+Constraints: preserve Lu Mian and Zhou Xu identities; Zhang Heng remains indistinct; no physical contact; no gore; no readable text; no watermark; non-sexual.
+Avoid: assault imagery, violence, villain glamor, readable school signs.

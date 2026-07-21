@@ -1,0 +1,11 @@
+Use case: identity-preserve
+Asset type: Chapter 1 present-day character CG
+Input images: Image 1 is Shen Zhi reference. Image 2 is Bai Qi reference. Preserve both identities.
+Primary request: Lu family living room at night, Shen Zhi and Bai Qi speaking quietly under one small lamp, the room too tidy after grief, Bai Qi offering a fragile route toward Lu Mian's room.
+Scene/backdrop: modern Chinese family living room, night lamp, rain on window, untouched cups and family photo frames.
+Subject: Shen Zhi seated or standing tense; Bai Qi standing near the hallway, sleepless, guarded, quietly letting her in.
+Style/medium: modern female-oriented suspense visual novel CG, realistic-elegant, cinematic.
+Composition/framing: 16:9 medium-wide shot, two people separated by coffee table and silence, strong emotional distance.
+Lighting/mood: low warm lamp surrounded by blue rainy shadows.
+Constraints: preserve identities; no readable text; no watermark; no gore; natural non-sexual clothing.
+Avoid: smiling glamour, melodrama, romance poster pose.
