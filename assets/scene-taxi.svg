@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="出租车雨夜车窗">
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset=".45" stop-color="#1f2d3d"/>
+      <stop offset="1" stop-color="#08090f"/>
+    </linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="8"/></filter>
+    <pattern id="rain" width="88" height="88" patternUnits="userSpaceOnUse" patternTransform="rotate(16)">
+      <line x1="22" y1="-16" x2="22" y2="74" stroke="#efffff" stroke-width="3" stroke-opacity=".45"/>
+      <line x1="62" y1="8" x2="62" y2="92" stroke="#efffff" stroke-width="1.5" stroke-opacity=".26"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#night)"/>
+  <g filter="url(#blur)" opacity=".78">
+    <circle cx="210" cy="280" r="60" fill="#f7c469"/>
+    <circle cx="392" cy="360" r="48" fill="#c54855"/>
+    <circle cx="760" cy="310" r="68" fill="#7ed0d2"/>
+    <circle cx="1128" cy="250" r="58" fill="#f7c469"/>
+    <circle cx="1380" cy="380" r="70" fill="#be4258"/>
+  </g>
+  <rect width="1600" height="900" fill="url(#rain)" opacity=".68"/>
+  <path d="M0 108 C358 70 548 96 790 72 C1080 44 1266 82 1600 48 L1600 900 L0 900 Z" fill="#0a0b10" opacity=".42"/>
+  <path d="M0 690 C360 648 640 678 910 640 C1150 606 1320 646 1600 618 L1600 900 L0 900 Z" fill="#08080d"/>
+  <g opacity=".9">
+    <path d="M0 690 L458 178 L1160 126 L1600 628" fill="none" stroke="#11131a" stroke-width="46"/>
+    <path d="M448 186 L566 690" stroke="#11131a" stroke-width="24"/>
+    <path d="M1148 138 L1000 690" stroke="#11131a" stroke-width="24"/>
+  </g>
+  <g transform="translate(608 596) rotate(-4)">
+    <rect x="0" y="0" width="370" height="78" rx="20" fill="#0e1016"/>
+    <rect x="36" y="20" width="120" height="12" rx="6" fill="#d2d9da" opacity=".34"/>
+    <rect x="190" y="20" width="130" height="12" rx="6" fill="#d2d9da" opacity=".22"/>
+  </g>
+</svg>

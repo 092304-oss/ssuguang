@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="分岔星河">
+  <defs>
+    <linearGradient id="void" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#151922"/>
+      <stop offset=".45" stop-color="#493148"/>
+      <stop offset="1" stop-color="#101617"/>
+    </linearGradient>
+    <radialGradient id="gate" cx=".5" cy=".5" r=".42">
+      <stop offset="0" stop-color="#ffe6a4"/>
+      <stop offset=".38" stop-color="#8ddbd2" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#8ddbd2" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#void)"/>
+  <circle cx="800" cy="414" r="376" fill="url(#gate)" opacity=".95"/>
+  <g stroke="#ffe6a4" stroke-width="2" opacity=".42">
+    <path d="M188 712 C440 514 516 432 802 414 C1088 396 1188 266 1450 160"/>
+    <path d="M204 182 C442 306 552 410 802 414 C1052 418 1188 544 1434 748"/>
+    <path d="M310 820 C446 642 610 530 802 414 C994 298 1122 216 1300 88"/>
+    <path d="M320 84 C514 248 650 344 802 414 C954 484 1088 626 1318 818"/>
+  </g>
+  <g fill="#fff7d1" opacity=".86">
+    <circle cx="204" cy="182" r="4"/>
+    <circle cx="310" cy="820" r="3"/>
+    <circle cx="1300" cy="88" r="5"/>
+    <circle cx="1434" cy="748" r="4"/>
+    <circle cx="802" cy="414" r="7"/>
+    <circle cx="550" cy="528" r="3"/>
+    <circle cx="1090" cy="624" r="3"/>
+    <circle cx="1220" cy="250" r="4"/>
+    <circle cx="420" cy="292" r="3"/>
+    <circle cx="1450" cy="160" r="4"/>
+  </g>
+  <g opacity=".35">
+    <rect x="590" y="630" width="420" height="84" rx="42" fill="#0d1013"/>
+    <path d="M664 618 C754 584 846 584 936 618 C860 636 740 636 664 618 Z" fill="#f4d183"/>
+  </g>
+</svg>
