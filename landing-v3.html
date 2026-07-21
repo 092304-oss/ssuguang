@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>溯光 SUGUANG — 互动故事创作平台</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./landing-v3.css" />
+  </head>
+  <body>
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="stars" aria-hidden="true"></div>
+
+    <main class="page-shell">
+      <nav class="site-nav" id="siteNav" aria-label="主导航">
+        <a class="brand-mark" href="#top">
+          <span>溯光</span>
+          <small>SUGUANG</small>
+        </a>
+        <div class="nav-links">
+          <a href="#intro">平台介绍</a>
+          <a href="#games">游戏广场</a>
+          <a href="#data">数据</a>
+          <a href="./creator.html" class="nav-action">开始创作</a>
+        </div>
+      </nav>
+
+      <section class="hero panel" id="top" data-parallax-section>
+        <div class="hero-bg" data-parallax="0.035">
+          <img src="./assets/landing/hero-cat.png" alt="" />
+        </div>
+        <div class="hero-haze" aria-hidden="true"></div>
+        <div class="jelly jelly--hero" data-parallax="-0.055" aria-hidden="true"></div>
+        <div class="hero-copy reveal">
+          <p class="eyebrow">interactive novel studio</p>
+          <h1>溯光 <span>SUGUANG</span></h1>
+          <p class="hero-line">把你的故事，做成别人可以进入的世界。</p>
+          <a href="./creator.html" class="soft-button">启动创作</a>
+        </div>
+        <div class="cat-orbit" data-parallax="0.08" aria-hidden="true">
+          <img class="cat-open" src="./assets/landing/cat-open.png" alt="" />
+          <img class="cat-closed" src="./assets/landing/cat-closed.png" alt="" />
+        </div>
+        <div class="scroll-cue" aria-hidden="true">scroll</div>
+      </section>
+
+      <section class="intro panel" id="intro" data-parallax-section>
+        <div class="section-title reveal">
+          <p class="eyebrow">platform</p>
+          <h2>你的下一个故事，正在等你</h2>
+          <p>溯光把小说、剧本和对话稿整理成可编辑、可试玩、可发布的互动视觉故事。</p>
+        </div>
+        <div class="jelly jelly--intro" data-parallax="0.04" aria-hidden="true"></div>
+        <div class="intro-cards">
+          <article class="glass-card intro-card reveal">
+            <span class="card-num">01</span>
+            <h3>导入文字</h3>
+            <p>自动提取人物、场景、对白和关键情绪，不需要先把文档拆成复杂表格。</p>
+          </article>
+          <article class="glass-card intro-card reveal">
+            <span class="card-num">02</span>
+            <h3>生成节奏</h3>
+            <p>把章节转成分镜式结构，补齐选择节点、配乐提示和画面建议。</p>
+          </article>
+          <article class="glass-card intro-card reveal">
+            <span class="card-num">03</span>
+            <h3>发布试玩</h3>
+            <p>作品可以私密预览，也可以发布到游戏广场，让读者直接进入故事。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="games panel" id="games" data-parallax-section>
+        <div class="section-title reveal">
+          <p class="eyebrow">game plaza</p>
+          <h2>游戏广场</h2>
+          <p>用一组同系列封面呈现互动小说的气质，卡片轻微浮起，画面保持柔光。</p>
+        </div>
+        <div class="game-grid">
+          <article class="game-card game-card--wide reveal">
+            <div class="game-cover">
+              <img src="./assets/images/cover.png" alt="替你活到明天封面" />
+            </div>
+            <div class="game-info">
+              <span>官方示例 · 女性向悬疑</span>
+              <h3>替你活到明天</h3>
+              <p>来自已故之人的短信，把四个人的命运重新编织。多路线，多结局。</p>
+              <a href="./index-v2.html">进入试玩</a>
+            </div>
+          </article>
+          <article class="game-card reveal">
+            <div class="game-cover"><img src="./assets/cg-car-gpt2.png" alt="" /></div>
+            <div class="game-info">
+              <span>都市 · 书信</span>
+              <h3>第七封未寄出的信</h3>
+              <p>雨夜车窗里，旧信件和未完成的告白同时出现。</p>
+            </div>
+          </article>
+          <article class="game-card reveal">
+            <div class="game-cover"><img src="./assets/cg-studio-gpt2.png" alt="" /></div>
+            <div class="game-info">
+              <span>悬疑 · 场景</span>
+              <h3>雨夜归人</h3>
+              <p>城市多出了一条不存在的街道，只有选择能让你回来。</p>
+            </div>
+          </article>
+          <article class="game-card reveal">
+            <div class="game-cover"><img src="./assets/cg-rooftop-gpt2.png" alt="" /></div>
+            <div class="game-info">
+              <span>解谜 · 屋顶</span>
+              <h3>屋顶来信</h3>
+              <p>每晚同一时间，天台会留下没有署名的蓝色纸条。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="data panel" id="data" data-parallax-section>
+        <div class="portrait-dust" data-parallax="-0.05" aria-hidden="true"></div>
+        <div class="data-copy reveal">
+          <p class="eyebrow">creator data</p>
+          <h2>创作过程清晰可见</h2>
+          <p>趋势、作品分层和发布反馈都用浅透数据面板呈现，轻盈但不空。</p>
+        </div>
+        <div class="data-board glass-card reveal">
+          <div class="data-head">
+            <span>累计游玩趋势</span>
+            <strong data-count="42">42<i>万+</i></strong>
+          </div>
+          <svg class="line-chart" viewBox="0 0 520 190" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="rgba(116,164,226,.35)" />
+                <stop offset="100%" stop-color="rgba(116,164,226,0)" />
+              </linearGradient>
+            </defs>
+            <path class="grid-line" d="M0 45H520M0 95H520M0 145H520" />
+            <path class="chart-fill" d="M0,150 C50,128 76,142 118,112 C160,80 198,118 236,86 C284,45 312,82 354,54 C402,22 442,58 520,26 L520,190 L0,190 Z" />
+            <path class="chart-stroke" d="M0,150 C50,128 76,142 118,112 C160,80 198,118 236,86 C284,45 312,82 354,54 C402,22 442,58 520,26" />
+          </svg>
+          <div class="stat-row">
+            <div><strong data-count="3200">3,200+</strong><span>创作者</span></div>
+            <div><strong data-count="890">890+</strong><span>发布作品</span></div>
+            <div><strong data-count="180">180+</strong><span>热门新作</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="final panel" aria-label="品牌收尾" data-parallax-section>
+        <div class="final-nebula" data-parallax="0.035" aria-hidden="true"></div>
+        <div class="portrait-dust portrait-dust--final" data-parallax="-0.04" aria-hidden="true"></div>
+        <div class="final-copy reveal">
+          <p class="eyebrow">start creating</p>
+          <h2>溯光</h2>
+          <p>下一段文字，值得被做成一张可玩的页面。</p>
+          <div class="final-actions">
+            <a href="./creator.html" class="soft-button">免费开始</a>
+            <a href="#games" class="soft-link">先看广场</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <span>溯光 SUGUANG</span>
+        <div>
+          <a href="#intro">平台介绍</a>
+          <a href="#games">游戏广场</a>
+          <a href="#data">数据</a>
+          <a href="./creator.html">开始创作</a>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      const nav = document.getElementById("siteNav");
+      const glow = document.querySelector(".cursor-glow");
+      const stars = document.querySelector(".stars");
+      const reveals = document.querySelectorAll(".reveal");
+      const parallaxItems = document.querySelectorAll("[data-parallax]");
+
+      for (let i = 0; i < 90; i += 1) {
+        const star = document.createElement("i");
+        star.style.setProperty("--x", Math.random() * 100 + "vw");
+        star.style.setProperty("--y", Math.random() * 100 + "vh");
+        star.style.setProperty("--s", 0.6 + Math.random() * 2.6);
+        star.style.setProperty("--d", 8 + Math.random() * 16 + "s");
+        star.style.setProperty("--delay", -Math.random() * 12 + "s");
+        stars.appendChild(star);
+      }
+
+      window.addEventListener("scroll", () => {
+        nav.classList.toggle("is-scrolled", window.scrollY > 40);
+      }, { passive: true });
+
+      window.addEventListener("pointermove", (event) => {
+        glow.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
+        const x = event.clientX / window.innerWidth - 0.5;
+        const y = event.clientY / window.innerHeight - 0.5;
+        parallaxItems.forEach((item) => {
+          const speed = Number(item.dataset.parallax || 0);
+          item.style.transform = `translate3d(${x * speed * 220}px, ${y * speed * 180}px, 0)`;
+        });
+      });
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16 });
+      reveals.forEach((item) => revealObserver.observe(item));
+
+      const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const raw = parseInt(el.dataset.count, 10);
+          const suffix = el.querySelector("i") ? el.querySelector("i").outerHTML : (el.textContent.includes("+") ? "+" : "");
+          const start = performance.now();
+          const tick = (now) => {
+            const p = Math.min((now - start) / 1200, 1);
+            const value = Math.round(raw * (1 - Math.pow(1 - p, 3)));
+            el.innerHTML = value.toLocaleString("en-US") + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          countObserver.unobserve(el);
+        });
+      }, { threshold: 0.6 });
+      document.querySelectorAll("[data-count]").forEach((el) => countObserver.observe(el));
+    </script>
+  </body>
+</html>

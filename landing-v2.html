@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>溯光 — 把你的故事变成游戏</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./landing.css" />
+  <link rel="stylesheet" href="./creator.css" />
+  <style>
+    .spa-panel { display: none; }
+    .spa-panel.is-active { display: block; }
+    /* Game lobby panel */
+    .game-lobby {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #07080d;
+      padding: 40px 20px;
+    }
+    .game-lobby-card {
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+    }
+    .game-lobby-badge {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(226,222,218,0.45);
+      margin-bottom: 20px;
+    }
+    .game-lobby-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 300;
+      color: #e2deda;
+      margin: 0 0 16px;
+      line-height: 1.15;
+    }
+    .game-lobby-blurb {
+      font-family: "Noto Serif SC", serif;
+      font-size: 15px;
+      color: rgba(226,222,218,0.6);
+      line-height: 1.8;
+      margin: 0 0 36px;
+    }
+    .game-lobby-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- Panel: Landing -->
+    <div id="panel-landing" class="spa-panel is-active">
+<main class="landing-shell">
+      <!-- 背景图层 -->
+      <div class="landing-bg" aria-hidden="true"></div>
+      <div class="landing-grain" aria-hidden="true"></div>
+      <div class="landing-vignette" aria-hidden="true"></div>
+
+      <!-- 顶部导航 -->
+      <nav class="landing-nav" id="landingNav" aria-label="主导航">
+        <div class="nav-brand">
+          <span class="nav-brand-main">溯光</span>
+          <span class="nav-brand-sub">SUGUANG</span>
+        </div>
+        <div class="nav-links">
+          <a href="#how">创作</a>
+          <a href="#games">游戏广场</a>
+          <a href="#about">关于</a>
+          <a onclick="showPanel('creator'); return false;" href="#" class="nav-cta">开始创作</a>
+        </div>
+      </nav>
+
+      <!-- ══════ 英雄区 ══════ -->
+      <section class="hero" aria-label="溯光平台">
+        <div class="hero-content">
+          <p class="hero-eyebrow">
+            <span class="eyebrow-dot"></span>
+            剧本 · 小说 · 视觉小说 · 互动游戏
+          </p>
+          <h1 class="hero-brand-title">溯光</h1>
+          <p class="hero-tagline">把你的故事，变成别人的体验</p>
+          <p class="hero-desc">
+            上传你的剧本或小说，溯光帮你转化为可互动的视觉游戏，<br />
+            发布到广场，让更多人读见你的世界。
+          </p>
+          <div class="hero-actions">
+            <a onclick="showPanel('creator'); return false;" href="#" class="btn btn--primary">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              开始创作
+            </a>
+            <a href="#games" class="btn btn--ghost">
+              <span>浏览游戏广场</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 右侧装饰 -->
+        <div class="hero-decor" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="hero-scroll" aria-hidden="true">
+          <span>SCROLL</span>
+          <div class="scroll-line"></div>
+        </div>
+      </section>
+
+      <!-- ══════ 如何运作 ══════ -->
+      <section class="how" id="how" aria-label="如何创作">
+        <header class="section-header">
+          <p class="section-kicker">How it works</p>
+          <h2>三步，把文字变成可玩的故事</h2>
+        </header>
+        <div class="steps-grid">
+          <div class="step">
+            <span class="step-num">01</span>
+            <h3>上传剧本</h3>
+            <p>支持小说、剧本、对话稿等多种格式。溯光自动解析人物、场景和对话结构。</p>
+          </div>
+          <div class="step-divider" aria-hidden="true"></div>
+          <div class="step">
+            <span class="step-num">02</span>
+            <h3>视觉化编排</h3>
+            <p>选择场景画面、角色立绘与配乐，在可视化编辑器中调整故事节奏与分支选项。</p>
+          </div>
+          <div class="step-divider" aria-hidden="true"></div>
+          <div class="step">
+            <span class="step-num">03</span>
+            <h3>发布 &amp; 分享</h3>
+            <p>一键发布到溯光广场，私密或公开皆可。玩家的每一次选择都是你故事的延伸。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════ 游戏广场 ══════ -->
+      <section class="works" id="games" aria-label="游戏广场">
+        <header class="works-header">
+          <p class="section-kicker">Game Plaza</p>
+          <h2>游戏广场</h2>
+          <p class="section-desc">由创作者发布的互动视觉游戏，随时试玩</p>
+        </header>
+
+        <div class="works-grid">
+          <!-- 主打作品：替你活到明天 -->
+          <article class="work-card work-card--featured">
+            <div class="work-visual">
+              <div class="work-cover" style="--cover-image: url('./assets/images/cover.png')"></div>
+              <div class="work-overlay"></div>
+              <span class="work-badge work-badge--featured">官方示例</span>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="work-tag">女性向 · 悬疑</span>
+                <span class="work-year">2026</span>
+              </div>
+              <h3 class="work-title">替你活到明天</h3>
+              <p class="work-blurb">
+                今晚十二点前，你必须做出选择。一封来自已故之人的短信，将四个人的命运重新编织。
+                莫比乌斯环式叙事，多重结局，四条攻略路线。
+              </p>
+              <div class="work-creator">
+                <span class="creator-dot"></span>
+                <span>溯光官方 · 示例创作</span>
+              </div>
+              <a onclick="showPanel('game'); return false;" href="#" class="work-link">
+                <span>进入试玩</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M1 7h12M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- 社区作品 -->
+          <article class="work-card">
+            <div class="work-visual">
+              <div class="work-cover work-cover--placeholder" style="--cover-hue: 200"></div>
+              <div class="work-overlay"></div>
+              <span class="work-badge">创作者发布</span>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="work-tag">治愈 · 书信</span>
+                <span class="work-year">2026</span>
+              </div>
+              <h3 class="work-title">第七封未寄出的信</h3>
+              <p class="work-blurb">
+                旧书店阁楼里，一叠写给同一个人却从未寄出的信。每一封都停在不同的年份。
+              </p>
+              <div class="work-creator">
+                <span class="creator-dot"></span>
+                <span>@林夏 · 12,400 次游玩</span>
+              </div>
+              <button class="work-link work-link--disabled" disabled>
+                <span>即将上线</span>
+              </button>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-visual">
+              <div class="work-cover work-cover--placeholder" style="--cover-hue: 280"></div>
+              <div class="work-overlay"></div>
+              <span class="work-badge">创作者发布</span>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="work-tag">都市怪谈</span>
+                <span class="work-year">2026</span>
+              </div>
+              <h3 class="work-title">雨夜归人</h3>
+              <p class="work-blurb">
+                每个雨夜，城市都会多出一些不该存在的街道。走进去的人，有的再也没回来。
+              </p>
+              <div class="work-creator">
+                <span class="creator-dot"></span>
+                <span>@暮影 · 8,200 次游玩</span>
+              </div>
+              <button class="work-link work-link--disabled" disabled>
+                <span>即将上线</span>
+              </button>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-visual">
+              <div class="work-cover work-cover--placeholder" style="--cover-hue: 40"></div>
+              <div class="work-overlay"></div>
+              <span class="work-badge">创作者发布</span>
+            </div>
+            <div class="work-info">
+              <div class="work-meta">
+                <span class="work-tag">解谜 · 时间</span>
+                <span class="work-year">2027</span>
+              </div>
+              <h3 class="work-title">镜中时钟</h3>
+              <p class="work-blurb">
+                古董店的镜子映出的不是现在，而是十二小时后的未来。你能否在循环中找到出口？
+              </p>
+              <div class="work-creator">
+                <span class="creator-dot"></span>
+                <span>@沉云 · 审核中</span>
+              </div>
+              <button class="work-link work-link--disabled" disabled>
+                <span>即将上线</span>
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <div class="works-more">
+          <a href="#" class="btn btn--ghost">查看全部广场游戏</a>
+        </div>
+      </section>
+
+      <!-- ══════ 关于 ══════ -->
+      <section class="about" id="about" aria-label="关于溯光">
+        <div class="about-inner">
+          <div class="about-text">
+            <p class="section-kicker">About</p>
+            <h2>关于溯光</h2>
+            <p>
+              溯光是一个面向所有人的互动叙事创作平台。
+              我们相信每一个喜欢写故事的人，都值得拥有一个
+              <em>把文字变成体验</em>的工具。
+            </p>
+            <p>
+              无论是短篇小说、恋爱剧本还是悬疑推理，溯光都能帮你
+              转化为视觉小说游戏——配乐、立绘、场景、分支选项，
+              一应俱全。创作完成后，你可以发布到溯光广场，
+              让全世界的玩家读见你的世界。
+            </p>
+          </div>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-num">3,200+</span>
+              <span class="stat-label">位创作者</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">890+</span>
+              <span class="stat-label">部作品</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">42万+</span>
+              <span class="stat-label">次游玩</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════ CTA Banner ══════ -->
+      <section class="cta-banner" aria-label="开始创作">
+        <div class="cta-banner-inner">
+          <p class="section-kicker">Start Creating</p>
+          <h2>你的下一个故事，正在等你</h2>
+          <p>现在注册，免费创作你的第一部视觉小说游戏。</p>
+          <a href="#" class="btn btn--primary btn--large">免费开始 →</a>
+        </div>
+      </section>
+
+      <!-- 页脚 -->
+      <footer class="landing-footer">
+        <div class="footer-inner">
+          <div class="footer-brand-block">
+            <span class="nav-brand-main" style="font-size:18px">溯光</span>
+            <span class="footer-tagline">把你的故事变成游戏</span>
+          </div>
+          <div class="footer-links">
+            <a href="#how">如何创作</a>
+            <a href="#games">游戏广场</a>
+            <a href="#about">关于</a>
+            <a href="#">隐私政策</a>
+          </div>
+          <span class="footer-copy">© 2024–2026 溯光</span>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      // Nav scroll effect
+      const nav = document.getElementById('landingNav');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('is-scrolled', scrollY > 60);
+      });
+
+      // Active link highlight
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(s => {
+          if (scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
+        });
+        navLinks.forEach(a => {
+          a.classList.toggle('is-active', a.getAttribute('href') === '#' + current);
+        });
+      });
+
+      // Intersection reveal
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.work-card, .about-inner, .cta-banner-inner, .step').forEach(el => observer.observe(el));
+    </script>
+    </div>
+
+    <!-- Panel: Creator -->
+    <div id="panel-creator" class="spa-panel">
+<header class="cr-nav">
+      <a onclick="showPanel('landing'); return false;" href="#" class="cr-nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        溯光
+      </a>
+      <div class="cr-nav-steps" id="stepIndicator">
+        <span class="cr-step is-active" data-step="1">上传</span>
+        <span class="cr-step-dot" aria-hidden="true"></span>
+        <span class="cr-step" data-step="2">解析</span>
+        <span class="cr-step-dot" aria-hidden="true"></span>
+        <span class="cr-step" data-step="3">编排</span>
+        <span class="cr-step-dot" aria-hidden="true"></span>
+        <span class="cr-step" data-step="4">发布</span>
+      </div>
+      <div class="cr-nav-actions">
+        <button class="cr-btn cr-btn--ghost" id="saveDraftBtn">保存草稿</button>
+        <button class="cr-btn cr-btn--primary" id="nextStepBtn" disabled>下一步</button>
+      </div>
+    </header>
+
+    <main class="cr-main">
+
+      <!-- ══ Step 1: 上传 ══ -->
+      <section class="cr-panel is-active" id="step1">
+        <div class="cr-panel-inner">
+          <div class="cr-panel-header">
+            <p class="cr-kicker">Step 01</p>
+            <h1>上传你的故事</h1>
+            <p class="cr-subtitle">支持 TXT、DOCX、PDF 或直接粘贴剧本文本</p>
+          </div>
+
+          <!-- 上传区 -->
+          <div class="upload-zone" id="uploadZone">
+            <div class="upload-icon" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <path d="M24 32V16M16 24l8-8 8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="4" y="4" width="40" height="40" rx="8" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+              </svg>
+            </div>
+            <p class="upload-label">拖拽文件到此处，或</p>
+            <label class="cr-btn cr-btn--ghost upload-pick">
+              选择文件
+              <input type="file" accept=".txt,.docx,.pdf" hidden id="fileInput" />
+            </label>
+            <p class="upload-hint">TXT · DOCX · PDF，最大 10MB</p>
+          </div>
+
+          <div class="upload-divider"><span>或直接粘贴文本</span></div>
+
+          <!-- 文本输入 -->
+          <div class="cr-textarea-wrap">
+            <textarea
+              class="cr-textarea"
+              id="scriptInput"
+              placeholder="在此粘贴你的剧本或小说片段……
+
+支持格式示例：
+【场景：雨夜的公寓楼顶】
+（沈栀站在边缘，手机屏幕亮着）
+周叙：「等等——先别动。」
+（沈栀回头，眼神空洞）
+选择：
+A. 走过去
+B. 保持距离，继续说话"
+              rows="14"
+            ></textarea>
+            <div class="textarea-counter"><span id="charCount">0</span> 字</div>
+          </div>
+
+          <!-- 作品基本信息 -->
+          <div class="cr-meta-fields">
+            <div class="cr-field">
+              <label class="cr-label" for="titleInput">作品名称</label>
+              <input class="cr-input" id="titleInput" type="text" placeholder="例：替你活到明天" />
+            </div>
+            <div class="cr-field">
+              <label class="cr-label">类型标签</label>
+              <div class="cr-tags" id="tagGroup">
+                <button class="cr-tag" data-tag="悬疑">悬疑</button>
+                <button class="cr-tag" data-tag="治愈">治愈</button>
+                <button class="cr-tag" data-tag="恋爱">恋爱</button>
+                <button class="cr-tag" data-tag="怪谈">怪谈</button>
+                <button class="cr-tag" data-tag="科幻">科幻</button>
+                <button class="cr-tag" data-tag="女性向">女性向</button>
+                <button class="cr-tag" data-tag="解谜">解谜</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="cr-step-footer">
+            <button class="cr-btn cr-btn--primary cr-btn--large" id="parseBtn" disabled>
+              开始解析
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Step 2: 解析 ══ -->
+      <section class="cr-panel" id="step2">
+        <div class="cr-panel-inner">
+          <div class="cr-panel-header">
+            <p class="cr-kicker">Step 02</p>
+            <h1>解析结果</h1>
+            <p class="cr-subtitle">溯光已自动识别你的剧本结构，请确认并调整</p>
+          </div>
+
+          <!-- 解析状态 / 进度 -->
+          <div class="parse-status" id="parseStatus">
+            <div class="parse-progress-bar"><div class="parse-progress-fill" id="progressFill"></div></div>
+            <p class="parse-status-text" id="parseStatusText">正在识别场景结构…</p>
+          </div>
+
+          <!-- 解析结果卡片 -->
+          <div class="parse-results" id="parseResults" style="display:none">
+            <div class="parse-summary">
+              <div class="parse-stat">
+                <span class="pstat-num" id="sceneCount">—</span>
+                <span class="pstat-label">个场景</span>
+              </div>
+              <div class="parse-stat">
+                <span class="pstat-num" id="charCount2">—</span>
+                <span class="pstat-label">个角色</span>
+              </div>
+              <div class="parse-stat">
+                <span class="pstat-num" id="choiceCount">—</span>
+                <span class="pstat-label">处选项分支</span>
+              </div>
+            </div>
+
+            <!-- 角色列表 -->
+            <div class="parse-section">
+              <h3 class="parse-section-title">识别到的角色</h3>
+              <div class="char-list" id="charList">
+                <!-- 动态填充 -->
+              </div>
+            </div>
+
+            <!-- 场景节点预览 -->
+            <div class="parse-section">
+              <h3 class="parse-section-title">场景节点预览</h3>
+              <div class="node-preview" id="nodePreview">
+                <!-- 动态填充 -->
+              </div>
+            </div>
+          </div>
+
+          <div class="cr-step-footer">
+            <button class="cr-btn cr-btn--ghost" onclick="goStep(1)">← 返回上传</button>
+            <button class="cr-btn cr-btn--primary cr-btn--large" id="toEditorBtn" disabled>
+              进入编排
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Step 3: 编排 ══ -->
+      <section class="cr-panel" id="step3">
+        <div class="cr-panel-inner cr-panel-inner--wide">
+          <div class="cr-panel-header">
+            <p class="cr-kicker">Step 03</p>
+            <h1>视觉编排</h1>
+            <p class="cr-subtitle">为每个场景选择背景、角色立绘与配乐，调整分支选项</p>
+          </div>
+
+          <div class="editor-layout">
+            <!-- 左：场景列表 -->
+            <aside class="editor-sidebar">
+              <div class="sidebar-header">
+                <span>场景列表</span>
+                <button class="sidebar-add" title="添加场景">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="scene-list" id="editorSceneList">
+                <!-- 动态填充 -->
+                <div class="scene-item is-active">
+                  <span class="scene-item-num">01</span>
+                  <span class="scene-item-name">序章 · 雨夜公寓</span>
+                </div>
+                <div class="scene-item">
+                  <span class="scene-item-num">02</span>
+                  <span class="scene-item-name">来电</span>
+                </div>
+                <div class="scene-item">
+                  <span class="scene-item-num">03</span>
+                  <span class="scene-item-name">选择时刻</span>
+                </div>
+              </div>
+            </aside>
+
+            <!-- 中：场景编辑区 -->
+            <div class="editor-canvas">
+              <!-- 预览窗口 -->
+              <div class="canvas-preview">
+                <div class="preview-bg"></div>
+                <div class="preview-overlay">
+                  <div class="preview-speaker">旁白</div>
+                  <div class="preview-text">今晚十二点，窗外的雨还没有停。手机忽然亮起来。</div>
+                </div>
+              </div>
+
+              <!-- 对话文本编辑 -->
+              <div class="canvas-dialogue">
+                <div class="dialogue-row">
+                  <input class="cr-input cr-input--speaker" placeholder="角色名 / 旁白" value="旁白" />
+                  <textarea class="cr-textarea cr-textarea--dialogue" rows="3">今晚十二点，窗外的雨还没有停。手机忽然亮起来。</textarea>
+                </div>
+                <div class="dialogue-branches" id="branches">
+                  <div class="branch-item">
+                    <span class="branch-label">A</span>
+                    <input class="cr-input" placeholder="选项文本…" value="接听电话" />
+                    <input class="cr-input cr-input--small" placeholder="跳转到…" value="场景 02" />
+                    <button class="branch-del" title="删除">×</button>
+                  </div>
+                  <div class="branch-item">
+                    <span class="branch-label">B</span>
+                    <input class="cr-input" placeholder="选项文本…" value="忽略来电" />
+                    <input class="cr-input cr-input--small" placeholder="跳转到…" value="场景 03" />
+                    <button class="branch-del" title="删除">×</button>
+                  </div>
+                </div>
+                <button class="cr-btn cr-btn--ghost cr-btn--sm" id="addBranchBtn">+ 添加选项</button>
+              </div>
+            </div>
+
+            <!-- 右：资源面板 -->
+            <aside class="editor-assets">
+              <div class="assets-tabs">
+                <button class="assets-tab is-active" data-tab="bg">背景</button>
+                <button class="assets-tab" data-tab="char">立绘</button>
+                <button class="assets-tab" data-tab="bgm">配乐</button>
+              </div>
+
+              <div class="assets-panel is-active" id="bgPanel">
+                <div class="asset-grid">
+                  <div class="asset-item is-selected">
+                    <div class="asset-thumb" style="background: linear-gradient(135deg, #1a1c28, #0a0c14)"></div>
+                    <span>雨夜公寓</span>
+                  </div>
+                  <div class="asset-item">
+                    <div class="asset-thumb" style="background: linear-gradient(135deg, #1c1820, #0e0c16)"></div>
+                    <span>街道</span>
+                  </div>
+                  <div class="asset-item">
+                    <div class="asset-thumb" style="background: linear-gradient(135deg, #161c24, #0a1018)"></div>
+                    <span>楼顶</span>
+                  </div>
+                  <div class="asset-item asset-item--add">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>上传</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="assets-panel" id="charPanel">
+                <div class="asset-grid">
+                  <div class="asset-item">
+                    <div class="asset-thumb asset-thumb--char" style="--char-color: #8895a7"></div>
+                    <span>沈栀</span>
+                  </div>
+                  <div class="asset-item">
+                    <div class="asset-thumb asset-thumb--char" style="--char-color: #c9a7a1"></div>
+                    <span>周叙</span>
+                  </div>
+                  <div class="asset-item asset-item--add">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>上传</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="assets-panel" id="bgmPanel">
+                <div class="bgm-list">
+                  <div class="bgm-item is-selected">
+                    <span class="bgm-icon">♩</span>
+                    <div class="bgm-info"><span>雨夜</span><small>氛围 · 悬疑</small></div>
+                  </div>
+                  <div class="bgm-item">
+                    <span class="bgm-icon">♩</span>
+                    <div class="bgm-info"><span>记忆碎片</span><small>情感 · 轻柔</small></div>
+                  </div>
+                  <div class="bgm-item">
+                    <span class="bgm-icon">♩</span>
+                    <div class="bgm-info"><span>临界</span><small>紧张 · 转折</small></div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <div class="cr-step-footer">
+            <button class="cr-btn cr-btn--ghost" onclick="goStep(2)">← 返回解析</button>
+            <button class="cr-btn cr-btn--primary cr-btn--large" onclick="goStep(4)">
+              下一步：发布设置
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Step 4: 发布 ══ -->
+      <section class="cr-panel" id="step4">
+        <div class="cr-panel-inner">
+          <div class="cr-panel-header">
+            <p class="cr-kicker">Step 04</p>
+            <h1>发布设置</h1>
+            <p class="cr-subtitle">决定你的游戏如何与世界相遇</p>
+          </div>
+
+          <div class="publish-form">
+            <div class="cr-field">
+              <label class="cr-label" for="coverUpload">封面图</label>
+              <div class="cover-upload" id="coverUpload">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                  <path d="M18 24V12M11 18l7-7 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="3" y="3" width="30" height="30" rx="6" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                </svg>
+                <span>上传封面图</span>
+                <small>建议尺寸 600×900，JPG / PNG</small>
+              </div>
+            </div>
+
+            <div class="cr-field">
+              <label class="cr-label" for="descInput">简介</label>
+              <textarea class="cr-textarea" id="descInput" rows="4" placeholder="用一两句话介绍你的故事…"></textarea>
+            </div>
+
+            <div class="cr-field">
+              <label class="cr-label">可见性</label>
+              <div class="visibility-options">
+                <label class="vis-option">
+                  <input type="radio" name="visibility" value="public" checked />
+                  <div class="vis-card">
+                    <span class="vis-icon">🌐</span>
+                    <strong>公开发布</strong>
+                    <span>所有人都能在广场找到并试玩</span>
+                  </div>
+                </label>
+                <label class="vis-option">
+                  <input type="radio" name="visibility" value="link" />
+                  <div class="vis-card">
+                    <span class="vis-icon">🔗</span>
+                    <strong>链接可见</strong>
+                    <span>仅持有链接的人可以访问</span>
+                  </div>
+                </label>
+                <label class="vis-option">
+                  <input type="radio" name="visibility" value="private" />
+                  <div class="vis-card">
+                    <span class="vis-icon">🔒</span>
+                    <strong>私密</strong>
+                    <span>仅自己可见，随时可以更改</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="cr-step-footer">
+            <button class="cr-btn cr-btn--ghost" onclick="goStep(3)">← 返回编排</button>
+            <button class="cr-btn cr-btn--primary cr-btn--large" id="publishBtn">
+              发布到溯光广场
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 2l4 4-4 4M3 6h9M8 10l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <script>
+      // ── Step navigation ──
+      function goStep(n) {
+        document.querySelectorAll('.cr-panel').forEach((p, i) => {
+          p.classList.toggle('is-active', i + 1 === n);
+        });
+        document.querySelectorAll('.cr-step').forEach(s => {
+          const sn = +s.dataset.step;
+          s.classList.toggle('is-active', sn === n);
+          s.classList.toggle('is-done', sn < n);
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // ── Upload / textarea enable parse btn ──
+      const scriptInput = document.getElementById('scriptInput');
+      const titleInput = document.getElementById('titleInput');
+      const parseBtn = document.getElementById('parseBtn');
+      const fileInput = document.getElementById('fileInput');
+
+      function checkParseReady() {
+        const ready = (scriptInput.value.trim().length > 20 || fileInput.files.length > 0) && titleInput.value.trim().length > 0;
+        parseBtn.disabled = !ready;
+      }
+
+      scriptInput.addEventListener('input', () => {
+        document.getElementById('charCount').textContent = scriptInput.value.length;
+        checkParseReady();
+      });
+      titleInput.addEventListener('input', checkParseReady);
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+          document.querySelector('.upload-label').textContent = fileInput.files[0].name;
+          checkParseReady();
+        }
+      });
+
+      // Drag & drop
+      const uploadZone = document.getElementById('uploadZone');
+      uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('is-drag'); });
+      uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('is-drag'));
+      uploadZone.addEventListener('drop', e => {
+        e.preventDefault();
+        uploadZone.classList.remove('is-drag');
+        const f = e.dataTransfer.files[0];
+        if (f) { document.querySelector('.upload-label').textContent = f.name; checkParseReady(); }
+      });
+
+      // ── Tag toggle ──
+      document.getElementById('tagGroup').addEventListener('click', e => {
+        if (e.target.classList.contains('cr-tag')) e.target.classList.toggle('is-selected');
+      });
+
+      // ── Parse simulation ──
+      parseBtn.addEventListener('click', () => {
+        goStep(2);
+        const fill = document.getElementById('progressFill');
+        const text = document.getElementById('parseStatusText');
+        const steps = [
+          [20, '正在识别场景结构…'],
+          [45, '提取角色与对话…'],
+          [70, '分析分支选项…'],
+          [90, '生成节点图…'],
+          [100, '解析完成！'],
+        ];
+        let i = 0;
+        const run = () => {
+          if (i >= steps.length) {
+            showParseResults();
+            return;
+          }
+          const [pct, msg] = steps[i++];
+          fill.style.width = pct + '%';
+          text.textContent = msg;
+          setTimeout(run, 600);
+        };
+        run();
+      });
+
+      function showParseResults() {
+        document.getElementById('parseStatus').style.display = 'none';
+        const r = document.getElementById('parseResults');
+        r.style.display = 'block';
+        document.getElementById('sceneCount').textContent = '3';
+        document.getElementById('charCount2').textContent = '4';
+        document.getElementById('choiceCount').textContent = '2';
+
+        const chars = ['沈栀', '周叙', '白祁', '陆眠'];
+        document.getElementById('charList').innerHTML = chars.map(c =>
+          `<div class="char-chip"><span class="char-chip-dot"></span>${c}</div>`
+        ).join('');
+
+        const nodes = [
+          { id: '01', name: '序章 · 雨夜公寓', type: '旁白' },
+          { id: '02', name: '来电', type: '对话' },
+          { id: '03', name: '选择时刻', type: '分支 ×2' },
+        ];
+        document.getElementById('nodePreview').innerHTML = nodes.map(n =>
+          `<div class="node-card">
+            <span class="node-id">${n.id}</span>
+            <span class="node-name">${n.name}</span>
+            <span class="node-type">${n.type}</span>
+          </div>`
+        ).join('');
+
+        document.getElementById('toEditorBtn').disabled = false;
+        document.getElementById('toEditorBtn').addEventListener('click', () => goStep(3));
+      }
+
+      // ── Asset tabs ──
+      document.querySelectorAll('.assets-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          const t = tab.dataset.tab;
+          document.querySelectorAll('.assets-tab').forEach(x => x.classList.toggle('is-active', x === tab));
+          document.querySelectorAll('.assets-panel').forEach(p => p.classList.toggle('is-active', p.id === t + 'Panel'));
+        });
+      });
+
+      // ── Add branch ──
+      let branchCount = 3;
+      document.getElementById('addBranchBtn').addEventListener('click', () => {
+        const label = String.fromCharCode(64 + branchCount++);
+        const div = document.createElement('div');
+        div.className = 'branch-item';
+        div.innerHTML = `<span class="branch-label">${label}</span>
+          <input class="cr-input" placeholder="选项文本…" />
+          <input class="cr-input cr-input--small" placeholder="跳转到…" />
+          <button class="branch-del" title="删除" onclick="this.parentElement.remove()">×</button>`;
+        document.getElementById('branches').appendChild(div);
+      });
+
+      document.querySelectorAll('.branch-del').forEach(b => {
+        b.addEventListener('click', () => b.parentElement.remove());
+      });
+
+      // ── Publish ──
+      document.getElementById('publishBtn').addEventListener('click', () => {
+        alert('发布成功！你的游戏已提交审核，审核通过后将出现在溯光广场。');
+        window.location.href = './landing.html#games';
+      });
+    </script>
+    </div>
+
+    <!-- Panel: Game -->
+    <div id="panel-game" class="spa-panel">
+      <div class="game-lobby">
+        <div class="game-lobby-card">
+          <p class="game-lobby-badge">官方示例游戏 · 女性向 · 悬疑</p>
+          <h1 class="game-lobby-title">替你活到明天</h1>
+          <p class="game-lobby-blurb">今晚十二点前，你必须做出选择。<br>一封来自已故之人的短信，将四个人的命运重新编织。<br>莫比乌斯环式叙事，多重结局，四条攻略路线。</p>
+          <div class="game-lobby-actions">
+            <a href="./index-v2.html" target="_blank" class="btn btn--primary">开始游玩</a>
+            <a onclick="showPanel('landing'); return false;" href="#" class="btn btn--ghost">← 返回溯光</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPanel(name) {
+      document.querySelectorAll('.spa-panel').forEach(p => p.classList.remove('is-active'));
+      document.getElementById('panel-' + name).classList.add('is-active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  </script>
+</body>
+</html>

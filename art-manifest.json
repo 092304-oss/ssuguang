@@ -1,0 +1,407 @@
+{
+  "project": "替你活到明天",
+  "styleGuide": {
+    "imageStyle": "现代悬疑女性向视觉小说 CG，电影感构图，细腻光影，柔和但有压迫感，画面适合 16:9 横屏游戏背景。",
+    "mustAvoid": "不要文字、水印、低清、夸张恐怖血腥、欧美脸、Q版、网页插画感、粗糙 SVG 感。",
+    "characterContinuity": "沈栀：27岁中国女性，黑色中长发，清冷疲惫，深色通勤外套。陆眠：明亮温柔，浅黄色卫衣。周叙：黑发，成熟克制，雨夜外套。白祁：偏苍白，冷感，年轻，银灰/浅色头发也可。高中篇统一校服，人物更年轻但保持五官记忆点。张恒：16岁中国男高中生，黑发，帅气但压迫感强，笑意克制，不要丑化或怪物化。"
+  },
+  "assets": [
+    {
+      "id": "door",
+      "target": "assets/cg-door.png",
+      "nodes": [
+        "start",
+        "noteBack"
+      ],
+      "prompt": "Modern Chinese visual novel CG, rainy apartment corridor at night, wet white roses lying outside a dark apartment door, cinematic composition, soft blue-gray rain light, delicate suspense mood, female-oriented mystery aesthetic, no text, no watermark, 16:9.",
+      "status": "generated-local-png"
+    },
+    {
+      "id": "phone",
+      "target": "assets/cg-phone.png",
+      "nodes": [
+        "insideRoom",
+        "smsRule",
+        "callLu01",
+        "zhou01",
+        "zhou02",
+        "zhou04",
+        "zhou05"
+      ],
+      "prompt": "Modern suspense visual novel CG, dim apartment living room at 23:17, a smartphone glowing on a table with an ominous notification, rain on window, white roses nearby, moody cyan light, polished game CG, no readable text, no watermark, 16:9.",
+      "status": "generated-local-png"
+    },
+    {
+      "id": "album",
+      "target": "assets/cg-album.png",
+      "nodes": [
+        "album01"
+      ],
+      "prompt": "Visual novel CG close-up, phone photo album open on a rainy night, old photo of two young Chinese women at a convenience store window, one warm and smiling, one tired, nostalgic warm memory against cold present, emotional, no text, no watermark, 16:9.",
+      "status": "generated-local-png"
+    },
+    {
+      "id": "zhouDoor",
+      "target": "assets/cg-zhou-door.png",
+      "nodes": [
+        "zhou03",
+        "zhou06"
+      ],
+      "prompt": "Modern romance suspense visual novel CG, drenched young Chinese man standing outside apartment door at night, heroine seen from behind, warm hallway light mixed with cold rain reflection, tense reunion, cinematic, no text, no watermark, 16:9.",
+      "status": "generated-local-png"
+    },
+    {
+      "id": "car",
+      "target": "assets/cg-car.png",
+      "nodes": [
+        "oldDream01",
+        "oldDream02",
+        "bai01"
+      ],
+      "prompt": "Modern Chinese city at night through taxi window, heavy rain streaks, blurred neon lights, anxious young woman reflection in glass, cinematic visual novel background, blue and amber palette, no text, no watermark, 16:9.",
+      "status": "generated-local-png"
+    },
+    {
+      "id": "studio",
+      "target": "assets/cg-studio.png",
+      "nodes": [
+        "bai02",
+        "bai03",
+        "bai04",
+        "bai05",
+        "trial01",
+        "trial02"
+      ],
+      "prompt": "Abandoned photography studio interior, wall covered in investigation photos and red strings, projector dust beam, cold cinematic thriller atmosphere, modern Chinese visual novel CG, polished, no readable text, no watermark, 16:9.",
+      "status": "generated-local-png"
+    },
+    {
+      "id": "mirror",
+      "target": "assets/cg-mirror.png",
+      "nodes": [
+        "escape01",
+        "escape02",
+        "erase01",
+        "erase02"
+      ],
+      "prompt": "Modern bathroom mirror covered with steam, reflected silhouette of a young Chinese woman, cold blue-green light, psychological horror suspense mood, elegant visual novel CG, no readable text, no watermark, 16:9.",
+      "status": "generated-local-png"
+    },
+    {
+      "id": "rooftop",
+      "target": "assets/cg-rooftop.png",
+      "nodes": [
+        "commonVideo01",
+        "commonVideo02",
+        "loop01"
+      ],
+      "prompt": "Rainy rooftop at night, two young Chinese women near a broken railing, one reaching to save the other, emotional suspense, cinematic visual novel CG, tasteful, no gore, dramatic rain and city lights, no text, no watermark, 16:9.",
+      "status": "generated-local-png"
+    },
+    {
+      "id": "lumianVideo",
+      "target": "assets/cg-lumian-video.png",
+      "nodes": [
+        "luVideo01",
+        "luVideo02"
+      ],
+      "prompt": "Recorded video frame of a warm young Chinese woman in a pale yellow hoodie sitting by a convenience store window, smiling gently at camera, nostalgic visual novel CG, VHS-like framing but no text, emotional, no watermark, 16:9.",
+      "status": "generated-local-png"
+    },
+    {
+      "id": "source",
+      "target": "assets/cg-source.png",
+      "nodes": [
+        "source01",
+        "finalChoice"
+      ],
+      "prompt": "Dark laptop screen and phone on desk, delayed message program interface implied but no readable code, cyan glow, rain outside, mystery visual novel CG, cinematic, no text, no watermark, 16:9.",
+      "status": "generated-local-png"
+    },
+    {
+      "id": "dawn",
+      "target": "assets/cg-dawn.png",
+      "nodes": [
+        "live01",
+        "forgive01"
+      ],
+      "prompt": "Soft dawn in modern apartment, white roses in a glass cup, phone beside a notebook, warm sunlight after a rainy night, healing visual novel ending CG, delicate and emotional, no text, no watermark, 16:9.",
+      "status": "generated-local-png"
+    },
+    {
+      "id": "proTaxiShen",
+      "target": "assets/prologue-v2/cg-pro-taxi-shen-gpt2.png",
+      "nodes": ["start", "pro_rain_02"],
+      "prompt": "Rainy taxi interior with Shen Zhi reflected in the window, holding Lu Mian's phone and a folded note.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proDoorHall",
+      "target": "assets/prologue-v2/cg-pro-door-hall-gpt2.png",
+      "nodes": ["pro_hall_01"],
+      "prompt": "Rainy apartment corridor at night, dark door under weak hallway light.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proDoorFloor",
+      "target": "assets/prologue-v2/cg-pro-door-floor-gpt2.png",
+      "nodes": ["pro_hall_02", "pro_note_01"],
+      "prompt": "Phone and paper note on the wet corridor floor beside white roses.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proRoomDark",
+      "target": "assets/prologue-v2/cg-pro-room-dark-gpt2.png",
+      "nodes": ["pro_room_01", "pro_fail_wait_01"],
+      "prompt": "Dark rainy apartment interior after the heroine closes the door.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proPhoneCharge",
+      "target": "assets/prologue-v2/cg-pro-phone-charge-gpt2.png",
+      "nodes": ["pro_room_02", "pro_charge_01", "pro_charge_02"],
+      "prompt": "Old phone charging on the table, screen beginning to light up.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proMemoShen",
+      "target": "assets/prologue-v2/cg-pro-memo-shen-gpt2.png",
+      "nodes": ["pro_memo_01", "pro_memo_02"],
+      "prompt": "Shen Zhi half-lit by the old phone after reading Lu Mian's final memo.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proRealizeShen",
+      "target": "assets/prologue-v2/cg-pro-realize-shen-gpt2.png",
+      "nodes": ["pro_realize_01", "pro_logic_01", "pro_logic_02"],
+      "prompt": "Shen Zhi facing her reflection as she realizes the death was not an accident.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proSmsThreat",
+      "target": "assets/prologue-v2/cg-pro-sms-threat-gpt2.png",
+      "nodes": ["pro_search_01", "pro_sms_01", "pro_sms_02", "pro_sms_03"],
+      "prompt": "Threatening message thread on the old phone, screen text blurred.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proAlbumMemory",
+      "target": "assets/prologue-v2/cg-pro-album-shen-lu-gpt2.png",
+      "nodes": ["pro_work_01", "pro_work_02"],
+      "prompt": "Warm memory of Shen Zhi and Lu Mian at a convenience store window.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proDraftEvidence",
+      "target": "assets/prologue-v2/cg-pro-draft-evidence-gpt2.png",
+      "nodes": ["pro_draft_01", "pro_draft_02"],
+      "prompt": "Desk covered with unsent reports, evidence photos, laptop, and investigation notes.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proChoicePhone",
+      "target": "assets/prologue-v2/cg-pro-choice-phone-gpt2.png",
+      "nodes": ["pro_choice"],
+      "prompt": "Phone on a rainy table at the first major route choice.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proCallBai",
+      "target": "assets/prologue-v2/cg-pro-call-bai-gpt2.png",
+      "nodes": ["pro_call_bai_01", "pro_call_bai_02", "pro_call_bai_03"],
+      "prompt": "Late-night phone call with Bai Qi appearing guarded near the doorway.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proCallZhou",
+      "target": "assets/prologue-v2/cg-pro-call-zhou-gpt2.png",
+      "nodes": ["pro_call_zhou_01", "pro_call_zhou_02", "pro_call_zhou_03"],
+      "prompt": "Rainy-night call with Zhou Xu, cool and restrained outside the doorway.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proFailAlone",
+      "target": "assets/prologue-v2/cg-pro-fail-alone-gpt2.png",
+      "nodes": ["pro_fail_alone_01", "pro_fail_alone_02", "pro_fail_alone_03"],
+      "prompt": "Failure route: the heroine waits alone outside a closed door.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proFailWait",
+      "target": "assets/prologue-v2/cg-pro-fail-wait-gpt2.png",
+      "nodes": ["pro_fail_wait_02"],
+      "prompt": "Failure route: pale morning, the old phone being taken away after waiting too long.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "proFailWaitBai",
+      "target": "assets/prologue-v2/cg-pro-fail-wait-bai-gpt2.png",
+      "nodes": ["pro_fail_wait_03"],
+      "prompt": "Failure route: Bai Qi quietly takes Lu Mian's old phone away.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "zhangHighschoolRef",
+      "target": "assets/characters/highschool/zhang-heng-highschool.png",
+      "nodes": [],
+      "prompt": "Zhang Heng character reference: handsome 16-year-old Chinese high-school boy in matching school uniform, black hair, sharp memorable face, controlled smile, dangerous but realistic presence.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch3LuBox",
+      "target": "assets/ch3-v2/cg-ch3-lu-box-gpt2.png",
+      "nodes": ["ch3_bai_arrive_02", "ch3_bai_arrive_03", "ch3_box_01", "ch3_box_02", "ch3_box_03"],
+      "prompt": "Chapter 3 CG: Shen Zhi discovers Lu Mian's hidden box at school, intimate suspense mood, consistent high-school uniforms and character faces.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch3YearbookTorn",
+      "target": "assets/ch3-v2/cg-ch3-yearbook-torn-gpt2.png",
+      "nodes": ["ch3_school_02", "ch3_school_03", "ch3_school_04", "ch3_school_05"],
+      "prompt": "Chapter 3 CG: torn yearbook or damaged school memory clue, quiet classroom pressure, no obvious full-answer reveal, cinematic female-oriented suspense.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch3ThreatWindow",
+      "target": "assets/ch3-v2/cg-ch3-threat-window-gpt2.png",
+      "nodes": ["ch3_threat_01", "ch3_choice_threat", "ch3_reply_01", "ch3_delete_01"],
+      "prompt": "Chapter 3 CG: threatening message reflected near a classroom window, Shen Zhi limited POV, screen text blurred, tense but not horror-gory.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch3BackupTrio",
+      "target": "assets/ch3-v2/cg-ch3-backup-trio-gpt2.png",
+      "nodes": ["ch3_backup_01"],
+      "prompt": "Chapter 3 CG: Shen Zhi, Lu Mian, and Bai Qi keep a cautious backup plan after school, emotional alliance forming under suspense.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch4NoteDesk",
+      "target": "assets/ch4-v2/cg-ch4-note-desk-gpt2.png",
+      "nodes": ["ch4_class_01", "ch4_note_01", "ch4_lu_note_01", "ch4_choice_after_note"],
+      "prompt": "Chapter 4 CG: small note on a school desk, Shen Zhi's limited perspective, soft daylight tension, no over-obvious clue dump.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch4ArtroomPromise",
+      "target": "assets/ch4-v2/cg-ch4-artroom-promise-gpt2.png",
+      "nodes": ["ch4_artroom_01", "ch4_artroom_02", "ch4_artroom_03", "ch4_artroom_04", "ch4_artroom_05"],
+      "prompt": "Chapter 4 CG: Shen Zhi and Lu Mian in the art room, warm emotional promise scene, tender female-oriented relationship beat with matching school uniforms.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch4WallUpdate",
+      "target": "assets/ch4-v2/cg-ch4-wall-update-gpt2.png",
+      "nodes": ["ch4_update_01", "ch4_choice_wall", "ch4_wall_good_01", "ch4_wall_public_01", "ch4_wall_lu_01"],
+      "prompt": "Chapter 4 CG: school wall or noticeboard update spreads pressure through the class, public suspense, no readable text.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch4PhotoRoomZhang",
+      "target": "assets/ch4-v2/cg-ch4-photo-room-zhang-gpt2.png",
+      "nodes": ["ch4_photo_room_01", "ch4_photo_room_02", "ch4_photo_room_03", "ch4_lu_speaks_01", "ch4_photo_room_04"],
+      "prompt": "Chapter 4 CG: Shen Zhi and Lu Mian face Zhang Heng in the photography room, Zhang is handsome and dangerous, character consistency maintained.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch5FlowerOrder",
+      "target": "assets/ch5-v2/cg-ch5-flower-order-gpt2.png",
+      "nodes": ["ch5_flower_01", "ch5_flower_02", "ch5_flower_03", "ch5_flower_04", "ch5_flower_05"],
+      "prompt": "Chapter 5 CG: present-day flower order clue, white roses and phone screen in suspenseful modern setting, text blurred.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch5StudioWall",
+      "target": "assets/ch5-v2/cg-ch5-studio-wall-gpt2.png",
+      "nodes": ["ch5_search_lin_02", "ch5_studio_02", "ch5_studio_03", "ch5_studio_04", "ch5_drive_01", "ch5_drive_02"],
+      "prompt": "Chapter 5 CG: studio investigation wall in present day, photos and connections implied without readable text, polished suspense visual novel mood.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch5EnvelopeBai",
+      "target": "assets/ch5-v2/cg-ch5-envelope-bai-gpt2.png",
+      "nodes": ["ch5_envelope_01", "ch5_choice_envelope", "ch5_envelope_together_01", "ch5_envelope_later_01"],
+      "prompt": "Chapter 5 CG: Bai Qi and Shen Zhi with an envelope clue, guarded emotional tension, present-day clothing, cinematic lighting.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch5CallRecording",
+      "target": "assets/ch5-v2/cg-ch5-call-recording-gpt2.png",
+      "nodes": ["ch5_call_01", "ch5_call_02", "ch5_choice_call", "ch5_call_good_01", "ch5_call_angry_01", "ch5_call_silent_01", "ch5_police_01"],
+      "prompt": "Chapter 5 CG: present-day call recording scene, Shen Zhi in dark casual clothes, phone audio interface implied with no readable text, suspenseful emotional pressure.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch6BroadcastRoom",
+      "target": "assets/ch6-v2/cg-ch6-broadcast-room-gpt2.png",
+      "nodes": ["ch6_find_lu_01", "ch6_broadcast_01", "ch6_broadcast_02", "ch6_hairtie_01", "ch6_hairtie_02", "ch6_lu_respond_01", "ch6_lu_respond_02"],
+      "prompt": "Chapter 6 CG: school broadcast room crisis, Shen Zhi tries to reach Lu Mian through voice and memory, emotional suspense, high-school uniforms.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch6StaircaseZhang",
+      "target": "assets/ch6-v2/cg-ch6-staircase-zhang-gpt2.png",
+      "nodes": ["ch6_stair_01", "ch6_stair_02", "ch6_zhang_01", "ch6_zhang_02", "ch6_zhang_03"],
+      "prompt": "Chapter 6 CG: Zhang Heng blocks the stairwell while Shen Zhi stays close to Lu Mian, handsome antagonist, tense realistic school lighting.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch6RooftopReach",
+      "target": "assets/ch6-v2/cg-ch6-rooftop-reach-gpt2.png",
+      "nodes": ["ch6_rooftop_01", "ch6_final_choice", "ch6_rescue_01", "ch6_rescue_02", "ch6_rescue_03"],
+      "prompt": "Chapter 6 CG: rooftop emotional climax, Shen Zhi reaches Lu Mian through trust rather than forced rescue, dawn-tinged suspense, no gore.",
+      "status": "generated-gpt-image-2"
+    },
+    {
+      "id": "ch6HospitalDawn",
+      "target": "assets/ch6-v2/cg-ch6-hospital-dawn-gpt2.png",
+      "nodes": ["ch6_rescue_04", "ch6_rescue_05", "ch6_rescue_06"],
+      "prompt": "Chapter 6 CG: hospital dawn aftermath, soft healing light after crisis, emotional female-oriented visual novel ending image.",
+      "status": "generated-gpt-image-2"
+    }
+  ],
+  "videoPrompts": [
+    {
+      "id": "rain-loop",
+      "target": "assets/video-rain-loop.mp4",
+      "nodes": [
+        "start",
+        "noteBack",
+        "insideRoom",
+        "oldDream01"
+      ],
+      "prompt": "5 second seamless loop, rain streaks over a cinematic visual novel background, subtle camera breathing, no character motion required, no text, no watermark."
+    },
+    {
+      "id": "phone-glow",
+      "target": "assets/video-phone-glow.mp4",
+      "nodes": [
+        "smsRule",
+        "callLu01",
+        "source01",
+        "finalChoice"
+      ],
+      "prompt": "4 second loop, smartphone screen softly pulsing in a dark rainy room, faint reflection and notification glow, suspense mood, no readable text, no watermark."
+    },
+    {
+      "id": "projector-noise",
+      "target": "assets/video-projector-noise.mp4",
+      "nodes": [
+        "bai03",
+        "commonVideo01",
+        "commonVideo02",
+        "trial01"
+      ],
+      "prompt": "5 second loop, abandoned studio projector beam with dust, VHS scanlines, slight flicker, thriller atmosphere, no readable text, no watermark."
+    },
+    {
+      "id": "dawn-light",
+      "target": "assets/video-dawn-light.mp4",
+      "nodes": [
+        "live01",
+        "forgive01"
+      ],
+      "prompt": "6 second loop, soft dawn light moving across white roses in a quiet apartment, gentle healing ending mood, no text, no watermark."
+    }
+  ]
+}

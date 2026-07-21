@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>作品试玩 — 溯光</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./player.css?v=20260721-deploy1" />
+  </head>
+  <body>
+    <main class="player-shell">
+      <section class="player-stage" id="stage" aria-label="溯光作品试玩">
+        <div class="scene-layer scene-bg" id="sceneBg" aria-hidden="true"></div>
+        <div class="scene-layer scene-grain" aria-hidden="true"></div>
+        <div class="scene-layer scene-vignette" aria-hidden="true"></div>
+
+        <nav class="player-menu" aria-label="游戏菜单">
+          <button class="menu-trigger" id="menuBtn" type="button" aria-expanded="false" aria-label="菜单">
+            <span class="menu-trigger-lines" aria-hidden="true"><i></i><i></i></span>
+          </button>
+          <div class="menu-popover" id="menuPopover">
+            <button id="homeBtn" type="button">返回标题</button>
+            <button id="backBtn" type="button">后退一步</button>
+            <button id="saveBtn" type="button">保存进度</button>
+            <button id="loadBtn" type="button">读取进度</button>
+            <button id="restartBtn" type="button">重新开始</button>
+            <a href="./landing.html#games" class="menu-external-link">← 返回广场</a>
+          </div>
+        </nav>
+
+        <div class="chapter-pill" id="progressPill">01 / 01</div>
+
+        <section class="title-screen is-visible" id="titleScreen">
+          <div class="title-mask" aria-hidden="true"></div>
+          <div class="title-copy">
+            <p class="title-kicker">溯光试玩</p>
+            <h1 class="title-name" id="gameTitle">未命名作品</h1>
+            <p class="title-desc" id="gameDesc">正在读取作品内容。</p>
+            <div class="title-tags" id="gameTags"></div>
+            <div class="title-actions">
+              <button class="action-btn action-btn--primary" id="startBtn" type="button">开始游戏</button>
+              <button class="action-btn action-btn--ghost" id="continueBtn" type="button">继续</button>
+            </div>
+          </div>
+          <div class="title-meta" id="gameMeta"></div>
+        </section>
+
+        <section class="empty-state" id="emptyState" hidden>
+          <div class="empty-inner">
+            <p class="title-kicker">未找到作品</p>
+            <h1>这部作品还没有发布到本地</h1>
+            <p>请返回创作页发布，或从广场点击已发布作品进入试玩。</p>
+            <div class="title-actions">
+              <a class="action-btn action-btn--primary" href="./creator.html?v=20260721-deploy1">去创作</a>
+              <a class="action-btn action-btn--ghost" href="./landing.html#games">返回广场</a>
+            </div>
+          </div>
+        </section>
+
+        <aside class="story-prop" id="mediaCard" aria-live="polite">
+          <div class="prop-device" id="mediaDevice">
+            <div class="media-topline" id="mediaTopline">00:00</div>
+            <div class="media-body" id="mediaBody"></div>
+          </div>
+        </aside>
+
+        <aside class="cast-card" id="castCard" aria-live="polite">
+          <div class="cast-portrait" id="castPortrait"></div>
+          <div class="cast-meta">
+            <span>立绘</span>
+            <strong id="castName">旁白</strong>
+            <small id="castPrompt">等待角色出场</small>
+          </div>
+        </aside>
+
+        <section class="choice-dock" id="choiceDock" aria-label="选择"></section>
+
+        <section class="text-dock" id="dialoguePanel" aria-live="polite">
+          <div class="text-dock-inner">
+            <div class="speaker-row">
+              <span class="speaker-name" id="speakerName">旁白</span>
+              <span class="node-count" id="nodeCount">01</span>
+            </div>
+            <p class="dialogue-text" id="dialogueText"></p>
+            <span class="continue-hint" id="continueHint">点击屏幕继续</span>
+          </div>
+        </section>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="./creator-engine.js?v=20260721-deploy1"></script>
+    <script src="./player.js?v=20260721-deploy1"></script>
+  </body>
+</html>

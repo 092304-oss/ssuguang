@@ -1,0 +1,1476 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>创作工作台 — 溯光</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./creator.css?v=20260721-deploy1" />
+  </head>
+  <body>
+    <!-- 顶部导航 -->
+    <header class="cr-nav">
+      <a href="./landing.html" class="cr-nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        溯光
+      </a>
+      <div class="cr-nav-steps" id="stepIndicator">
+        <span class="cr-step is-active" data-step="1">上传</span>
+        <span class="cr-step-dot" aria-hidden="true"></span>
+        <span class="cr-step" data-step="2">解析</span>
+        <span class="cr-step-dot" aria-hidden="true"></span>
+        <span class="cr-step" data-step="3">编排</span>
+        <span class="cr-step-dot" aria-hidden="true"></span>
+        <span class="cr-step" data-step="4">发布</span>
+      </div>
+      <div class="cr-nav-actions">
+        <button class="cr-btn cr-btn--ghost" id="saveDraftBtn">保存草稿</button>
+        <button class="cr-btn cr-btn--primary" id="nextStepBtn" disabled>下一步</button>
+      </div>
+    </header>
+
+    <main class="cr-main">
+
+      <!-- ══ Step 1: 上传 ══ -->
+      <section class="cr-panel is-active" id="step1">
+        <div class="cr-panel-inner">
+          <div class="cr-panel-header">
+            <p class="cr-kicker">Step 01</p>
+            <h1>上传你的故事</h1>
+            <p class="cr-subtitle">支持 TXT 自动读取，DOCX / PDF 可复制正文后粘贴</p>
+          </div>
+
+          <!-- 上传区 -->
+          <div class="upload-zone" id="uploadZone">
+            <div class="upload-icon" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <path d="M24 32V16M16 24l8-8 8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="4" y="4" width="40" height="40" rx="8" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+              </svg>
+            </div>
+            <p class="upload-label">拖拽文件到此处，或</p>
+            <label class="cr-btn cr-btn--ghost upload-pick">
+              选择文件
+              <input type="file" accept=".txt,.docx,.pdf" hidden id="fileInput" />
+            </label>
+            <p class="upload-hint">TXT 可自动读取；DOCX / PDF 请粘贴正文，最大 10MB</p>
+            <div class="upload-file-chip" id="uploadFileChip" aria-live="polite">尚未选择文件</div>
+          </div>
+
+          <div class="upload-divider"><span>或直接粘贴文本</span></div>
+
+          <!-- 文本输入 -->
+          <div class="cr-textarea-wrap">
+            <textarea
+              class="cr-textarea"
+              id="scriptInput"
+              placeholder="在此粘贴你的剧本或小说片段……
+
+支持格式示例：
+【场景：雨夜的公寓楼顶】
+（沈栀站在边缘，手机屏幕亮着）
+周叙：「等等——先别动。」
+（沈栀回头，眼神空洞）
+选择：
+A. 走过去
+B. 保持距离，继续说话"
+              rows="14"
+            ></textarea>
+            <div class="textarea-counter"><span id="charCount">0</span> 字</div>
+          </div>
+
+          <!-- 作品基本信息 -->
+          <div class="cr-meta-fields">
+            <div class="cr-field">
+              <label class="cr-label" for="titleInput">作品名称</label>
+              <input class="cr-input" id="titleInput" type="text" placeholder="例：替你活到明天" />
+            </div>
+            <div class="cr-field">
+              <label class="cr-label">类型标签</label>
+              <div class="cr-tags" id="tagGroup">
+                <button class="cr-tag" data-tag="悬疑">悬疑</button>
+                <button class="cr-tag" data-tag="治愈">治愈</button>
+                <button class="cr-tag" data-tag="恋爱">恋爱</button>
+                <button class="cr-tag" data-tag="怪谈">怪谈</button>
+                <button class="cr-tag" data-tag="科幻">科幻</button>
+                <button class="cr-tag" data-tag="女性向">女性向</button>
+                <button class="cr-tag" data-tag="解谜">解谜</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-readiness" aria-live="polite">
+            <div class="readiness-meter">
+              <span class="readiness-num" id="readinessScore">0%</span>
+              <span class="readiness-label">准备度</span>
+            </div>
+            <div class="readiness-body">
+              <div class="readiness-checks">
+                <span class="readiness-check" id="titleCheck">作品名待填写</span>
+                <span class="readiness-check" id="contentCheck">正文或文件待上传</span>
+                <span class="readiness-check" id="tagCheck">建议选择类型标签</span>
+              </div>
+              <div class="story-metrics">
+                <span>预计 <strong id="estimateNodes">0</strong> 个互动节点</span>
+                <span>试玩 <strong id="estimateMinutes">0</strong> 分钟</span>
+                <span>情绪密度 <strong id="emotionSignal">待判断</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cr-step-footer">
+            <button class="cr-btn cr-btn--primary cr-btn--large" id="parseBtn" disabled>
+              开始解析
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Step 2: 解析 ══ -->
+      <section class="cr-panel" id="step2">
+        <div class="cr-panel-inner">
+          <div class="cr-panel-header">
+            <p class="cr-kicker">Step 02</p>
+            <h1>解析结果</h1>
+            <p class="cr-subtitle">溯光已自动识别你的剧本结构，请确认并调整</p>
+          </div>
+
+          <!-- 解析状态 / 进度 -->
+          <div class="parse-status" id="parseStatus">
+            <div class="parse-progress-bar"><div class="parse-progress-fill" id="progressFill"></div></div>
+            <p class="parse-status-text" id="parseStatusText">正在识别场景结构…</p>
+            <div class="parse-step-list" id="parseStepList">
+              <span data-parse-step="0">场景</span>
+              <span data-parse-step="1">角色</span>
+              <span data-parse-step="2">分支</span>
+              <span data-parse-step="3">节点</span>
+              <span data-parse-step="4">完成</span>
+            </div>
+          </div>
+
+          <!-- 解析结果卡片 -->
+          <div class="parse-results" id="parseResults" style="display:none">
+            <div class="parse-summary">
+              <div class="parse-stat">
+                <span class="pstat-num" id="sceneCount">—</span>
+                <span class="pstat-label">个场景</span>
+              </div>
+              <div class="parse-stat">
+                <span class="pstat-num" id="charCount2">—</span>
+                <span class="pstat-label">个角色</span>
+              </div>
+              <div class="parse-stat">
+                <span class="pstat-num" id="choiceCount">—</span>
+                <span class="pstat-label">处选项分支</span>
+              </div>
+            </div>
+
+            <!-- 角色列表 -->
+            <div class="parse-section">
+              <h3 class="parse-section-title">识别到的角色</h3>
+              <div class="char-list" id="charList">
+                <!-- 动态填充 -->
+              </div>
+            </div>
+
+            <!-- 场景节点预览 -->
+            <div class="parse-section">
+              <h3 class="parse-section-title">场景节点预览</h3>
+              <div class="node-preview" id="nodePreview">
+                <!-- 动态填充 -->
+              </div>
+            </div>
+          </div>
+
+          <div class="cr-step-footer">
+            <button class="cr-btn cr-btn--ghost" onclick="goStep(1)">← 返回上传</button>
+            <button class="cr-btn cr-btn--primary cr-btn--large" id="toEditorBtn" disabled>
+              进入编排
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Step 3: 编排 ══ -->
+      <section class="cr-panel" id="step3">
+        <div class="cr-panel-inner cr-panel-inner--wide">
+          <div class="cr-panel-header">
+            <p class="cr-kicker">Step 03</p>
+            <h1>视觉编排</h1>
+            <p class="cr-subtitle">为每个场景选择背景、角色立绘与配乐，调整分支选项</p>
+          </div>
+
+          <div class="editor-layout">
+            <!-- 左：场景列表 -->
+            <aside class="editor-sidebar">
+              <div class="sidebar-header">
+                <span>场景列表</span>
+                <button class="sidebar-add" title="添加场景">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="scene-list" id="editorSceneList">
+                <!-- 动态填充 -->
+                <div class="scene-item is-active">
+                  <span class="scene-item-num">01</span>
+                  <span class="scene-item-name">序章 · 雨夜公寓</span>
+                </div>
+                <div class="scene-item">
+                  <span class="scene-item-num">02</span>
+                  <span class="scene-item-name">来电</span>
+                </div>
+                <div class="scene-item">
+                  <span class="scene-item-num">03</span>
+                  <span class="scene-item-name">选择时刻</span>
+                </div>
+              </div>
+            </aside>
+
+            <!-- 中：场景编辑区 -->
+            <div class="editor-canvas">
+              <!-- 预览窗口 -->
+              <div class="canvas-preview">
+                <div class="preview-bg"></div>
+                <div class="preview-status">
+                  <span id="previewSceneName">序章 · 雨夜公寓</span>
+                  <span id="previewAssetStatus">背景：雨夜公寓 · 配乐：雨夜</span>
+                </div>
+                <div class="preview-overlay">
+                  <div class="preview-speaker">旁白</div>
+                  <div class="preview-text">今晚十二点，窗外的雨还没有停。手机忽然亮起来。</div>
+                </div>
+                <div class="preview-cast" id="previewCast">
+                  <div class="preview-cast-art" id="previewCastArt"></div>
+                  <div class="preview-cast-meta">
+                    <span>立绘</span>
+                    <strong id="previewCastName">旁白</strong>
+                    <small id="previewCastPrompt">等待选择角色</small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 对话文本编辑 -->
+              <div class="canvas-dialogue">
+                <div class="dialogue-row">
+                  <input class="cr-input cr-input--speaker" placeholder="角色名 / 旁白" value="旁白" />
+                  <textarea class="cr-textarea cr-textarea--dialogue" rows="3">今晚十二点，窗外的雨还没有停。手机忽然亮起来。</textarea>
+                </div>
+                <div class="dialogue-branches" id="branches">
+                  <div class="branch-item">
+                    <span class="branch-label">A</span>
+                    <input class="cr-input" placeholder="选项文本…" value="接听电话" />
+                    <input class="cr-input cr-input--small" placeholder="跳转到…" value="场景 02" />
+                    <button class="branch-del" title="删除">×</button>
+                  </div>
+                  <div class="branch-item">
+                    <span class="branch-label">B</span>
+                    <input class="cr-input" placeholder="选项文本…" value="忽略来电" />
+                    <input class="cr-input cr-input--small" placeholder="跳转到…" value="场景 03" />
+                    <button class="branch-del" title="删除">×</button>
+                  </div>
+                </div>
+                <button class="cr-btn cr-btn--ghost cr-btn--sm" id="addBranchBtn">+ 添加选项</button>
+              </div>
+            </div>
+
+            <!-- 右：资源面板 -->
+            <aside class="editor-assets">
+              <div class="assets-tabs">
+                <button class="assets-tab is-active" data-tab="bg">背景</button>
+                <button class="assets-tab" data-tab="char">立绘</button>
+                <button class="assets-tab" data-tab="bgm">配乐</button>
+              </div>
+
+              <div class="assets-panel is-active" id="bgPanel">
+                <div class="asset-grid">
+                  <div class="asset-item is-selected">
+                    <div class="asset-thumb" style="background: linear-gradient(135deg, #1a1c28, #0a0c14)"></div>
+                    <span>雨夜公寓</span>
+                  </div>
+                  <div class="asset-item">
+                    <div class="asset-thumb" style="background: linear-gradient(135deg, #1c1820, #0e0c16)"></div>
+                    <span>街道</span>
+                  </div>
+                  <div class="asset-item">
+                    <div class="asset-thumb" style="background: linear-gradient(135deg, #161c24, #0a1018)"></div>
+                    <span>楼顶</span>
+                  </div>
+                  <div class="asset-item asset-item--add">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>上传</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="assets-panel" id="charPanel">
+                <div class="asset-grid">
+                  <div class="asset-item">
+                    <div class="asset-thumb asset-thumb--char" style="--char-color: #8895a7"></div>
+                    <span>沈栀</span>
+                  </div>
+                  <div class="asset-item">
+                    <div class="asset-thumb asset-thumb--char" style="--char-color: #c9a7a1"></div>
+                    <span>周叙</span>
+                  </div>
+                  <div class="asset-item asset-item--add">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>上传</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="assets-panel" id="bgmPanel">
+                <div class="bgm-list">
+                  <div class="bgm-item is-selected">
+                    <span class="bgm-icon">♩</span>
+                    <div class="bgm-info"><span>雨夜</span><small>氛围 · 悬疑</small></div>
+                  </div>
+                  <div class="bgm-item">
+                    <span class="bgm-icon">♩</span>
+                    <div class="bgm-info"><span>记忆碎片</span><small>情感 · 轻柔</small></div>
+                  </div>
+                  <div class="bgm-item">
+                    <span class="bgm-icon">♩</span>
+                    <div class="bgm-info"><span>临界</span><small>紧张 · 转折</small></div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <div class="cr-step-footer">
+            <button class="cr-btn cr-btn--ghost" onclick="goStep(2)">← 返回解析</button>
+            <button class="cr-btn cr-btn--primary cr-btn--large" onclick="goStep(4)">
+              下一步：发布设置
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Step 4: 发布 ══ -->
+      <section class="cr-panel" id="step4">
+        <div class="cr-panel-inner">
+          <div class="cr-panel-header">
+            <p class="cr-kicker">Step 04</p>
+            <h1>发布设置</h1>
+            <p class="cr-subtitle">决定你的游戏如何与世界相遇</p>
+          </div>
+
+          <div class="publish-form">
+            <div class="cr-field">
+              <label class="cr-label" for="coverUpload">封面图</label>
+              <div class="cover-upload" id="coverUpload">
+                <input type="file" accept=".jpg,.jpeg,.png" hidden id="coverInput" />
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                  <path d="M18 24V12M11 18l7-7 7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="3" y="3" width="30" height="30" rx="6" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                </svg>
+                <span>上传封面图</span>
+                <small>建议尺寸 600×900，JPG / PNG</small>
+              </div>
+            </div>
+
+            <div class="cr-field">
+              <label class="cr-label" for="descInput">简介</label>
+              <textarea class="cr-textarea" id="descInput" rows="4" placeholder="用一两句话介绍你的故事…"></textarea>
+            </div>
+
+            <div class="cr-field">
+              <label class="cr-label">可见性</label>
+              <div class="visibility-options">
+                <label class="vis-option">
+                  <input type="radio" name="visibility" value="public" checked />
+                  <div class="vis-card">
+                    <span class="vis-icon">🌐</span>
+                    <strong>公开发布</strong>
+                    <span>所有人都能在广场找到并试玩</span>
+                  </div>
+                </label>
+                <label class="vis-option">
+                  <input type="radio" name="visibility" value="link" />
+                  <div class="vis-card">
+                    <span class="vis-icon">🔗</span>
+                    <strong>链接可见</strong>
+                    <span>仅持有链接的人可以访问</span>
+                  </div>
+                </label>
+                <label class="vis-option">
+                  <input type="radio" name="visibility" value="private" />
+                  <div class="vis-card">
+                    <span class="vis-icon">🔒</span>
+                    <strong>私密</strong>
+                    <span>仅自己可见，随时可以更改</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="publish-preview">
+              <span class="publish-preview-kicker">发布预览</span>
+              <strong id="publishPreviewTitle">未命名作品</strong>
+              <p id="publishPreviewDesc">填写简介后，这里会实时显示玩家在广场看到的第一句话。</p>
+              <div>
+                <span id="publishPreviewVisibility">公开发布</span>
+                <span id="publishPreviewTags">未选择标签</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cr-step-footer">
+            <button class="cr-btn cr-btn--ghost" onclick="goStep(3)">← 返回编排</button>
+            <button class="cr-btn cr-btn--primary cr-btn--large" id="publishBtn">
+              发布到溯光广场
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 2l4 4-4 4M3 6h9M8 10l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="./creator-engine.js?v=20260721-deploy1"></script>
+    <script>
+      const $ = selector => document.querySelector(selector);
+      const $$ = selector => [...document.querySelectorAll(selector)];
+      const Engine = window.SuguangCreatorEngine;
+
+      const state = {
+        currentStep: 1,
+        maxUnlockedStep: 1,
+        isParsing: false,
+        isParsed: false,
+        uploadedFileName: '',
+        selectedTags: [],
+        selectedBgm: '雨夜',
+        creditBalance: Engine.DEFAULT_CREDIT_BALANCE,
+        isGeneratingAssets: false,
+        generationPollToken: '',
+        imageService: null,
+        imageServiceError: '',
+        activeSceneIndex: 0,
+        parsedScenes: [],
+        assetPlan: { backgrounds: [], characters: [] },
+        scenes: [
+          {
+            id: '01',
+            name: '序章 · 雨夜公寓',
+            speaker: '旁白',
+            text: '今晚十二点，窗外的雨还没有停。手机忽然亮起来。',
+            bgName: '雨夜公寓',
+            bg: 'radial-gradient(circle at 32% 12%, rgba(157,198,255,0.22), transparent 34%), linear-gradient(135deg, #101c40, #060b1c 72%)',
+            branches: [
+              { text: '接听电话', to: '场景 02' },
+              { text: '忽略来电', to: '场景 03' },
+            ],
+          },
+          {
+            id: '02',
+            name: '来电',
+            speaker: '周叙',
+            text: '你先别挂。你窗外现在是不是也在下雨？',
+            bgName: '街道',
+            bg: 'radial-gradient(circle at 76% 18%, rgba(244,215,154,0.14), transparent 30%), linear-gradient(135deg, #1c1820, #0e0c16 72%)',
+            branches: [
+              { text: '问他是谁', to: '场景 03' },
+              { text: '把窗帘拉上', to: '场景 01' },
+            ],
+          },
+          {
+            id: '03',
+            name: '选择时刻',
+            speaker: '沈栀',
+            text: '如果这一次我选错了，是不是又会有人替我付出代价？',
+            bgName: '楼顶',
+            bg: 'radial-gradient(circle at 42% 8%, rgba(157,198,255,0.18), transparent 34%), linear-gradient(135deg, #161c24, #0a1018 74%)',
+            branches: [
+              { text: '相信周叙', to: '场景 02' },
+              { text: '独自调查', to: '新场景' },
+            ],
+          },
+        ],
+      };
+      state.assetPlan = Engine.buildAssetLibrary(state.scenes, {
+        creditBalance: state.creditBalance,
+      });
+
+      const stepLabels = ['开始解析', '进入编排', '发布设置', '发布作品'];
+      const scriptInput = $('#scriptInput');
+      const titleInput = $('#titleInput');
+      const parseBtn = $('#parseBtn');
+      const fileInput = $('#fileInput');
+      const uploadZone = $('#uploadZone');
+      const uploadFileChip = $('#uploadFileChip');
+      const nextStepBtn = $('#nextStepBtn');
+      const saveDraftBtn = $('#saveDraftBtn');
+      const toEditorBtn = $('#toEditorBtn');
+      const descInput = $('#descInput');
+      const publishBtn = $('#publishBtn');
+      const branches = $('#branches');
+      const speakerInput = $('.cr-input--speaker');
+      const dialogueInput = $('.cr-textarea--dialogue');
+
+      function unlockStep(n) {
+        state.maxUnlockedStep = Math.max(state.maxUnlockedStep, n);
+      }
+
+      function getContentLength() {
+        return scriptInput.value.trim().length;
+      }
+
+      function canParse() {
+        return titleInput.value.trim().length > 0 && getContentLength() > 20;
+      }
+
+      function escapeAttr(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/"/g, '&quot;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function updateTopAction() {
+        nextStepBtn.textContent = stepLabels[state.currentStep - 1];
+        nextStepBtn.disabled = (
+          (state.currentStep === 1 && !canParse()) ||
+          (state.currentStep === 2 && !state.isParsed) ||
+          state.isParsing
+        );
+      }
+
+      function updateStepIndicator() {
+        $$('.cr-step').forEach(step => {
+          const stepNum = Number(step.dataset.step);
+          step.classList.toggle('is-active', stepNum === state.currentStep);
+          step.classList.toggle('is-done', stepNum < state.currentStep);
+          step.classList.toggle('is-locked', stepNum > state.maxUnlockedStep);
+          step.setAttribute('role', 'button');
+          step.setAttribute('tabindex', stepNum <= state.maxUnlockedStep ? '0' : '-1');
+          step.setAttribute('aria-disabled', stepNum > state.maxUnlockedStep ? 'true' : 'false');
+        });
+      }
+
+      function goStep(n) {
+        if (n === 4 && state.currentStep === 3) {
+          unlockStep(4);
+        }
+
+        if (n > state.maxUnlockedStep) {
+          showToast('先完成当前步骤，下一幕会自动解锁。');
+          return;
+        }
+
+        state.currentStep = n;
+        $$('.cr-panel').forEach((panel, index) => {
+          panel.classList.toggle('is-active', index + 1 === n);
+        });
+        updateStepIndicator();
+        updateTopAction();
+        if (n === 3) {
+          selectScene(state.activeSceneIndex);
+        }
+        if (n === 4) {
+          updatePublishPreview();
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      window.goStep = goStep;
+
+      function updateReadiness() {
+        const hasTitle = titleInput.value.trim().length > 0;
+        const hasContent = getContentLength() > 20;
+        const hasTags = state.selectedTags.length > 0;
+        const score = Math.round((hasTitle ? 30 : 0) + (hasContent ? 50 : 0) + (hasTags ? 20 : 0));
+        const len = getContentLength();
+        const estimatedNodes = len ? Math.max(3, Math.min(18, Math.ceil(len / 480))) : 0;
+        const estimatedMinutes = len ? Math.max(1, Math.ceil(len / 900)) : 0;
+        const emotionHits = (scriptInput.value.match(/心|雨|电话|秘密|喜欢|害怕|眼泪|牵|抱|沉默/g) || []).length;
+
+        $('#readinessScore').textContent = score + '%';
+        $('#titleCheck').textContent = hasTitle ? '作品名已填写' : '作品名待填写';
+        $('#contentCheck').textContent = hasContent ? '正文素材已就绪' : '正文或文件待上传';
+        $('#tagCheck').textContent = hasTags ? `已选 ${state.selectedTags.length} 个标签` : '建议选择类型标签';
+        $('#estimateNodes').textContent = estimatedNodes;
+        $('#estimateMinutes').textContent = estimatedMinutes;
+        $('#emotionSignal').textContent = emotionHits > 8 ? '强' : emotionHits > 2 ? '中' : len ? '弱' : '待判断';
+
+        $$('.readiness-check').forEach((item, index) => {
+          const ready = [hasTitle, hasContent, hasTags][index];
+          item.classList.toggle('is-ready', ready);
+        });
+
+        $('#charCount').textContent = scriptInput.value.length;
+        parseBtn.disabled = !canParse() || state.isParsing;
+        updateTopAction();
+        updatePublishPreview();
+      }
+
+      function showToast(message, tone = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `toast toast--${tone}`;
+        toast.textContent = message;
+        $('#toastStack').appendChild(toast);
+        requestAnimationFrame(() => toast.classList.add('is-visible'));
+        setTimeout(() => {
+          toast.classList.remove('is-visible');
+          toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+        }, 2600);
+      }
+
+      const IMAGE_API_BASE = window.location.protocol === 'file:' ? 'http://127.0.0.1:4175' : '';
+
+      function apiUrl(path) {
+        return `${IMAGE_API_BASE}${path}`;
+      }
+
+      async function refreshImageServiceStatus() {
+        try {
+          const response = await fetch(apiUrl('/api/image/providers'), { cache: 'no-store' });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          state.imageService = await response.json();
+          state.imageServiceError = '';
+        } catch (error) {
+          state.imageService = null;
+          state.imageServiceError = error?.message || '无法连接本地生图服务';
+        }
+        renderAssetPanels();
+      }
+
+      function getGenerationTargets() {
+        const plan = Engine.normalizeAssetPlan(state.assetPlan);
+        const actionable = asset => asset.source === 'generated' && !['done', 'generating'].includes(asset.status || 'pending');
+        return [...plan.backgrounds.filter(actionable), ...plan.characters.filter(actionable)];
+      }
+
+      function applyJobSnapshot(job) {
+        if (!job) return;
+        const itemMap = new Map((job.items || []).map(item => [String(item.assetId || item.id), item]));
+        const patchAsset = asset => {
+          const item = itemMap.get(String(asset.id));
+          if (!item) return asset;
+          const status = item.status === 'done' ? 'done' : item.status === 'failed' ? 'failed' : item.status || asset.status;
+          return {
+            ...asset,
+            status,
+            image: item.url || asset.image || '',
+            provider: item.provider || asset.provider || '',
+            providerNote: item.providerNote || asset.providerNote || '',
+            error: item.error || '',
+            completedAt: item.completedAt || asset.completedAt || '',
+          };
+        };
+
+        state.assetPlan = {
+          ...state.assetPlan,
+          backgrounds: state.assetPlan.backgrounds.map(patchAsset),
+          characters: state.assetPlan.characters.map(patchAsset),
+          generationJobs: (state.assetPlan.generationJobs || []).map(existing =>
+            existing.id === job.id
+              ? { ...existing, ...job }
+              : existing
+          ),
+        };
+        state.creditBalance = Number.isFinite(Number(job.creditBalance)) ? Number(job.creditBalance) : state.creditBalance;
+        state.isGeneratingAssets = job.status === 'queued' || job.status === 'generating';
+        renderAssetPanels();
+        updatePreview();
+      }
+
+      async function pollImageJob(jobId) {
+        state.generationPollToken = jobId;
+        for (let attempt = 0; attempt < 180; attempt += 1) {
+          if (state.generationPollToken !== jobId) return;
+          await new Promise(resolve => setTimeout(resolve, 2500));
+          try {
+            const response = await fetch(apiUrl(`/api/image/job?id=${encodeURIComponent(jobId)}`), { cache: 'no-store' });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const payload = await response.json();
+            if (!payload.ok || !payload.job) throw new Error(payload.error || 'JOB_NOT_FOUND');
+            applyJobSnapshot(payload.job);
+            if (payload.job.status === 'done' || payload.job.status === 'failed') {
+              state.isGeneratingAssets = false;
+              state.generationPollToken = '';
+              showToast(payload.job.status === 'done' ? '专属图片已生成完成。' : '有部分图片生成失败，请查看卡片提示。', payload.job.status === 'done' ? 'info' : 'warn');
+              return;
+            }
+          } catch (error) {
+            if (state.generationPollToken === jobId) {
+              state.isGeneratingAssets = false;
+              state.generationPollToken = '';
+              showToast(`轮询生图任务失败：${error?.message || error}`, 'warn');
+            }
+            return;
+          }
+        }
+        state.isGeneratingAssets = false;
+        state.generationPollToken = '';
+        showToast('生图任务超时，请稍后刷新查看。', 'warn');
+      }
+
+      function refreshAssetPlan() {
+        state.assetPlan = Engine.buildAssetLibrary(state.scenes, {
+          ...state.assetPlan,
+          creditBalance: state.creditBalance,
+        });
+        state.creditBalance = state.assetPlan.creditBalance;
+        return state.assetPlan;
+      }
+
+      function getCharacterAsset(name) {
+        return Engine.resolveAssetFromLibrary(state.assetPlan.characters, name) || null;
+      }
+
+      function getBackgroundAsset(name) {
+        return Engine.resolveAssetFromLibrary(state.assetPlan.backgrounds, name) || null;
+      }
+
+      function backgroundCssFromAsset(asset, fallback = '') {
+        if (!asset) return fallback;
+        const base = asset.gradient || fallback || 'linear-gradient(135deg, #101c40, #060b1c)';
+        return asset.image ? `url("${asset.image}") center/cover no-repeat, ${base}` : base;
+      }
+
+      function updatePreviewCast(scene) {
+        const castAsset = scene?.speaker && scene.speaker !== '旁白' ? getCharacterAsset(scene.speaker) : null;
+        const castNode = $('#previewCast');
+        const castArt = $('#previewCastArt');
+        const castName = $('#previewCastName');
+        const castPrompt = $('#previewCastPrompt');
+
+        if (!castAsset) {
+          castNode.classList.add('is-hidden');
+          castNode.style.setProperty('--cast-tone', '#8895a7');
+          castNode.style.setProperty('--cast-glow', 'rgba(157,198,255,0.18)');
+          castArt.classList.remove('is-image');
+          castArt.style.background = '';
+          castName.textContent = '旁白';
+          castPrompt.textContent = '当前场景没有角色立绘';
+          return;
+        }
+
+        castNode.classList.remove('is-hidden');
+        castNode.style.setProperty('--cast-tone', castAsset.tone.color);
+        castNode.style.setProperty('--cast-glow', castAsset.tone.glow);
+        castArt.style.setProperty('--cast-tone', castAsset.tone.color);
+        castArt.style.setProperty('--cast-glow', castAsset.tone.glow);
+        castArt.classList.toggle('is-image', Boolean(castAsset.image));
+        castArt.style.background = castAsset.image
+          ? `url("${castAsset.image}") center top/cover no-repeat, linear-gradient(180deg, ${castAsset.tone.color}, rgba(8,12,22,0.92))`
+          : '';
+        castName.textContent = castAsset.baseName || castAsset.name;
+        castPrompt.textContent = castAsset.source === 'free'
+          ? '免费默认立绘，可直接使用'
+          : castAsset.status === 'done'
+            ? '专属立绘已生成'
+            : '待批量生成专属立绘';
+      }
+
+      function assetStatusLabel(asset) {
+        if (asset.source === 'free') return '免费默认';
+        if (asset.status === 'done') return '专属生成';
+        if (asset.status === 'generating') return '生成中';
+        if (asset.status === 'failed') return '生成失败';
+        return '待生成';
+      }
+
+      function assetStatusClass(asset) {
+        if (asset.source === 'free') return 'is-free';
+        if (asset.status === 'done') return 'is-done';
+        if (asset.status === 'generating') return 'is-generating';
+        if (asset.status === 'failed') return 'is-failed';
+        return 'is-pending';
+      }
+
+      function renderGenerationCard(kind) {
+        const estimate = Engine.estimateGenerationCost(state.assetPlan);
+        const lastJob = state.assetPlan.generationJobs?.[state.assetPlan.generationJobs.length - 1];
+        const hasWork = estimate.total > 0;
+        const enoughCredits = state.creditBalance >= estimate.credits;
+        const isBusy = state.isGeneratingAssets || lastJob?.status === 'generating';
+        const buttonText = isBusy
+          ? '生成中…'
+          : !hasWork
+            ? '已全部生成'
+            : enoughCredits
+              ? '确认生成'
+              : '积分不足';
+        const focusText = kind === 'bg'
+          ? `${estimate.backgroundCount} 张背景`
+          : `${estimate.characterCount} 张立绘`;
+        const serviceLabel = state.imageService
+          ? (state.imageService.openaiReady
+            ? 'GPT Image 2 已连接'
+            : state.imageService.bnsReady
+              ? 'AIFLOW 已连接'
+              : '服务未就绪')
+          : '正在检测本地生图服务';
+        const serviceDetail = state.imageService
+          ? state.imageService.providers
+            .map(item => `${item.name}:${item.status === 'ready' ? '可用' : '不可用'}`)
+            .join(' · ')
+          : (state.imageServiceError || '请先启动 work/creator_image_service.py');
+
+        return `
+          <section class="generation-card">
+            <div class="generation-card__top">
+              <span class="generation-kicker">专属图片</span>
+              <strong>批量生成对应图片</strong>
+            </div>
+            <p>免费版提供默认背景 + 立绘库；批量生产专属图片需要消耗积分和金额。</p>
+            <div class="generation-service ${state.imageService?.openaiReady ? 'is-ready' : 'is-warn'}">
+              <strong>${escapeHtml(serviceLabel)}</strong>
+              <small>${escapeHtml(serviceDetail)}</small>
+            </div>
+            <div class="generation-meter">
+              <span>余额 <strong>${state.creditBalance}</strong> 积分</span>
+              <span>本次 ${focusText}</span>
+              <span>合计 <strong>${estimate.credits}</strong> 积分 · ¥${estimate.priceCny.toFixed(2)}</span>
+            </div>
+            <div class="generation-actions">
+              <button class="cr-btn cr-btn--ghost cr-btn--sm" type="button" data-action="top-up-credits">演示补 120 积分</button>
+              <button class="cr-btn cr-btn--primary cr-btn--sm" type="button" data-action="start-generation" ${isBusy || !hasWork || !enoughCredits ? 'disabled' : ''}>${buttonText}</button>
+            </div>
+          </section>
+        `;
+      }
+
+      function renderAssetCard(asset, type, selectedAsset) {
+        const isSelected = selectedAsset?.id === asset.id;
+        const errorSuffix = asset.status === 'failed' && asset.error ? ` · ${asset.error}` : '';
+        const thumbStyle = type === 'bg'
+          ? `background: ${asset.image ? `url(&quot;${asset.image}&quot;) center/cover no-repeat, ` : ''}${asset.gradient || 'linear-gradient(135deg, #101c40, #060b1c)'}`
+          : `--char-color: ${asset.tone.color}; --char-glow: ${asset.tone.glow}; ${asset.image ? `background: url(&quot;${asset.image}&quot;) center top/cover no-repeat, linear-gradient(180deg, ${asset.tone.color}, rgba(8,12,22,0.92));` : ''}`;
+        const thumbClass = type === 'char' ? 'asset-thumb asset-thumb--char' : 'asset-thumb';
+        return `
+          <button class="asset-item ${isSelected ? 'is-selected' : ''} ${assetStatusClass(asset)}" type="button" data-asset-type="${type}" data-asset-id="${escapeAttr(asset.id)}" title="${escapeAttr((asset.prompt || '') + errorSuffix)}">
+            <div class="${thumbClass}" style="${thumbStyle}"></div>
+            <span>${escapeHtml(asset.name)}</span>
+            <small>${escapeHtml(assetStatusLabel(asset))}</small>
+          </button>
+        `;
+      }
+
+      function renderAssetSection(title, note, assets, type, selectedAsset) {
+        return `
+          <section class="asset-section-block">
+            <div class="asset-section-head">
+              <span>${escapeHtml(title)}</span>
+              <small>${escapeHtml(note)}</small>
+            </div>
+            <div class="asset-grid">
+              ${assets.length ? assets.map(asset => renderAssetCard(asset, type, selectedAsset)).join('') : '<p class="asset-empty">暂无素材需求</p>'}
+            </div>
+          </section>
+        `;
+      }
+
+      function renderAssetPanels() {
+        const currentScene = state.scenes[state.activeSceneIndex];
+        const bgAssets = state.assetPlan.backgrounds;
+        const charAssets = state.assetPlan.characters;
+        const selectedBg = getBackgroundAsset(currentScene?.bgName);
+        const selectedChar = getCharacterAsset(currentScene?.speaker);
+        const freeBackgrounds = bgAssets.filter(asset => asset.source === 'free');
+        const generatedBackgrounds = bgAssets.filter(asset => asset.source === 'generated');
+        const freeCharacters = charAssets.filter(asset => asset.source === 'free');
+        const generatedCharacters = charAssets.filter(asset => asset.source === 'generated');
+
+        $('#bgPanel').innerHTML = [
+          renderGenerationCard('bg'),
+          renderAssetSection('免费背景库', '不用花积分，直接可用', freeBackgrounds, 'bg', selectedBg),
+          renderAssetSection('专属背景', '按当前剧本批量生成', generatedBackgrounds, 'bg', selectedBg),
+        ].join('');
+
+        $('#charPanel').innerHTML = [
+          renderGenerationCard('char'),
+          renderAssetSection('免费立绘库', '通用角色预设', freeCharacters, 'char', selectedChar),
+          renderAssetSection('专属立绘', '按识别角色批量生成', generatedCharacters, 'char', selectedChar),
+        ].join('');
+      }
+
+      function topUpDemoCredits() {
+        state.creditBalance += Engine.DEFAULT_CREDIT_BALANCE;
+        state.assetPlan.creditBalance = state.creditBalance;
+        renderAssetPanels();
+        showToast(`已补充演示积分，当前余额 ${state.creditBalance}。`);
+      }
+
+      async function startBatchGeneration() {
+        if (state.isGeneratingAssets) return;
+        refreshAssetPlan();
+        const targets = getGenerationTargets();
+        const estimate = Engine.estimateGenerationCost(state.assetPlan);
+        if (!targets.length) {
+          showToast('当前没有待生成的专属图片。');
+          return;
+        }
+        if (state.creditBalance < estimate.credits) {
+          showToast(`积分不足：本次需要 ${estimate.credits}，当前只有 ${state.creditBalance}。`, 'warn');
+          return;
+        }
+        if (!state.imageService && !state.imageServiceError) {
+          await refreshImageServiceStatus();
+        }
+        const serviceCanGenerate = Boolean(state.imageService?.openaiReady || state.imageService?.bnsReady);
+        if (!serviceCanGenerate) {
+          showToast(state.imageServiceError ? `模型服务未就绪：${state.imageServiceError}` : '本地生图服务未启动。', 'warn');
+          return;
+        }
+
+        const jobId = `asset-job-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`;
+        const payload = {
+          jobId,
+          title: titleInput.value.trim() || '未命名作品',
+          items: targets,
+        };
+
+        let jobResponse;
+        try {
+          const response = await fetch(apiUrl('/api/image/batch'), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          jobResponse = await response.json();
+          if (!jobResponse.ok || !jobResponse.job) throw new Error(jobResponse.error || 'BATCH_FAILED');
+        } catch (error) {
+          showToast(`提交生图任务失败：${error?.message || error}`, 'warn');
+          return;
+        }
+
+        const result = Engine.startAssetGeneration(state.assetPlan, {
+          balance: state.creditBalance,
+          jobId,
+        });
+        if (!result.ok) {
+          showToast(`提交后扣费校验失败：${result.reason}`, 'warn');
+          return;
+        }
+
+        state.assetPlan = result.assetPlan;
+        state.creditBalance = result.balance;
+        state.isGeneratingAssets = true;
+        renderAssetPanels();
+        updatePreview();
+        showToast(`已扣除 ${result.estimate.credits} 积分，开始真实批量生成。`);
+        await pollImageJob(jobResponse.job.id);
+      }
+
+      function handleFile(file) {
+        if (!file) return;
+        if (file.size > 10 * 1024 * 1024) {
+          showToast('文件超过 10MB，建议拆分后再上传。', 'warn');
+          return;
+        }
+        state.uploadedFileName = file.name;
+        $('.upload-label').textContent = file.name;
+        uploadFileChip.textContent = `${file.name} · ${(file.size / 1024).toFixed(0)}KB`;
+        uploadFileChip.classList.add('is-filled');
+        uploadZone.classList.add('is-filled');
+        const ext = file.name.split('.').pop().toLowerCase();
+        if (ext === 'txt') {
+          const reader = new FileReader();
+          reader.onload = () => {
+            scriptInput.value = String(reader.result || '');
+            updateReadiness();
+            showToast('TXT 已读取到文本框。');
+          };
+          reader.onerror = () => showToast('TXT 读取失败，请直接粘贴文本。', 'warn');
+          reader.readAsText(file);
+        } else {
+          showToast('本地版已先支持 TXT 自动读取；DOCX/PDF 请先粘贴文本再解析。', 'warn');
+        }
+        updateReadiness();
+      }
+
+      scriptInput.addEventListener('input', updateReadiness);
+      titleInput.addEventListener('input', updateReadiness);
+
+      fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
+      uploadZone.addEventListener('click', event => {
+        if (!event.target.closest('.upload-pick') && event.target !== fileInput) {
+          fileInput.click();
+        }
+      });
+      uploadZone.addEventListener('dragenter', event => {
+        event.preventDefault();
+        uploadZone.classList.add('is-drag');
+      });
+      uploadZone.addEventListener('dragover', event => {
+        event.preventDefault();
+        uploadZone.classList.add('is-drag');
+      });
+      uploadZone.addEventListener('dragleave', event => {
+        if (!uploadZone.contains(event.relatedTarget)) uploadZone.classList.remove('is-drag');
+      });
+      uploadZone.addEventListener('drop', event => {
+        event.preventDefault();
+        uploadZone.classList.remove('is-drag');
+        if (event.dataTransfer.files.length > 0) {
+          try {
+            fileInput.files = event.dataTransfer.files;
+          } catch (error) {
+            // Some browsers keep file inputs read-only for dropped files.
+          }
+          handleFile(event.dataTransfer.files[0]);
+        }
+      });
+
+      $('#tagGroup').addEventListener('click', event => {
+        const tag = event.target.closest('.cr-tag');
+        if (!tag) return;
+        tag.classList.toggle('is-selected');
+        state.selectedTags = $$('.cr-tag.is-selected').map(item => item.dataset.tag);
+        updateReadiness();
+      });
+
+      nextStepBtn.addEventListener('click', () => {
+        if (state.currentStep === 1) {
+          parseBtn.click();
+        } else if (state.currentStep === 2) {
+          toEditorBtn.click();
+        } else if (state.currentStep === 3) {
+          unlockStep(4);
+          goStep(4);
+        } else {
+          publishBtn.click();
+        }
+      });
+
+      saveDraftBtn.addEventListener('click', () => {
+        const draft = {
+          title: titleInput.value,
+          script: scriptInput.value,
+          tags: state.selectedTags,
+          desc: descInput.value,
+          scenes: state.scenes,
+          assetPlan: state.assetPlan,
+          creditBalance: state.creditBalance,
+          savedAt: new Date().toISOString(),
+        };
+        localStorage.setItem('suguangCreatorDraft', JSON.stringify(draft));
+        showToast('草稿已保存到本地。');
+      });
+
+      $$('.cr-step').forEach(step => {
+        const targetStep = Number(step.dataset.step);
+        step.addEventListener('click', () => goStep(targetStep));
+        step.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            goStep(targetStep);
+          }
+        });
+      });
+
+      function updateParseSteps(activeIndex) {
+        $$('#parseStepList span').forEach((item, index) => {
+          item.classList.toggle('is-active', index === activeIndex);
+          item.classList.toggle('is-done', index < activeIndex);
+        });
+      }
+
+      function startParse() {
+        if (!canParse() || state.isParsing) return;
+
+        state.isParsing = true;
+        state.isParsed = false;
+        state.parsedScenes = Engine.parseScriptToScenes(scriptInput.value);
+        unlockStep(2);
+        goStep(2);
+        updateTopAction();
+
+        const fill = $('#progressFill');
+        const text = $('#parseStatusText');
+        const parseStatus = $('#parseStatus');
+        const parseResults = $('#parseResults');
+        parseStatus.style.display = 'block';
+        parseResults.style.display = 'none';
+        fill.style.width = '0%';
+        toEditorBtn.disabled = true;
+        parseBtn.disabled = true;
+
+        const steps = [
+          [20, '正在识别场景结构…'],
+          [45, '提取角色与对话…'],
+          [70, '分析分支选项…'],
+          [90, '生成节点图…'],
+          [100, '解析完成！'],
+        ];
+        let index = 0;
+
+        const run = () => {
+          if (index >= steps.length) {
+            showParseResults();
+            return;
+          }
+          const [pct, message] = steps[index];
+          fill.style.width = pct + '%';
+          text.textContent = message;
+          updateParseSteps(index);
+          index += 1;
+          setTimeout(run, 520);
+        };
+        run();
+      }
+
+      parseBtn.addEventListener('click', startParse);
+
+      function showParseResults() {
+        state.isParsing = false;
+        state.isParsed = true;
+        unlockStep(3);
+        state.scenes = state.parsedScenes.length ? state.parsedScenes : Engine.parseScriptToScenes(scriptInput.value);
+        state.activeSceneIndex = 0;
+        refreshAssetPlan();
+
+        $('#parseStatus').style.display = 'none';
+        const results = $('#parseResults');
+        results.style.display = 'block';
+        results.classList.add('is-revealed');
+        $('#sceneCount').textContent = String(state.scenes.length);
+        const chars = Engine.extractCharacters(state.scenes);
+        $('#charCount2').textContent = String(chars.length);
+        $('#choiceCount').textContent = String(state.scenes.reduce((sum, scene) => sum + scene.branches.length, 0));
+
+        $('#charList').innerHTML = (chars.length ? chars : ['旁白']).map(character =>
+          `<button class="char-chip" type="button"><span class="char-chip-dot"></span>${escapeHtml(character)}</button>`
+        ).join('');
+
+        $('#nodePreview').innerHTML = state.scenes.map((scene, index) =>
+          `<button class="node-card" type="button" data-scene-index="${index}">
+            <span class="node-id">${escapeHtml(scene.id)}</span>
+            <span class="node-name">${escapeHtml(scene.name)}</span>
+            <span class="node-type">${escapeHtml(scene.branches.length ? `分支 x${scene.branches.length}` : scene.speaker)}</span>
+          </button>`
+        ).join('');
+
+        toEditorBtn.disabled = false;
+        updateStepIndicator();
+        updateTopAction();
+        showToast('解析完成，可以进入视觉编排。');
+        renderAssetPanels();
+        renderSceneList();
+        selectScene(0);
+      }
+
+      toEditorBtn.addEventListener('click', () => {
+        unlockStep(3);
+        goStep(3);
+      });
+
+      $('#nodePreview').addEventListener('click', event => {
+        const card = event.target.closest('.node-card');
+        if (!card) return;
+        state.activeSceneIndex = Number(card.dataset.sceneIndex);
+        unlockStep(3);
+        goStep(3);
+      });
+
+      function renderSceneList() {
+        $('#editorSceneList').innerHTML = state.scenes.map((scene, index) =>
+          `<button class="scene-item ${index === state.activeSceneIndex ? 'is-active' : ''}" type="button" data-scene-index="${index}">
+            <span class="scene-item-num">${escapeHtml(scene.id)}</span>
+            <span class="scene-item-name">${escapeHtml(scene.name)}</span>
+          </button>`
+        ).join('');
+      }
+
+      function renderBranches() {
+        const scene = state.scenes[state.activeSceneIndex];
+        branches.innerHTML = scene.branches.map((branch, index) =>
+          `<div class="branch-item" data-branch-index="${index}">
+            <span class="branch-label">${escapeHtml(branch.label || String.fromCharCode(65 + index))}</span>
+            <input class="cr-input branch-text" placeholder="选项文本…" value="${escapeAttr(branch.text)}" />
+            <input class="cr-input cr-input--small branch-target" placeholder="跳转到…" value="${escapeAttr(branch.to)}" />
+            <button class="branch-del" title="删除" type="button">×</button>
+          </div>`
+        ).join('');
+      }
+
+      function updatePreview() {
+        const scene = state.scenes[state.activeSceneIndex];
+        const bgAsset = getBackgroundAsset(scene.bgName) || null;
+        $('.preview-bg').style.background = bgAsset?.image ? `url("${bgAsset.image}") center/cover no-repeat, ${bgAsset.gradient}` : (scene.bg || bgAsset?.gradient || scene.bg);
+        $('.preview-speaker').textContent = scene.speaker || '旁白';
+        $('.preview-text').textContent = scene.text || '这一句还没有写下去。';
+        $('#previewSceneName').textContent = scene.name;
+        $('#previewAssetStatus').textContent = `背景：${scene.bgName} · 立绘：${scene.speaker || '旁白'} · 配乐：${state.selectedBgm}`;
+        updatePreviewCast(scene);
+      }
+
+      function selectScene(index) {
+        state.activeSceneIndex = index;
+        const scene = state.scenes[index];
+        speakerInput.value = scene.speaker;
+        dialogueInput.value = scene.text;
+        refreshAssetPlan();
+        renderSceneList();
+        renderAssetPanels();
+        renderBranches();
+        updatePreview();
+      }
+
+      $('#editorSceneList').addEventListener('click', event => {
+        const item = event.target.closest('.scene-item');
+        if (!item) return;
+        selectScene(Number(item.dataset.sceneIndex));
+      });
+
+      $('.sidebar-add').addEventListener('click', () => {
+        const nextNumber = String(state.scenes.length + 1).padStart(2, '0');
+        state.scenes.push({
+          id: nextNumber,
+          name: `新场景 ${nextNumber}`,
+          speaker: '旁白',
+          text: '这里写下新的关键画面，让玩家做出下一次选择。',
+          bgName: '雨夜公寓',
+          bg: state.scenes[state.activeSceneIndex].bg,
+          branches: [{ text: '继续', to: '下一场景' }],
+        });
+        refreshAssetPlan();
+        selectScene(state.scenes.length - 1);
+        renderAssetPanels();
+        showToast('已添加一个新场景。');
+      });
+
+      speakerInput.addEventListener('input', () => {
+        state.scenes[state.activeSceneIndex].speaker = speakerInput.value;
+        refreshAssetPlan();
+        renderAssetPanels();
+        updatePreview();
+      });
+
+      dialogueInput.addEventListener('input', () => {
+        state.scenes[state.activeSceneIndex].text = dialogueInput.value;
+        updatePreview();
+      });
+
+      branches.addEventListener('input', event => {
+        const row = event.target.closest('.branch-item');
+        if (!row) return;
+        const branch = state.scenes[state.activeSceneIndex].branches[Number(row.dataset.branchIndex)];
+        if (event.target.classList.contains('branch-text')) branch.text = event.target.value;
+        if (event.target.classList.contains('branch-target')) branch.to = event.target.value;
+      });
+
+      branches.addEventListener('click', event => {
+        const button = event.target.closest('.branch-del');
+        if (!button) return;
+        const row = button.closest('.branch-item');
+        state.scenes[state.activeSceneIndex].branches.splice(Number(row.dataset.branchIndex), 1);
+        renderBranches();
+        showToast('选项已删除。');
+      });
+
+      $('#addBranchBtn').addEventListener('click', () => {
+        state.scenes[state.activeSceneIndex].branches.push({ text: '', to: '' });
+        renderBranches();
+        branches.lastElementChild?.querySelector('.branch-text')?.focus();
+        showToast('已添加新选项。');
+      });
+
+      $$('.assets-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.tab;
+          $$('.assets-tab').forEach(item => item.classList.toggle('is-active', item === tab));
+          $$('.assets-panel').forEach(panel => panel.classList.toggle('is-active', panel.id === target + 'Panel'));
+        });
+      });
+
+      $('.editor-assets').addEventListener('click', event => {
+        const actionButton = event.target.closest('[data-action]');
+        if (actionButton) {
+          const action = actionButton.dataset.action;
+          if (action === 'start-generation') void startBatchGeneration();
+          if (action === 'top-up-credits') topUpDemoCredits();
+          return;
+        }
+
+        const addItem = event.target.closest('.asset-item--add');
+        if (addItem) {
+          showToast('素材上传入口已准备好，可继续接入真实上传。');
+          return;
+        }
+
+        const asset = event.target.closest('.asset-item');
+        if (asset) {
+          const panel = asset.closest('.assets-panel');
+          const label = asset.querySelector('span')?.textContent.trim() || '未命名素材';
+          panel.querySelectorAll('.asset-item').forEach(item => item.classList.toggle('is-selected', item === asset));
+
+        if (panel.id === 'bgPanel') {
+          const thumb = asset.querySelector('.asset-thumb');
+          const scene = state.scenes[state.activeSceneIndex];
+          const bgAsset = state.assetPlan.backgrounds.find(item => item.id === asset.dataset.assetId);
+          scene.bgName = bgAsset?.baseName || bgAsset?.name || label;
+          scene.bg = backgroundCssFromAsset(bgAsset, thumb.style.background || getComputedStyle(thumb).background);
+          scene.bgImage = bgAsset?.image || '';
+          scene.bgPrompt = bgAsset?.prompt || '';
+          updatePreview();
+          renderAssetPanels();
+          showToast(`已切换背景：${label}`);
+        }
+
+        if (panel.id === 'charPanel') {
+          const charAsset = state.assetPlan.characters.find(item => item.id === asset.dataset.assetId);
+          const speakerName = charAsset?.baseName || charAsset?.name || label;
+          speakerInput.value = speakerName;
+          state.scenes[state.activeSceneIndex].speaker = speakerName;
+          state.scenes[state.activeSceneIndex].charPrompt = charAsset?.prompt || '';
+          state.scenes[state.activeSceneIndex].charImage = charAsset?.image || '';
+          state.scenes[state.activeSceneIndex].charColor = charAsset?.tone?.color || '';
+          refreshAssetPlan();
+          updatePreview();
+          renderAssetPanels();
+          showToast(`已把当前说话人设为：${speakerName}`);
+        }
+        return;
+      }
+
+        const bgm = event.target.closest('.bgm-item');
+        if (bgm) {
+          $('.bgm-list').querySelectorAll('.bgm-item').forEach(item => item.classList.toggle('is-selected', item === bgm));
+          state.selectedBgm = bgm.querySelector('.bgm-info span').textContent.trim();
+          updatePreview();
+          showToast(`已选择配乐：${state.selectedBgm}`);
+        }
+      });
+
+      const coverUpload = $('#coverUpload');
+      const coverInput = $('#coverInput');
+      coverUpload.addEventListener('click', event => {
+        if (event.target !== coverInput) coverInput.click();
+      });
+      coverInput.addEventListener('change', () => {
+        const file = coverInput.files[0];
+        if (!file) return;
+        coverUpload.classList.add('is-filled');
+        coverUpload.querySelector('span').textContent = file.name;
+        coverUpload.style.setProperty('--cover-preview', `url("${URL.createObjectURL(file)}")`);
+        showToast('封面已更新。');
+      });
+
+      function updatePublishPreview() {
+        if (!$('#publishPreviewTitle')) return;
+        $('#publishPreviewTitle').textContent = titleInput.value.trim() || '未命名作品';
+        $('#publishPreviewDesc').textContent = descInput.value.trim() || '填写简介后，这里会实时显示玩家在广场看到的第一句话。';
+        const checked = $('input[name="visibility"]:checked');
+        const visibleLabel = checked?.closest('.vis-option')?.querySelector('strong')?.textContent || '公开发布';
+        $('#publishPreviewVisibility').textContent = visibleLabel;
+        $('#publishPreviewTags').textContent = state.selectedTags.length ? state.selectedTags.join(' · ') : '未选择标签';
+      }
+
+      descInput.addEventListener('input', updatePublishPreview);
+      $$('input[name="visibility"]').forEach(input => input.addEventListener('change', updatePublishPreview));
+
+      publishBtn.addEventListener('click', async () => {
+        if (publishBtn.disabled) return;
+        const original = publishBtn.innerHTML;
+        publishBtn.disabled = true;
+        publishBtn.classList.add('is-loading');
+        publishBtn.textContent = '发布中…';
+        try {
+          let published = Engine.buildPublishedGame({
+            title: titleInput.value,
+            description: descInput.value,
+            tags: state.selectedTags,
+            visibility: $('input[name="visibility"]:checked')?.value || 'public',
+            scenes: state.scenes,
+            assets: state.assetPlan,
+          });
+          const response = await fetch(apiUrl('/api/game'), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ game: published }),
+          });
+          const payload = await response.json().catch(() => ({}));
+          if (!response.ok || !payload.ok || !payload.game) {
+            throw new Error(payload.error || `HTTP ${response.status}`);
+          }
+          published = payload.game;
+          Engine.savePublishedGame(localStorage, published);
+          localStorage.setItem('suguangLastPublishedGameId', published.id);
+          showToast('发布成功，已同步到服务器。');
+          setTimeout(() => {
+            window.location.href = `./player.html?id=${encodeURIComponent(published.id)}`;
+          }, 500);
+        } catch (error) {
+          console.error(error);
+          showToast(`发布失败：${error?.message || '请稍后再试或缩短文本。'}`, 'warn');
+          publishBtn.innerHTML = original;
+          publishBtn.classList.remove('is-loading');
+          publishBtn.disabled = false;
+        }
+      });
+
+      document.addEventListener('click', event => {
+        const target = event.target.closest('.cr-btn, .cr-tag, .scene-item, .asset-item, .bgm-item, .vis-card, .node-card');
+        if (!target || target.classList.contains('is-rippling')) return;
+        const rect = target.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'tap-ripple';
+        ripple.style.left = event.clientX - rect.left + 'px';
+        ripple.style.top = event.clientY - rect.top + 'px';
+        target.classList.add('is-rippling');
+        target.appendChild(ripple);
+        ripple.addEventListener('animationend', () => {
+          ripple.remove();
+          target.classList.remove('is-rippling');
+        }, { once: true });
+      });
+
+      document.addEventListener('keydown', event => {
+        if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+          if (state.currentStep === 1 && canParse()) parseBtn.click();
+          if (state.currentStep === 3) {
+            unlockStep(4);
+            goStep(4);
+          }
+        }
+      });
+
+      renderSceneList();
+      selectScene(0);
+      updateReadiness();
+      updateStepIndicator();
+      updateTopAction();
+      updatePublishPreview();
+      refreshImageServiceStatus();
+    </script>
+  </body>
+</html>

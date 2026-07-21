@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>替你活到明天</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles-v2.css" />
+  </head>
+  <body>
+    <main class="game-shell is-title" data-scene="home" data-effect="rain" data-cast="none">
+      <section class="stage" aria-label="替你活到明天 玩家画面">
+
+        <!-- 场景图层 -->
+        <div class="scene-layer scene-bg" aria-hidden="true"></div>
+        <div class="scene-layer scene-grain" aria-hidden="true"></div>
+        <div class="scene-layer rain-layer" aria-hidden="true"></div>
+        <div class="scene-layer vhs-layer" aria-hidden="true"></div>
+        <div class="scene-layer flash-layer" aria-hidden="true"></div>
+        <div class="scene-layer scene-vignette" aria-hidden="true"></div>
+
+        <!-- 菜单 -->
+        <nav class="top-menu" aria-label="游戏功能">
+          <button class="menu-trigger" id="menuBtn" type="button" aria-expanded="false" aria-label="菜单">
+            <span class="menu-trigger-lines" aria-hidden="true">
+              <i></i><i></i>
+            </span>
+          </button>
+          <div class="menu-popover" id="menuPopover">
+            <button id="homeBtn" type="button">回标题</button>
+            <button id="backBtn" type="button">上一幕</button>
+            <button id="saveBtn" type="button">存档</button>
+            <button id="loadBtn" type="button">读档</button>
+            <button id="galleryBtn" type="button">结局图鉴</button>
+            <button id="soundBtn" type="button">背景音乐</button>
+            <a href="./landing.html" class="menu-external-link">← 返回溯光</a>
+          </div>
+        </nav>
+
+        <!-- 章节标签 -->
+        <div class="chapter-tag" id="chapterPill">序章 · 23:12</div>
+
+        <!-- ════════════════════════════
+             标题页
+        ════════════════════════════ -->
+        <div class="title-screen is-visible" id="titleScreen">
+          <!-- 封面图层 -->
+          <div class="ts-cover" aria-hidden="true"></div>
+
+          <!-- 深色渐变遮罩 -->
+          <div class="ts-mask" aria-hidden="true"></div>
+
+          <!-- 左侧装饰线条组 -->
+          <div class="ts-decor-lines" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+
+          <!-- 右侧竖排副标题 -->
+          <div class="ts-vertical-text" aria-hidden="true">LIVE FOR YOU · 2026</div>
+
+          <!-- 左上角类型标签 -->
+          <header class="ts-badge">
+            <span class="ts-badge-label">Visual Novel</span>
+            <span class="ts-badge-genre">女性向 · 悬疑 · 对白增强版</span>
+          </header>
+
+          <!-- 核心标题区域 — 左下 -->
+          <div class="ts-title-block">
+            <p class="ts-kicker">替你活到明天</p>
+            <h1 class="ts-title">
+              <span class="ts-title-line">替你</span>
+              <span class="ts-title-line ts-title-line--em">活到</span>
+              <span class="ts-title-line">明天</span>
+            </h1>
+            <p class="ts-tagline">今晚十二点前<br>你必须做出选择<br>也必须决定要不要靠近她</p>
+          </div>
+
+          <!-- 操作按钮组 — 左下角按钮行 -->
+          <div class="ts-actions">
+            <button class="ts-btn ts-btn--primary" id="startBtn" type="button">开始游戏</button>
+            <button class="ts-btn ts-btn--ghost" id="continueBtn" type="button">继续</button>
+            <button class="ts-btn ts-btn--ghost" id="titleGalleryBtn" type="button">图鉴</button>
+          </div>
+
+          <!-- 底部版权条 -->
+          <div class="ts-footer" aria-hidden="true">
+            <span class="ts-footer-left">LIVE FOR YOU · 替你活到明天</span>
+            <span class="ts-footer-right">© 2026</span>
+          </div>
+        </div>
+
+        <!-- ════════════════════════════
+             游戏中道具/媒体卡片
+        ════════════════════════════ -->
+        <aside class="story-prop" id="mediaCard" aria-live="polite">
+          <div class="prop-device" id="mediaDevice">
+            <div class="media-topline" id="mediaTopline">23:17</div>
+            <div class="media-body" id="mediaBody"></div>
+          </div>
+        </aside>
+
+        <!-- 选项区 -->
+        <section class="choice-dock" id="choiceDock" aria-label="选择">
+          <div class="choice-list" id="choiceList"></div>
+        </section>
+
+        <!-- 文本框 -->
+        <section class="text-dock" id="dialoguePanel" aria-live="polite">
+          <div class="text-dock-inner">
+            <div class="speaker-row">
+              <span class="speaker-name" id="speakerName">旁白</span>
+              <span class="node-count" id="nodeCount">01</span>
+            </div>
+            <p class="dialogue-text" id="dialogueText"></p>
+            <span class="continue-hint" id="continueHint">点击屏幕继续</span>
+          </div>
+        </section>
+
+        <!-- Toast -->
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <!-- 存档弹窗 -->
+    <dialog class="modal" id="saveModal">
+      <form method="dialog" class="modal-inner">
+        <header class="modal-header">
+          <div class="modal-header-text">
+            <p class="modal-kicker">Archive</p>
+            <h2 id="modalTitle">存档</h2>
+          </div>
+          <button class="modal-close" value="close" aria-label="关闭">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </header>
+        <div class="slot-grid" id="slotGrid"></div>
+      </form>
+    </dialog>
+
+    <!-- 图鉴弹窗 -->
+    <dialog class="modal" id="galleryModal">
+      <form method="dialog" class="modal-inner gallery-inner">
+        <header class="modal-header">
+          <div class="modal-header-text">
+            <p class="modal-kicker">Endings</p>
+            <h2>结局图鉴</h2>
+            <p class="modal-subtitle">点击已解锁结局查看完整释义。</p>
+          </div>
+          <button class="modal-close" value="close" aria-label="关闭">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </header>
+        <div class="gallery-layout">
+          <div class="ending-grid" id="endingGrid"></div>
+          <article class="ending-detail" id="endingDetail">
+            <p class="detail-kicker">未选择结局</p>
+            <h3>点击已解锁卡片</h3>
+            <p>这里会显示结局含义、关键选择和角色后续。</p>
+          </article>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="./game.js?v=20260720-nameveil4"></script>
+  </body>
+</html>
