@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="雨夜公寓门口">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2c3139"/>
+      <stop offset=".52" stop-color="#465260"/>
+      <stop offset="1" stop-color="#171820"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#111116"/>
+      <stop offset=".5" stop-color="#303038"/>
+      <stop offset="1" stop-color="#0e0d12"/>
+    </linearGradient>
+    <radialGradient id="lamp" cx=".24" cy=".08" r=".48">
+      <stop offset="0" stop-color="#ffe1a2" stop-opacity=".8"/>
+      <stop offset=".44" stop-color="#c88a52" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#c88a52" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="9"/></filter>
+    <pattern id="rain" width="90" height="90" patternUnits="userSpaceOnUse" patternTransform="rotate(14)">
+      <line x1="18" y1="-10" x2="18" y2="54" stroke="#e6fbff" stroke-width="2" stroke-opacity=".35"/>
+      <line x1="62" y1="12" x2="62" y2="78" stroke="#e6fbff" stroke-width="1.4" stroke-opacity=".22"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#wall)"/>
+  <rect width="1600" height="900" fill="url(#lamp)"/>
+  <rect width="1600" height="900" fill="url(#rain)" opacity=".38"/>
+  <g opacity=".5">
+    <path d="M0 238 H1600" stroke="#9ba8b0" stroke-width="3"/>
+    <path d="M0 506 H1600" stroke="#151820" stroke-width="4"/>
+    <path d="M294 0 V900" stroke="#20242d" stroke-width="5"/>
+    <path d="M1124 0 V900" stroke="#20242d" stroke-width="5"/>
+  </g>
+  <g transform="translate(640 108)">
+    <rect x="0" y="0" width="410" height="674" rx="8" fill="#16161c"/>
+    <rect x="32" y="36" width="346" height="606" rx="4" fill="#252832"/>
+    <rect x="68" y="74" width="274" height="214" rx="3" fill="#191b23"/>
+    <rect x="68" y="330" width="274" height="272" rx="3" fill="#191b23"/>
+    <circle cx="338" cy="348" r="13" fill="#d1aa63"/>
+    <path d="M26 22 H384 V650 H26 Z" fill="none" stroke="#61513f" stroke-width="9" opacity=".72"/>
+  </g>
+  <g transform="translate(220 174)" opacity=".85">
+    <rect x="0" y="0" width="170" height="520" rx="16" fill="#222631"/>
+    <rect x="20" y="30" width="130" height="120" rx="8" fill="#cde8ec" opacity=".16"/>
+    <rect x="34" y="190" width="102" height="18" rx="9" fill="#d8c287" opacity=".42"/>
+    <rect x="34" y="230" width="80" height="13" rx="7" fill="#e9eef0" opacity=".26"/>
+    <rect x="34" y="262" width="96" height="13" rx="7" fill="#e9eef0" opacity=".18"/>
+  </g>
+  <rect y="720" width="1600" height="180" fill="url(#floor)"/>
+  <ellipse cx="810" cy="754" rx="500" ry="74" fill="#020205" opacity=".28"/>
+  <g transform="translate(730 652) rotate(-8)">
+    <ellipse cx="88" cy="66" rx="120" ry="36" fill="#08070a" opacity=".28" filter="url(#soft)"/>
+    <path d="M24 34 C62 2 138 4 176 34 C144 58 58 60 24 34 Z" fill="#ece7da"/>
+    <g fill="#faf7ee">
+      <ellipse cx="56" cy="30" rx="20" ry="48" transform="rotate(-24 56 30)"/>
+      <ellipse cx="92" cy="26" rx="22" ry="54" transform="rotate(4 92 26)"/>
+      <ellipse cx="130" cy="32" rx="20" ry="48" transform="rotate(24 130 32)"/>
+      <ellipse cx="164" cy="44" rx="16" ry="40" transform="rotate(42 164 44)"/>
+    </g>
+    <path d="M26 68 C76 88 136 86 186 62" stroke="#5b7847" stroke-width="10" stroke-linecap="round"/>
+    <rect x="58" y="62" width="122" height="12" rx="6" fill="#dfc0b2"/>
+  </g>
+</svg>

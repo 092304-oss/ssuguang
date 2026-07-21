@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="钟楼图书馆">
+  <defs>
+    <linearGradient id="room" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3c2738"/>
+      <stop offset=".55" stop-color="#513b48"/>
+      <stop offset="1" stop-color="#151014"/>
+    </linearGradient>
+    <radialGradient id="windowGlow" cx=".5" cy=".28" r=".55">
+      <stop offset="0" stop-color="#d8f5ff" stop-opacity=".86"/>
+      <stop offset=".36" stop-color="#79b7c8" stop-opacity=".3"/>
+      <stop offset="1" stop-color="#79b7c8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#23171c"/>
+      <stop offset=".5" stop-color="#4c3034"/>
+      <stop offset="1" stop-color="#1b1114"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#room)"/>
+  <ellipse cx="800" cy="292" rx="620" ry="360" fill="url(#windowGlow)"/>
+  <path d="M498 96 L1102 96 L1168 612 L432 612 Z" fill="#241b27" opacity=".65"/>
+  <rect x="594" y="142" width="412" height="352" rx="204" fill="#c8edf1" opacity=".35"/>
+  <line x1="800" y1="128" x2="800" y2="510" stroke="#2a2230" stroke-width="16" opacity=".7"/>
+  <line x1="608" y1="316" x2="992" y2="316" stroke="#2a2230" stroke-width="14" opacity=".7"/>
+  <g opacity=".84">
+    <rect x="90" y="268" width="312" height="442" rx="12" fill="#22171c"/>
+    <rect x="1198" y="268" width="312" height="442" rx="12" fill="#22171c"/>
+    <g fill="#765363">
+      <rect x="126" y="310" width="34" height="154"/>
+      <rect x="170" y="300" width="46" height="164"/>
+      <rect x="226" y="332" width="28" height="132"/>
+      <rect x="264" y="318" width="58" height="146"/>
+      <rect x="332" y="292" width="30" height="172"/>
+      <rect x="1234" y="310" width="54" height="154"/>
+      <rect x="1298" y="330" width="30" height="134"/>
+      <rect x="1338" y="294" width="42" height="170"/>
+      <rect x="1390" y="318" width="70" height="146"/>
+    </g>
+    <g fill="#c59560">
+      <rect x="126" y="514" width="72" height="158"/>
+      <rect x="212" y="500" width="30" height="172"/>
+      <rect x="254" y="532" width="60" height="140"/>
+      <rect x="326" y="488" width="36" height="184"/>
+      <rect x="1234" y="512" width="34" height="160"/>
+      <rect x="1278" y="496" width="72" height="176"/>
+      <rect x="1362" y="528" width="46" height="144"/>
+      <rect x="1418" y="502" width="42" height="170"/>
+    </g>
+  </g>
+  <rect x="0" y="650" width="1600" height="250" fill="url(#floor)"/>
+  <path d="M536 712 C630 646 960 646 1064 712 L1184 900 L416 900 Z" fill="#745158" opacity=".36"/>
+  <g transform="translate(696 412)">
+    <circle cx="104" cy="104" r="82" fill="#1e1720" opacity=".82"/>
+    <circle cx="104" cy="104" r="66" fill="#d3c68e" opacity=".9"/>
+    <line x1="104" y1="104" x2="104" y2="52" stroke="#442d33" stroke-width="8" stroke-linecap="round"/>
+    <line x1="104" y1="104" x2="144" y2="120" stroke="#442d33" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="104" cy="104" r="8" fill="#442d33"/>
+  </g>
+</svg>

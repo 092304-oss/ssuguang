@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 760" role="img" aria-label="女主角林澜">
+  <defs>
+    <linearGradient id="coat" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#315765"/>
+      <stop offset="1" stop-color="#162733"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e1921"/>
+      <stop offset="1" stop-color="#443042"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#000" flood-opacity=".32"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M178 276 C148 352 132 476 96 704 L424 704 C386 478 372 346 340 276 Z" fill="url(#coat)"/>
+    <path d="M176 278 C112 320 96 410 136 522 C166 484 186 406 206 300 Z" fill="#182c38"/>
+    <path d="M344 278 C408 320 424 410 384 522 C354 484 334 406 314 300 Z" fill="#182c38"/>
+    <path d="M170 166 C168 84 224 44 282 52 C358 64 382 128 364 208 C352 264 314 300 260 300 C206 300 174 248 170 166 Z" fill="url(#hair)"/>
+    <path d="M198 156 C202 108 232 84 274 88 C318 92 346 128 342 178 C338 238 306 276 260 276 C216 276 194 224 198 156 Z" fill="#f0c9ad"/>
+    <path d="M200 158 C250 156 288 124 316 94 C348 116 362 154 354 206 C388 124 334 58 274 54 C198 48 156 112 176 206 C180 190 186 174 200 158 Z" fill="url(#hair)"/>
+    <path d="M210 312 C236 340 284 344 314 312 L340 704 L180 704 Z" fill="#d7e8ea" opacity=".9"/>
+    <path d="M210 312 L180 704 L96 704 C132 478 148 352 178 276 Z" fill="url(#coat)"/>
+    <path d="M314 312 L340 704 L424 704 C386 478 372 346 340 276 Z" fill="url(#coat)"/>
+    <path d="M226 222 C244 236 276 236 294 222" fill="none" stroke="#855e5f" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="232" cy="176" r="7" fill="#29333c"/>
+    <circle cx="296" cy="176" r="7" fill="#29333c"/>
+    <path d="M254 172 L246 210 L268 210" fill="none" stroke="#b68677" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M168 382 L234 462 L198 502 L142 424 Z" fill="#23414e"/>
+    <path d="M352 382 L286 462 L322 502 L378 424 Z" fill="#23414e"/>
+    <path d="M196 500 C230 528 290 528 324 500 L328 704 L192 704 Z" fill="#1a2630"/>
+  </g>
+</svg>

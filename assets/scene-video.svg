@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="陆眠视频画面">
+  <defs>
+    <linearGradient id="shop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a2e36"/>
+      <stop offset=".45" stop-color="#564848"/>
+      <stop offset="1" stop-color="#111217"/>
+    </linearGradient>
+    <radialGradient id="warm" cx=".44" cy=".28" r=".42">
+      <stop offset="0" stop-color="#ffe8a8" stop-opacity=".56"/>
+      <stop offset=".6" stop-color="#ffbc75" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#ffbc75" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#shop)"/>
+  <rect width="1600" height="900" fill="url(#warm)"/>
+  <g opacity=".75">
+    <rect x="110" y="110" width="520" height="420" rx="24" fill="#14151a"/>
+    <rect x="142" y="142" width="456" height="356" rx="16" fill="#7da7ad" opacity=".28"/>
+    <path d="M142 380 C300 302 432 420 598 314 L598 498 L142 498 Z" fill="#f3d89c" opacity=".18"/>
+  </g>
+  <rect x="0" y="612" width="1600" height="288" fill="#121016"/>
+  <g transform="translate(760 210)">
+    <ellipse cx="152" cy="430" rx="220" ry="58" fill="#050507" opacity=".28"/>
+    <path d="M84 186 C48 260 42 352 28 520 L272 520 C258 352 250 260 216 186 Z" fill="#d6b55e"/>
+    <circle cx="150" cy="118" r="68" fill="#efcbb0"/>
+    <path d="M80 112 C88 34 178 8 230 76 C196 52 144 54 80 112 Z" fill="#31262d"/>
+    <path d="M100 156 C126 184 174 184 202 156" fill="none" stroke="#9b6661" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="126" cy="112" r="8" fill="#28252b"/>
+    <circle cx="178" cy="112" r="8" fill="#28252b"/>
+    <rect x="72" y="242" width="160" height="18" rx="9" fill="#fff1bb" opacity=".45"/>
+  </g>
+  <g transform="translate(280 648)" opacity=".78">
+    <rect x="0" y="0" width="1040" height="14" rx="7" fill="#f7e9cf" opacity=".28"/>
+    <rect x="0" y="0" width="380" height="14" rx="7" fill="#efc477"/>
+    <circle cx="380" cy="7" r="20" fill="#fff1cf"/>
+  </g>
+  <text x="278" y="718" font-size="34" font-family="Arial, sans-serif" fill="#f7e9cf" opacity=".7">00:00:13 / lumian_final.mov</text>
+</svg>

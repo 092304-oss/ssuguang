@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 420" role="img" aria-label="裂纹镜子">
+  <defs>
+    <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ceb375"/>
+      <stop offset="1" stop-color="#563a28"/>
+    </linearGradient>
+    <radialGradient id="glass" cx=".44" cy=".36" r=".72">
+      <stop offset="0" stop-color="#effbff"/>
+      <stop offset=".5" stop-color="#99c1c9"/>
+      <stop offset="1" stop-color="#253b48"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="160" cy="172" rx="108" ry="142" fill="url(#frame)"/>
+  <ellipse cx="160" cy="172" rx="82" ry="112" fill="url(#glass)"/>
+  <path d="M148 78 L162 150 L128 192 L176 236 L158 282" stroke="#f5ffff" stroke-width="4" fill="none" opacity=".72"/>
+  <path d="M162 150 L210 126 M128 192 L90 210 M176 236 L226 246" stroke="#f5ffff" stroke-width="3" fill="none" opacity=".55"/>
+  <rect x="132" y="300" width="56" height="76" rx="20" fill="url(#frame)"/>
+  <path d="M88 390 C104 350 216 350 232 390 Z" fill="url(#frame)"/>
+</svg>

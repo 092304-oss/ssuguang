@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="短信源头代码界面">
+  <defs>
+    <linearGradient id="codebg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101a1d"/>
+      <stop offset=".55" stop-color="#111018"/>
+      <stop offset="1" stop-color="#060608"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".48" cy=".42" r=".48">
+      <stop offset="0" stop-color="#82d5d5" stop-opacity=".34"/>
+      <stop offset=".6" stop-color="#82d5d5" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#82d5d5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#codebg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <g transform="translate(220 104)">
+    <rect x="0" y="0" width="1160" height="610" rx="26" fill="#080d11" opacity=".92"/>
+    <rect x="0" y="0" width="1160" height="56" rx="26" fill="#1f2a31"/>
+    <circle cx="36" cy="28" r="9" fill="#d96a6a"/>
+    <circle cx="66" cy="28" r="9" fill="#d8bd68"/>
+    <circle cx="96" cy="28" r="9" fill="#78c98f"/>
+    <g font-family="Menlo, Consolas, monospace" font-size="26">
+      <text x="54" y="116" fill="#82d5d5">const trigger = "沈栀";</text>
+      <text x="54" y="166" fill="#f1c477">if crisis_archive.includes(trigger) {</text>
+      <text x="94" y="216" fill="#f4e6cd">send("给不肯想起来的你");</text>
+      <text x="94" y="266" fill="#f4e6cd">send("给终于想起来的你");</text>
+      <text x="94" y="316" fill="#f4e6cd">send("给还想活下去的你");</text>
+      <text x="54" y="366" fill="#f1c477">}</text>
+      <text x="54" y="456" fill="#db7a86">question: "你选择谁替你活到明天？"</text>
+    </g>
+  </g>
+  <g opacity=".4" stroke="#82d5d5" stroke-width="2">
+    <path d="M120 770 C360 650 494 738 720 646 C958 550 1156 712 1480 554"/>
+    <path d="M180 160 C410 254 518 190 720 286 C974 408 1158 300 1400 392"/>
+  </g>
+</svg>
