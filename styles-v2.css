@@ -116,17 +116,17 @@ button {
 /* Rain streaks disabled: keep the rainy mood in CGs without drawing heavy diagonal UI lines. */
 .rain-layer {
   z-index: 3;
-  display: none;
-  opacity: 0;
-  background: none;
-  animation: none;
+  display: none !important;
+  opacity: 0 !important;
+  background: none !important;
+  animation: none !important;
 }
 
 .game-shell[data-effect="rain"]    .rain-layer,
 .game-shell[data-effect="message"] .rain-layer,
 .game-shell[data-effect="horror"]  .rain-layer,
 .game-shell[data-effect="ending"]  .rain-layer {
-  opacity: 0;
+  opacity: 0 !important;
 }
 
 /* VHS scanlines & jitter */
