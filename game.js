@@ -1,4 +1,4 @@
-const STORAGE_KEY = "live-until-tomorrow-v4-dialogue-20260718";
+const STORAGE_KEY = "live-until-tomorrow-v5-corrected-20260722";
 
 const artManifest = {
   door: {
@@ -747,7 +747,7 @@ const script = {
     effect: "message",
     speaker: "沈栀",
     chapter: "序章 · 问白祁",
-    text: "白祁，她到底有什么事瞒着我？",
+    text: "我握紧手机，声音压得很低：她高中那几年，到底发生过什么？",
     choices: [
       { text: "继续听", next: "pro_call_bai_03" }
     ]
@@ -768,8 +768,30 @@ const script = {
     scene: "living",
     effect: "message",
     speaker: "白祁",
-    chapter: "序章 · 答案在家里",
-    text: "我不确定。她提过那段时间很难，但没说细节。我问她，她不说。可我觉得答案在家里。她留了很多东西，我没动。你来一趟吧。我在。",
+    chapter: "序章 · 我不确定",
+    text: "我不确定。",
+    choices: [
+      { text: "继续", next: "pro_call_bai_05" }
+    ]
+  },
+  pro_call_bai_05: {
+    art: "proCallBai",
+    scene: "living",
+    effect: "message",
+    speaker: "白祁",
+    chapter: "序章 · 她没说",
+    text: "她提过那段时间很难，但没说细节。我问她，她不说。她越不说，我越知道那不是一句“过去了”就能带过的事。",
+    choices: [
+      { text: "继续", next: "pro_call_bai_06" }
+    ]
+  },
+  pro_call_bai_06: {
+    art: "proCallBai",
+    scene: "living",
+    effect: "message",
+    speaker: "白祁",
+    chapter: "序章 · 我在",
+    text: "可我觉得答案在家里。她留了很多东西，我没动。你来一趟吧。我在。",
     choices: [
       { text: "去陆家", next: "ch1_start" }
     ]
@@ -3378,7 +3400,7 @@ const script = {
     chapter: "第六章 · 不是班群",
     text: "陆眠抬起眼。她最怕的是所有人看见。周叙却说，不发给班群。白祁站在楼梯上，气喘吁吁：姐，我在这里。",
     choices: [
-      { text: "张恒出现了", next: "ch6_zhang_01" }
+      { text: "走廊尽头传来脚步声", next: "ch6_zhang_01" }
     ]
   },
   ch6_zhang_01: {
