@@ -1,3765 +1,1988 @@
-const STORAGE_KEY = "live-until-tomorrow-v4-dialogue-20260718";
+const STORAGE_KEY = "live-until-tomorrow-v2";
 
-const artManifest = {
+  const artManifest = {
   door: {
     image: "./assets/cg-door-gpt2.png",
-    fallback: "./assets/scene-home.svg",
+    fallback: "./assets/cg-door-gpt2.png",
     prompt: "Modern Chinese visual novel CG, rainy apartment corridor at night, wet white roses lying outside a dark apartment door, cinematic composition, soft blue-gray rain light, delicate suspense mood, no text, no watermark, 16:9."
   },
   phone: {
     image: "./assets/cg-phone-gpt2.png",
-    fallback: "./assets/scene-living.svg",
+    fallback: "./assets/cg-phone-gpt2.png",
     prompt: "Modern suspense visual novel CG, dim apartment living room at 23:17, a smartphone glowing on a table with an ominous message notification, rain on window, moody cyan light, female-oriented mystery aesthetic, no readable text, no watermark, 16:9."
   },
   album: {
     image: "./assets/cg-album-gpt2.png",
-    fallback: "./assets/scene-video.svg",
+    fallback: "./assets/cg-album-gpt2.png",
     prompt: "Visual novel CG, phone photo album open on a rainy night, old photo of two young Chinese women at a convenience store window, warm memory against cold present, cinematic close-up, emotional, no text, no watermark, 16:9."
   },
   zhouDoor: {
     image: "./assets/cg-zhou-door-gpt2.png",
-    fallback: "./assets/scene-living.svg",
+    fallback: "./assets/cg-zhou-door-gpt2.png",
     prompt: "Modern romance suspense visual novel CG, drenched young man standing outside apartment door at night, heroine seen from behind, hallway rain reflection, tense reunion, cinematic lighting, no text, no watermark, 16:9."
   },
   car: {
     image: "./assets/cg-car-gpt2.png",
-    fallback: "./assets/scene-taxi.svg",
+    fallback: "./assets/cg-car-gpt2.png",
     prompt: "Modern Chinese city at night through taxi window, heavy rain streaks, blurred neon lights, heroine reflection in glass, anxious ride to abandoned studio, high quality visual novel background, no text, no watermark, 16:9."
   },
   studio: {
     image: "./assets/cg-studio-gpt2.png",
-    fallback: "./assets/scene-studio.svg",
+    fallback: "./assets/cg-studio-gpt2.png",
     prompt: "Abandoned photography studio interior, wall covered in investigation photos and red strings, projector dust beam, cinematic thriller atmosphere, Chinese visual novel CG, polished, no readable text, no watermark, 16:9."
   },
   mirror: {
     image: "./assets/cg-mirror-gpt2.png",
-    fallback: "./assets/scene-bathroom.svg",
+    fallback: "./assets/cg-mirror-gpt2.png",
     prompt: "Modern bathroom mirror covered with steam, horror suspense mood, reflected silhouette of a young woman, cold blue-green light, visual novel CG, no readable text, no watermark, 16:9."
   },
   rooftop: {
     image: "./assets/cg-rooftop-gpt2.png",
-    fallback: "./assets/scene-rooftop.svg",
+    fallback: "./assets/cg-rooftop-gpt2.png",
     prompt: "Rainy rooftop at night, two young Chinese women near a broken railing, one reaching to save the other, emotional suspense, cinematic visual novel CG, tasteful, no gore, no text, no watermark, 16:9."
   },
   lumianVideo: {
     image: "./assets/cg-lumian-video-gpt2.png",
-    fallback: "./assets/scene-video.svg",
+    fallback: "./assets/cg-lumian-video-gpt2.png",
     prompt: "Recorded video frame of a warm young Chinese woman in yellow hoodie sitting by a convenience store window, smiling gently, nostalgic visual novel CG, VHS overlay area, emotional, no text, no watermark, 16:9."
   },
   source: {
     image: "./assets/cg-source-gpt2.png",
-    fallback: "./assets/scene-source.svg",
+    fallback: "./assets/cg-source-gpt2.png",
     prompt: "Dark laptop screen and phone on desk, delayed message program interface implied but no readable code, cyan glow, mystery visual novel CG, cinematic, no text, no watermark, 16:9."
   },
   dawn: {
     image: "./assets/cg-dawn-gpt2.png",
-    fallback: "./assets/scene-dawn.svg",
+    fallback: "./assets/cg-dawn-gpt2.png",
     prompt: "Soft dawn in modern apartment, white roses in a glass cup, phone beside a notebook, warm sunlight after a rainy night, healing visual novel ending CG, no text, no watermark, 16:9."
   },
   cemetery: {
     image: "./assets/cg-cemetery-gpt2.png",
-    fallback: "./assets/scene-dawn.svg",
+    fallback: "./assets/cg-cemetery-gpt2.png",
     prompt: "Quiet modern cemetery after rain, white roses, simple memorial stone, emotional healing visual novel CG, no readable text, no watermark, 16:9."
   },
   hospital: {
     image: "./assets/cg-hospital-gpt2.png",
-    fallback: "./assets/scene-dawn.svg",
+    fallback: "./assets/cg-hospital-gpt2.png",
     prompt: "Hospital crisis counseling room at dawn, intake form, phone on desk, quiet recovery mood, visual novel CG, no readable text, no watermark, 16:9."
   },
   court: {
     image: "./assets/cg-court-gpt2.png",
-    fallback: "./assets/scene-studio.svg",
+    fallback: "./assets/cg-court-gpt2.png",
     prompt: "Modern courtroom or police evidence room, projector glow, evidence bags, USB drive, serious visual novel CG, no readable text, no watermark, 16:9."
-  },
-  sportsDay: {
-    image: "./assets/scene-sports-day.svg",
-    fallback: "./assets/scene-sports-day.svg",
-    prompt: "Bright Chinese high school sports day, running track, banners, bleachers, summer sunlight, emotional visual novel background, no readable text, no watermark, 16:9."
   },
   flowerShop: {
     image: "./assets/cg-flower-shop-gpt2.png",
-    fallback: "./assets/scene-dawn.svg",
-    prompt: "Small flower shop on a rainy evening, white roses and blank card, lonely suspense visual novel CG, no readable text, no watermark, 16:9."
-  },
-  proTaxiShen: {
-    image: "./assets/prologue-v2/cg-pro-taxi-shen-gpt2.png",
-    fallback: "./assets/cg-car-gpt2.png",
-    prompt: "Rainy taxi interior with Shen Zhi reflected in the window, holding Lu Mian's phone and a folded note."
-  },
-  proDoorHall: {
-    image: "./assets/prologue-v2/cg-pro-door-hall-gpt2.png",
-    fallback: "./assets/cg-door-gpt2.png",
-    prompt: "Rainy apartment corridor at night, dark door under weak hallway light."
-  },
-  proDoorFloor: {
-    image: "./assets/prologue-v2/cg-pro-door-floor-gpt2.png",
-    fallback: "./assets/cg-door-gpt2.png",
-    prompt: "Phone and paper note on the wet corridor floor beside white roses."
-  },
-  proRoomDark: {
-    image: "./assets/prologue-v2/cg-pro-room-dark-gpt2.png",
-    fallback: "./assets/cg-phone-gpt2.png",
-    prompt: "Dark rainy apartment interior after the heroine closes the door."
-  },
-  proPhoneCharge: {
-    image: "./assets/prologue-v2/cg-pro-phone-charge-gpt2.png",
-    fallback: "./assets/cg-phone-gpt2.png",
-    prompt: "Old phone charging on the table, screen beginning to light up."
-  },
-  proMemoShen: {
-    image: "./assets/prologue-v2/cg-pro-memo-shen-gpt2.png",
-    fallback: "./assets/cg-phone-gpt2.png",
-    prompt: "Shen Zhi half-lit by the old phone after reading Lu Mian's final memo."
-  },
-  proRealizeShen: {
-    image: "./assets/prologue-v2/cg-pro-realize-shen-gpt2.png",
-    fallback: "./assets/cg-mirror-gpt2.png",
-    prompt: "Shen Zhi facing her reflection as she realizes the death was not an accident."
-  },
-  proSmsThreat: {
-    image: "./assets/prologue-v2/cg-pro-sms-threat-gpt2.png",
-    fallback: "./assets/cg-phone-gpt2.png",
-    prompt: "Threatening message thread on the old phone, screen text blurred."
-  },
-  proAlbumMemory: {
-    image: "./assets/prologue-v2/cg-pro-album-shen-lu-gpt2.png",
-    fallback: "./assets/cg-album-gpt2.png",
-    prompt: "Warm memory of Shen Zhi and Lu Mian at a convenience store window."
-  },
-  proDraftEvidence: {
-    image: "./assets/prologue-v2/cg-pro-draft-evidence-gpt2.png",
-    fallback: "./assets/cg-source-gpt2.png",
-    prompt: "Desk covered with unsent reports, evidence photos, laptop, and investigation notes."
-  },
-  proChoicePhone: {
-    image: "./assets/prologue-v2/cg-pro-choice-phone-gpt2.png",
-    fallback: "./assets/cg-phone-gpt2.png",
-    prompt: "Phone on a rainy table at the first major route choice."
-  },
-  proCallBai: {
-    image: "./assets/prologue-v2/cg-pro-call-bai-gpt2.png",
-    fallback: "./assets/cg-phone-gpt2.png",
-    prompt: "Late-night phone call with Bai Qi appearing guarded near the doorway."
-  },
-  proCallZhou: {
-    image: "./assets/prologue-v2/cg-pro-call-zhou-gpt2.png",
-    fallback: "./assets/cg-zhou-door-gpt2.png",
-    prompt: "Rainy-night call with Zhou Xu, cool and restrained outside the doorway."
-  },
-  proFailAlone: {
-    image: "./assets/prologue-v2/cg-pro-fail-alone-gpt2.png",
-    fallback: "./assets/cg-door-gpt2.png",
-    prompt: "Failure route: the heroine waits alone outside a closed door."
-  },
-  proFailWait: {
-    image: "./assets/prologue-v2/cg-pro-fail-wait-gpt2.png",
-    fallback: "./assets/cg-phone-gpt2.png",
-    prompt: "Failure route: pale morning, the old phone being taken away after waiting too long."
-  },
-  proFailWaitBai: {
-    image: "./assets/prologue-v2/cg-pro-fail-wait-bai-gpt2.png",
-    fallback: "./assets/prologue-v2/cg-pro-fail-wait-gpt2.png",
-    prompt: "Failure route: Bai Qi quietly takes Lu Mian's old phone away."
-  },
-  ch1DoorBai: {
-    image: "./assets/ch1-v2/cg-ch1-door-bai-gpt2.png",
-    fallback: "./assets/cg-door-gpt2.png",
-    prompt: "Chapter 1 CG: Shen Zhi arrives at Lu family's rainy doorway, Bai Qi opens the door, tense intimate reunion."
-  },
-  ch1LivingBai: {
-    image: "./assets/ch1-v2/cg-ch1-living-bai-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 1 CG: dim Lu family living room, Bai Qi keeps watch while Shen Zhi asks about Lu Mian's room."
-  },
-  ch1LivingThree: {
-    image: "./assets/ch1-v2/cg-ch1-living-three-gpt2.png",
-    fallback: "./assets/cg-zhou-door-gpt2.png",
-    prompt: "Chapter 1 CG: Shen Zhi, Zhou Xu, and Bai Qi sit in Lu family's living room under rainy window light."
-  },
-  ch1FridgeNoteBai: {
-    image: "./assets/ch1-v2/cg-ch1-fridge-note-bai-gpt2.png",
-    fallback: "./assets/cg-album-gpt2.png",
-    prompt: "Chapter 1 CG: Bai Qi hands Shen Zhi Lu Mian's old fridge note, a small warm memory in a cold room."
-  },
-  ch1BaiDoorframe: {
-    image: "./assets/ch1-v2/cg-ch1-bai-doorframe-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 1 CG: Bai Qi leans in Lu Mian's bedroom doorway, guarded and sleepless, asking what Shen Zhi found."
-  },
-  ch1UmbrellaBai: {
-    image: "./assets/ch1-v2/cg-ch1-umbrella-bai-gpt2.png",
-    fallback: "./assets/cg-door-gpt2.png",
-    prompt: "Chapter 1 CG: Bai Qi gives Shen Zhi a black umbrella in the rainy corridor, quiet emotional trust."
-  },
-  ch1LivingEmpty: {
-    image: "./assets/ch1-v2/cg-ch1-living-empty-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 1 CG: empty Lu family living room at night, too tidy, rain beyond the window."
-  },
-  ch1RoomDoor: {
-    image: "./assets/ch1-v2/cg-ch1-room-door-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 1 CG: Lu Mian's bedroom door half open, viewed from Shen Zhi's perspective."
-  },
-  ch1PolaroidDesk: {
-    image: "./assets/ch1-v2/cg-ch1-polaroid-desk-gpt2.png",
-    fallback: "./assets/cg-album-gpt2.png",
-    prompt: "Chapter 1 CG: polaroid photo on Lu Mian's desk, a warm memory hidden in evidence."
-  },
-  ch1DeskSun: {
-    image: "./assets/ch1-v2/cg-ch1-desk-sun-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 1 CG: exercise book and a small sun scribbled dark, close-up evidence."
-  },
-  ch1TinboxClinic: {
-    image: "./assets/ch1-v2/cg-ch1-tinbox-clinic-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 1 CG: blue tin box with school badge and clinic slip, intimate suspense clue."
-  },
-  ch1DiaryTorn: {
-    image: "./assets/ch1-v2/cg-ch1-diary-torn-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 1 CG: torn diary pages on Lu Mian's desk, unreadable fragments and heavy silence."
-  },
-  ch1WardrobePhone: {
-    image: "./assets/ch1-v2/cg-ch1-wardrobe-phone-gpt2.png",
-    fallback: "./assets/cg-source-gpt2.png",
-    prompt: "Chapter 1 CG: old phone hidden deep in Lu Mian's wardrobe, discovered from a low protagonist angle."
-  },
-  ch1OldphoneKey: {
-    image: "./assets/ch1-v2/cg-ch1-oldphone-key-gpt2.png",
-    fallback: "./assets/cg-source-gpt2.png",
-    prompt: "Chapter 1 CG: old phone and black umbrella on a table, the first key to the past."
-  },
-  ch2PhoneWhiteflash: {
-    image: "./assets/ch2-v2/cg-ch2-phone-whiteflash-gpt2.png",
-    fallback: "./assets/cg-source-gpt2.png",
-    prompt: "Chapter 2 CG: old phone emits a white flash in a dark room as time begins to pull Shen Zhi back."
-  },
-  ch2TrackArriveBg: {
-    image: "./assets/ch2-v2/cg-ch2-track-arrive-bg-gpt2.png",
-    fallback: "./assets/scene-sports-day.svg",
-    prompt: "Chapter 2 CG: high school running track in morning sunlight, arrival into the past."
-  },
-  ch2ClassroomZhang: {
-    image: "./assets/ch2-v2/cg-ch2-classroom-corridor-zhang-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 2 CG: classroom doorway and corridor, Zhang Heng seen at a distance from Shen Zhi's seat."
-  },
-  ch2CorridorAfter: {
-    image: "./assets/ch2-v2/cg-ch2-corridor-after-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 2 CG: empty school corridor after a missed confrontation, late sun and unease."
-  },
-  ch2WhiteReturnTrack: {
-    image: "./assets/ch2-v2/cg-ch2-white-return-track-gpt2.png",
-    fallback: "./assets/scene-sports-day.svg",
-    prompt: "Chapter 2 CG: a hair tie against blinding sunset on the track as time snaps back."
-  },
-  ch2ArriveLu: {
-    image: "./assets/ch2-v2/cg-ch2-arrive-lu-gpt2.png",
-    fallback: "./assets/scene-sports-day.svg",
-    prompt: "Chapter 2 CG: sixteen-year-old Lu Mian turns back on the high school track, bright and alive."
-  },
-  ch2SportsPin: {
-    image: "./assets/ch2-v2/cg-ch2-sports-pin-gpt2.png",
-    fallback: "./assets/scene-sports-day.svg",
-    prompt: "Chapter 2 CG: Lu Mian pins a race number for Shen Zhi during sports day, soft romantic closeness."
-  },
-  ch2FinishLu: {
-    image: "./assets/ch2-v2/cg-ch2-finish-lu-gpt2.png",
-    fallback: "./assets/scene-sports-day.svg",
-    prompt: "Chapter 2 CG: Lu Mian runs toward the finish line in sunlight, hopeful and vivid."
-  },
-  ch2StoreTrio: {
-    image: "./assets/ch2-v2/cg-ch2-store-trio-gpt2.png",
-    fallback: "./assets/cg-album-gpt2.png",
-    prompt: "Chapter 2 CG: Shen Zhi, Lu Mian, and Bai Qi at the school store, playful school-life warmth."
-  },
-  ch2SportsBaiWater: {
-    image: "./assets/ch2-v2/cg-ch2-sports-bai-water-gpt2.png",
-    fallback: "./assets/scene-sports-day.svg",
-    prompt: "Chapter 2 CG: Bai Qi brings water on sports day while Lu Mian and Shen Zhi laugh together."
-  },
-  ch2LibraryZhou: {
-    image: "./assets/ch2-v2/cg-ch2-library-zhou-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 2 CG: Zhou Xu in the school library, restrained and observant beside Shen Zhi."
-  },
-  ch2MorningFood: {
-    image: "./assets/ch2-v2/cg-ch2-morning-food-gpt2.png",
-    fallback: "./assets/cg-album-gpt2.png",
-    prompt: "Chapter 2 CG: Shen Zhi shares breakfast with Lu Mian in classroom light, gentle bond-building."
-  },
-  ch2CorridorConfront: {
-    image: "./assets/ch2-v2/cg-ch2-corridor-confront-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 2 CG: tense corridor confrontation with Zhang Heng, viewed from Shen Zhi's limited perspective."
-  },
-  ch2FollowMirror: {
-    image: "./assets/ch2-v2/cg-ch2-follow-mirror-gpt2.png",
-    fallback: "./assets/cg-mirror-gpt2.png",
-    prompt: "Chapter 2 CG: restroom mirror scene, Shen Zhi quietly follows Lu Mian without pushing her."
-  },
-  ch2EveningHairtie: {
-    image: "./assets/ch2-v2/cg-ch2-evening-hairtie-gpt2.png",
-    fallback: "./assets/scene-sports-day.svg",
-    prompt: "Chapter 2 CG: Lu Mian gives Shen Zhi a hair tie at evening track, a small beautiful promise."
-  },
-  ch3LuBox: {
-    image: "./assets/ch3-v2/cg-ch3-lu-box-gpt2.png",
-    fallback: "./assets/ch1-v2/cg-ch1-tinbox-clinic-gpt2.png",
-    prompt: "Chapter 3 CG: Shen Zhi and Bai Qi open Lu Mian's old keepsake box in the rainy living room."
-  },
-  ch3YearbookTorn: {
-    image: "./assets/ch3-v2/cg-ch3-yearbook-torn-gpt2.png",
-    fallback: "./assets/cg-court-gpt2.png",
-    prompt: "Chapter 3 CG: torn school yearbook page in the exhibition room, clue-focused and not omniscient."
-  },
-  ch3ThreatWindow: {
-    image: "./assets/ch3-v2/cg-ch3-threat-window-gpt2.png",
-    fallback: "./assets/prologue-v2/cg-pro-sms-threat-gpt2.png",
-    prompt: "Chapter 3 CG: old phone threat in the dark exhibition room with only an ambiguous window reflection."
-  },
-  ch3BackupTrio: {
-    image: "./assets/ch3-v2/cg-ch3-backup-trio-gpt2.png",
-    fallback: "./assets/ch1-v2/cg-ch1-living-three-gpt2.png",
-    prompt: "Chapter 3 CG: Shen Zhi, Bai Qi, and Zhou Xu back up evidence together, fragile present-day alliance."
-  },
-  ch4NoteDesk: {
-    image: "./assets/ch4-v2/cg-ch4-note-desk-gpt2.png",
-    fallback: "./assets/ch2-v2/cg-ch2-morning-food-gpt2.png",
-    prompt: "Chapter 4 CG: folded threatening note on Lu Mian's desk, seen from Shen Zhi's limited viewpoint."
-  },
-  ch4ArtroomPromise: {
-    image: "./assets/ch4-v2/cg-ch4-artroom-promise-gpt2.png",
-    fallback: "./assets/ch2-v2/cg-ch2-evening-hairtie-gpt2.png",
-    prompt: "Chapter 4 CG: Shen Zhi and Lu Mian share a warm art-room promise before the case escalates."
-  },
-  ch4WallUpdate: {
-    image: "./assets/ch4-v2/cg-ch4-wall-update-gpt2.png",
-    fallback: "./assets/cg-source-gpt2.png",
-    prompt: "Chapter 4 CG: anonymous wall upload screen, blurred and clue-focused."
-  },
-  ch4PhotoRoomZhang: {
-    image: "./assets/ch4-v2/cg-ch4-photo-room-zhang-gpt2.png",
-    fallback: "./assets/ch2-v2/cg-ch2-corridor-confront-gpt2.png",
-    prompt: "Chapter 4 CG: Lu Mian and Shen Zhi face Zhang Heng in the photography club room."
-  },
-  ch5FlowerOrder: {
-    image: "./assets/ch5-v2/cg-ch5-flower-order-gpt2.png",
     fallback: "./assets/cg-flower-shop-gpt2.png",
-    prompt: "Chapter 5 CG: present-day white rose order clue in the rainy flower shop."
-  },
-  ch5StudioWall: {
-    image: "./assets/ch5-v2/cg-ch5-studio-wall-gpt2.png",
-    fallback: "./assets/cg-studio-gpt2.png",
-    prompt: "Chapter 5 CG: abandoned photography studio evidence wall and original files."
-  },
-  ch5EnvelopeBai: {
-    image: "./assets/ch5-v2/cg-ch5-envelope-bai-gpt2.png",
-    fallback: "./assets/ch1-v2/cg-ch1-bai-doorframe-gpt2.png",
-    prompt: "Chapter 5 CG: Bai Qi holds Lu Mian's sealed envelope in the abandoned studio."
-  },
-  ch5CallRecording: {
-    image: "./assets/ch5-v2/cg-ch5-call-recording-gpt2.png",
-    fallback: "./assets/ch3-v2/cg-ch3-backup-trio-gpt2.png",
-    prompt: "Chapter 5 CG: Shen Zhi, Bai Qi, and Zhou Xu record the unknown call in present-day casual clothes."
-  },
-  ch6BroadcastRoom: {
-    image: "./assets/ch6-v2/cg-ch6-broadcast-room-gpt2.png",
-    fallback: "./assets/ch2-v2/cg-ch2-follow-mirror-gpt2.png",
-    prompt: "Chapter 6 CG: Shen Zhi reaches Lu Mian in the broadcast room with the hair tie promise."
-  },
-  ch6StaircaseZhang: {
-    image: "./assets/ch6-v2/cg-ch6-staircase-zhang-gpt2.png",
-    fallback: "./assets/ch2-v2/cg-ch2-corridor-confront-gpt2.png",
-    prompt: "Chapter 6 CG: Zhang Heng blocks the stairwell while Shen Zhi keeps close to Lu Mian."
-  },
-  ch6RooftopReach: {
-    image: "./assets/ch6-v2/cg-ch6-rooftop-reach-gpt2.png",
-    fallback: "./assets/cg-rooftop-gpt2.png",
-    prompt: "Chapter 6 CG: rooftop rescue by offering the hair tie, not forcing Lu Mian."
-  },
-  ch6HospitalDawn: {
-    image: "./assets/ch6-v2/cg-ch6-hospital-dawn-gpt2.png",
-    fallback: "./assets/cg-hospital-gpt2.png",
-    prompt: "Chapter 6 CG: good ending dawn in the hospital counseling room with Lu Mian alive."
+    prompt: "Small flower shop on a rainy evening, white roses and blank card, lonely suspense visual novel CG, no readable text, no watermark, 16:9."
   }
 };
 
 const endings = {
-  rescue: {
-    title: "结局 A：替你活到明天",
-    hint: "成功解救陆眠",
-    detail: "你穿越回去，改变了那一天，陆眠活了下来。",
-    badge: "真实结局",
-    thumbnail: "ch6HospitalDawn",
-    route: "在第四章做出正确选择，阻止悲剧发生。",
-    meaning: "真相被说出口以后，陆眠终于不再独自背着过去。沈栀明白，所谓替她活到明天，不是替她承受一切，而是在她坠落前走到她身边。",
-    after: "陆眠开始接受治疗，白祁不再把沉默误当成懂事，周叙也交出了他曾目击的那一小块拼图。很多事还要慢慢修复，但明天第一次不是惩罚。",
-    key: "早一点来，刚刚好。",
-    conflict: "沈栀必须在不暴露穿越秘密的前提下，让高中时代的陆眠相信她，也要在现实里把林中留下的证据拼成完整链条。",
-    cost: "她失去了继续把陆眠的死解释成意外的退路，也不得不面对自己曾经错过的每一个求救信号。",
-    closure: "天亮时，陆眠站在花店门口，递给沈栀一束没有写卡片的白玫瑰。她说：这次，明天见。"
+  live: {
+    title: "结局 A：替我活下去",
+    hint: "在最终选择里选择沈栀。",
+    detail: "你没有把活着当成赎罪，而是把它当成陆眠留给你的明天。",
+    badge: "普通结局",
+    thumbnail: "hospital",
+    route: "查清天台录像和短信源头后，在最终选择里选择‘沈栀’。",
+    meaning: "这不是被原谅后才允许活下去，而是在仍然有愧疚、仍然会痛的时候，承认自己需要帮助。",
+    after: "沈栀开始接受危机干预，剪完陆眠的视频，也第一次能在墓前待到天色变暗。",
+    key: "明天见，不是遗言。",
+    conflict: "沈栀最大的敌人不是白祁、周叙或短信，而是她把‘活着’理解成对陆眠的背叛。这个结局里，她没有立刻变好，只是第一次把求助说出口。",
+    cost: "代价是她必须保留全部记忆：未接来电、天台录像、陆眠最后的推手，都会跟着她进入每一个明天。",
+    closure: "所以它的成就感不在于洗白，而在于沈栀终于没有把陆眠的爱继续用来惩罚自己。"
   },
-  fail: {
-    title: "结局 B：没来得及",
-    hint: "干预失败",
-    detail: "你知道了真相，但没能改变结局。",
-    badge: "坏结局",
+  oldDream: {
+    title: "结局 B：旧梦重燃",
+    hint: "在周叙线里放弃查清真相，和他离开。",
+    detail: "你们逃到了新的城市，却把 23:17 一起带了过去。",
+    badge: "偏离结局",
     thumbnail: "cemetery",
-    route: "关键选择选错，干预失败。",
-    meaning: "真相不是只要被发现就会自动改变命运。错过关键证据、误判陆眠的恐惧，都会让沈栀再次回到那场雨里。",
-    after: "旧手机熄灭，白祁拿走了遗物，周叙也无法再补上缺失的时间。沈栀知道自己离答案很近，可陆眠已经等不到她。",
-    key: "有些事，晚一步就是永远。",
-    conflict: "沈栀试图用成年后的判断去解释高中时代的伤口，却忽略了陆眠真正害怕的并不是被看见，而是被看见之后依然无人相信。",
-    cost: "她保住了自己的安全距离，却失去了最后一次抵达陆眠身边的机会。",
-    closure: "墓园的风很轻，手机屏幕再也没有亮起。沈栀把那句没能说出口的道歉，留在了雨声里。"
+    route: "相信周叙的逃跑邀请，带着或者交出 U 盘，离开旧城。",
+    meaning: "它看起来像爱情，其实是两个人互相替对方逃避。温柔是真的，亏欠也是真的。",
+    after: "你们最终还是回到陆眠墓前，承认逃离没有让任何人真正重新开始。",
+    key: "偷来的明天，也要还利息。",
+    conflict: "周叙给沈栀的不是坏结局里的恶意，而是一种很危险的温柔：他愿意照顾她，也愿意替她把真相继续藏起来。",
+    cost: "这条路的代价是两个人都不用立刻面对陆眠，却也无法真正拥有新生活。新城市只是更远的旧现场。",
+    closure: "最终回到墓园，说明这不是纯粹的恋爱线，而是一条迟到的认罪线。"
+  },
+  trial: {
+    title: "结局 C：白祁的审判",
+    hint: "在白祁线里拒绝继续看真相，或把决定交给白祁。",
+    detail: "他没有伤害你，只是替姐姐把所有被忘掉的证据交给了清晨。",
+    badge: "审判结局",
+    thumbnail: "court",
+    route: "进入白祁线，在摄影棚里退缩、拒绝继续看，触发白祁的强制审判。",
+    meaning: "真相没有自动治愈任何人，但它阻止活着的人继续把陆眠当作互相惩罚的理由。",
+    after: "白祁被带走前留下旧照片，沈栀作为重要证人说完整个夜晚。",
+    key: "证词不是刀。",
+    conflict: "白祁不是单纯的复仇者。他恨沈栀，也恨自己只能靠恨来保存姐姐。这个结局让他终于从‘审判沈栀’转向‘承认自己也被困住’。",
+    cost: "代价是所有人都要在公开场合重述最不堪的一晚，真相不再只属于他们，也不再允许他们随意改写。",
+    closure: "庭审不是胜利，是把陆眠从私人惩罚里救出来，让她重新成为一个被完整记住的人。"
+  },
+  erase: {
+    title: "结局 D：删除明天",
+    hint: "在逃避线里砸碎所有证据。",
+    detail: "你得到了没有痛苦的第二天，也失去了最后一次想起陆眠的机会。",
+    badge: "坏结局",
+    thumbnail: "flowerShop",
+    route: "关机、擦掉镜子文字、砸碎电视，并确认删除。",
+    meaning: "痛苦被删除后，爱也一起被删掉。沈栀赢得安静，却失去理解自己为什么活下来的能力。",
+    after: "她仍会被白玫瑰、旧视频和 23:17 追上，只是再也认不出那是谁在喊她。",
+    key: "空白也会回声。",
+    conflict: "这是沈栀最熟悉的生存方式：只要足够用力地删除，就假装没有发生。可这次被删掉的不只是痛苦，还有陆眠救她的证据。",
+    cost: "代价是她获得一个看似轻松的明天，却失去辨认爱的能力。周叙、白祁、陆眠都变成陌生噪音。",
+    closure: "它是坏结局，因为沈栀没有死，但‘被陆眠救下来的沈栀’已经不在了。"
+  },
+  forgive: {
+    title: "隐藏结局 E：她没有怪你",
+    hint: "在最终选择里回复陆眠：对不起，我想起来了。",
+    detail: "陆眠从来不是要你偿命。她只是想让你替她看看更多明天。",
+    badge: "隐藏结局",
+    thumbnail: "dawn",
+    route: "看完陆眠的视频，查到短信源头，最终回复‘对不起，我想起来了’。",
+    meaning: "它不是赦免，而是沈栀终于明白：陆眠留下程序，不是为了索命，而是为了把她从危机里再拉一次。",
+    after: "纪念页变成生活记录，白祁、周叙和沈栀都开始用活人的方式怀念陆眠。",
+    key: "很多很多个明天，不靠遗忘解锁。",
+    conflict: "隐藏结局的关键不是找到谁错得最多，而是沈栀终于停止追问‘陆眠怪不怪我’，改为承认‘我很想她，也还要活’。",
+    cost: "代价是她必须允许陆眠真正死去：程序可以保存，但不能变成替代陆眠的幻影。",
+    closure: "这是最完整的收束，因为它把爱情、友情、愧疚和纪念分开了。沈栀不是被过去释放，而是学会带着过去往前走。"
+  },
+  loop: {
+    title: "隐藏坏结局：替她停留",
+    hint: "在最终选择里选择陆眠。",
+    detail: "你把自己关进三年前那一分钟，一遍遍被她救下，也一遍遍失去她。",
+    badge: "隐藏坏结局",
+    thumbnail: "rooftop",
+    route: "查清真相后，在最终选择里选择‘陆眠：我把明天还给她’。",
+    meaning: "沈栀以为循环是赎罪，实际上是把陆眠的爱变成自己的刑期，让她永远困在救人的十三秒里。",
+    after: "城市没有清晨，陆眠每次都会重新奔向她，而沈栀记得每一次失败。",
+    key: "永远的 23:17，永远不是重逢。",
+    conflict: "这条结局最残忍的地方在于沈栀确实很爱陆眠，也确实想补偿。可她选择的补偿方式，是把陆眠最后一次爱她的动作无限重播。",
+    cost: "陆眠不会成长、不会知道真相、不会拥有死亡之后的安宁。她永远只停在冲向沈栀的那一秒，永远被迫再次选择救人。",
+    closure: "所以它不是殉情，也不是重逢，而是沈栀用自己的愧疚把两个人都关进了同一段视频里。真正的解法不是替她停留，而是替她活下去。"
   }
 };
-
-function buildChapterTwoReturnText() {
-  const fragments = [];
-
-  if (state.baiClue > 0) {
-    fragments.push("白祁替她挡过一阵风，但他自己也没站稳。");
-  }
-  if (state.zhouClue > 0) {
-    fragments.push("周叙见过那一幕，也伸过一次手。");
-  }
-  if (state.baiBond > 0) {
-    fragments.push("白祁看你的时候，不再只是看一个来查旧事的人。");
-  }
-  if (state.zhouBond > 0) {
-    fragments.push("周叙说话还是少，但他没有把你挡在外面。");
-  }
-  if (state.luTrust >= 3) {
-    fragments.push("陆眠记住了你站在她旁边，也记住了你没有把她当成一桩案子。");
-  } else if (state.luTrust > 0) {
-    fragments.push("陆眠对你松开了一点手指，但还没把全部秘密交给你。");
-  }
-  if (state.memoryCount > 0) {
-    fragments.push(`你带回了 ${state.memoryCount} 块回声，它们开始像同一段夏天。`);
-  }
-  if (!fragments.length) {
-    fragments.push("你只摸到了轮廓，还没摸到真正的伤口。");
-  }
-
-  return `你坐在公寓地板上，手机还捏在手里。屏幕上，发给那个号码的消息显示已发送。没有回复。${fragments.join(" ")}然后，旧手机忽然又亮了一次。`;
-}
-
-function buildChapterTwoCliffhangerText() {
-  const emotionalHook = state.luTrust >= 3
-    ? "陆眠记住了你站在她身边时的样子。"
-    : "你记住了她在阳光里抬起头的那一瞬间。";
-  const clueHook = state.baiClue > 0 && state.zhouClue > 0
-    ? "白祁和周叙都碰到过边缘，只是谁都还没摸到中心。"
-    : state.baiClue > 0
-      ? "白祁守着门，但门后还有一层没揭开的东西。"
-      : state.zhouClue > 0
-        ? "周叙拦住过一次，却没拦住后来所有的沉默。"
-        : "你还不知道谁在门里，谁在门外。";
-
-  return `${emotionalHook}${clueHook}桌上，那部旧手机的开机画面亮着。下一秒，一条陌生短信弹了出来：别再往回走。你已经来过一次了。`;
-}
 
 const script = {
   start: {
-    art: "proTaxiShen",
-    scene: "taxi",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "序章 · 今晚",
-    media: { type: "objective", title: "首要任务", body: "知晓陆眠过去的真相，并解救她。关键线索选错，则任务失败。" },
-    text: "我叫沈栀，二十七岁，剪辑师。今晚十一点，我坐在回家的出租车后座，雨水把车窗外的灯拉成一条一条的线。",
-    choices: [
-      { text: "看向车窗里的自己", next: "pro_rain_02" }
-    ]
-  },
-  pro_rain_02: {
-    art: "proTaxiShen",
-    scene: "taxi",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "序章 · 回家路",
-    text: "五个月前，陆眠死了。所有人都说那是意外。我也试着接受过这个说法，只是怎么都接受不了。",
-    choices: [
-      { text: "下车，回家", next: "pro_hall_01" }
-    ]
-  },
-  pro_hall_01: {
-    art: "proDoorHall",
+    art: "door",
     scene: "home",
     effect: "rain",
-    speaker: "沈栀",
-    chapter: "序章 · 公寓门口",
-    text: "三楼走廊的灯慢半拍才亮。我家门口放着一个东西。不是快递，也不是外卖。",
+    speaker: "旁白",
+    chapter: "序章 · 23:12",
+    media: { type: "objective", title: "今晚目标", body: "查清短信来源。找回缺失记忆。活到明天。" },
+    text: "你叫沈栀，二十七岁，剪辑师。今晚下班回家时，楼道灯坏了一半，雨水从伞骨滴到手背。你刚要开门，发现门口放着一束湿透的白玫瑰。卡片正面只有两个字：沈栀。",
     choices: [
-      { text: "蹲下查看", next: "pro_hall_02" }
+      { text: "捡起卡片，查看背面", next: "noteBack" },
+      { text: "先进门，把门反锁", next: "insideRoom" }
     ]
   },
-  pro_hall_02: {
-    art: "proDoorFloor",
+  noteBack: {
+    art: "door",
     scene: "home",
     effect: "rain",
-    speaker: "沈栀",
-    chapter: "序章 · 门口的东西",
-    media: { type: "note", title: "门口遗留物", body: "一部手机。屏幕朝下。旁边压着一张纸条。" },
-    text: "是一部手机，屏幕朝下。旁边压着一张纸条。我拿起来，看见白祁的字。",
+    speaker: "旁白",
+    chapter: "序章 · 白玫瑰",
+    media: { type: "note", title: "卡片背面", body: "别装作不认识我。" },
+    text: "卡片背面还有一行字，被雨水晕开了一半。你看了很久才认出那句：别装作不认识我。你的胃猛地一沉。这个字迹属于陆眠，你最好的朋友。她三年前已经死了。",
     choices: [
-      { text: "读纸条", next: "pro_note_01" }
+      { text: "带着卡片进屋", next: "insideRoom" },
+      { text: "立刻拍照发给周叙", next: "zhou01" }
     ]
   },
-  pro_note_01: {
-    art: "proDoorFloor",
-    scene: "home",
-    effect: "rain",
-    speaker: "白祁",
-    chapter: "序章 · 白祁的纸条",
-    media: { type: "note", title: "白祁的字", body: "姐姐的手机。你应该看看。我找了五个月，我觉得你应该知道。" },
-    text: "姐姐的手机。你应该看看。我找了五个月，我觉得你应该知道。",
-    choices: [
-      { text: "拿起手机进屋", next: "pro_room_01" }
-    ]
-  },
-  pro_room_01: {
-    art: "proRoomDark",
+  insideRoom: {
+    art: "phone",
     scene: "living",
     effect: "rain",
-    speaker: "沈栀",
-    chapter: "序章 · 客厅",
-    text: "我把手机拿进屋，门在身后合上。客厅没有开灯，雨声贴着玻璃往下滑。",
+    speaker: "旁白",
+    chapter: "序章 · 23:16",
+    media: { type: "room", title: "沈栀的客厅", body: "门已反锁。雨声还在窗外。" },
+    text: "你把花放在桌上，手机、卡片、钥匙排成一条线。你告诉自己这只是恶作剧，可手机屏幕在下一秒亮起。时间是 23:17。发件人显示：陆眠。",
     choices: [
-      { text: "打开客厅灯", next: "pro_room_02" }
+      { text: "点开短信前，先看清那三个名字", next: "memoryNames" }
     ]
   },
-  pro_room_02: {
-    art: "proPhoneCharge",
-    scene: "living",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "序章 · 陆眠的手机",
-    media: { type: "note", title: "手机外观", body: "浅蓝色手机壳，右下角有一个小裂缝。" },
-    text: "灯亮后，我终于看清它。陆眠的手机。浅蓝色手机壳右下角有一道小裂缝，是去年她说等裂大了再换的那一道。",
-    choices: [
-      { text: "插上充电线", next: "pro_charge_01" }
-    ]
-  },
-  pro_charge_01: {
-    art: "proPhoneCharge",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "序章 · 等它开机",
-    text: "我把手机插上充电线。开机动画转了很久，久到我开始怀疑它是不是也已经坏了。",
-    choices: [
-      { text: "继续等待", next: "pro_charge_02" }
-    ]
-  },
-  pro_charge_02: {
-    art: "proPhoneCharge",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "序章 · 开机",
-    text: "屏幕终于亮了。没有锁屏密码。陆眠以前总说，手机不设密码的人不是坦荡，是不怕丢。那时候我笑她，现在笑不出来。",
-    choices: [
-      { text: "打开备忘录", next: "pro_memo_01" }
-    ]
-  },
-  pro_memo_01: {
-    art: "proMemoShen",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "序章 · 最后一条备忘录",
-    media: { type: "note", title: "备忘录 · 死前两天", body: "我好害怕。我不知道我还能撑多久。有一件事我从来没告诉过任何人。我以为我扛过去了。但它一直在。它一直在。" },
-    text: "最后一条备忘录创建于她死前两天。第一行只有四个字：我好害怕。我盯着它看了很久，几乎怀疑自己看错了。",
-    choices: [
-      { text: "继续看下去", next: "pro_memo_02" }
-    ]
-  },
-  pro_memo_02: {
-    art: "proMemoShen",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "序章 · 她没有说完",
-    text: "陆眠总是这样。我问她怎么样，她说还好；我再问，她说真的还好。然后我就信了。现在那句有一件事我从来没告诉过任何人，像按住了我的喉咙。",
-    choices: [
-      { text: "意识到不对劲", next: "pro_realize_01" }
-    ]
-  },
-  pro_realize_01: {
-    art: "proRealizeShen",
-    scene: "living",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "序章 · 不是意外",
-    text: "陆眠的死不是意外。至少不是他们告诉我的那种意外。一个人在死前两天写下我不知道我还能撑多久，不可能只是因为一场突发事故。",
-    choices: [
-      { text: "继续翻手机", next: "pro_search_01" }
-    ]
-  },
-  pro_search_01: {
-    art: "proSmsThreat",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "序章 · 找那件事",
-    text: "我翻她的短信、微信、相册，一条一条找她没说出口的事。每点开一个图标，都像在推开一扇我本来没有资格打开的门。",
-    choices: [
-      { text: "查看短信", next: "pro_sms_01" }
-    ]
-  },
-  pro_sms_01: {
-    art: "proSmsThreat",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "序章 · 陌生号码",
-    media: { type: "sms", title: "陌生号码短信记录", body: "你换号也没用。\n你在哪。\n你今天为什么不回消息。\n昨天的事你别想着去说，没人会信你的。" },
-    text: "短信里有一个陌生号码。最近一条是：你换号也没用。再往上，是：昨天的事你别想着去说，没人会信你的。",
-    choices: [
-      { text: "继续往上翻", next: "pro_sms_02" }
-    ]
-  },
-  pro_sms_02: {
-    art: "proSmsThreat",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "序章 · 三个月",
-    text: "我往上翻了很久。那个号码发来的消息密密麻麻，跨度三个月。陆眠很少回，偶尔只回好，或者知道了。",
-    choices: [
-      { text: "查看最早一条", next: "pro_sms_03" }
-    ]
-  },
-  pro_sms_03: {
-    art: "proSmsThreat",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "序章 · 林中",
-    media: { type: "sms", title: "最早一条", body: "新来的，我带你熟悉一下。" },
-    text: "最早一条是：新来的，我带你熟悉一下。我查到那个号码属于林中，陆眠上一份工作的直属上司。",
-    choices: [
-      { text: "想起她说过的还好", next: "pro_work_01" }
-    ]
-  },
-  pro_work_01: {
-    art: "proAlbumMemory",
-    scene: "living",
+  memoryNames: {
+    art: "album",
+    scene: "videoRoom",
     effect: "photo",
-    speaker: "沈栀",
-    chapter: "序章 · 还好",
-    text: "她在那家公司待了十个月。那时我问她工作怎么样，她说：还好，上司有点烦，项目有点累。",
+    speaker: "旁白",
+    chapter: "序章 · 三个名字",
+    media: { type: "photo", title: "相册置顶", body: "陆眠 / 周叙 / 白祁。三年前以后，你再也没有同时点开过这三个人。" },
+    text: "陆眠是你大学以来最好的朋友，最会把你从坏情绪里捞出来的人。周叙是你的前任，分手那晚没有接到陆眠的求救电话。白祁是陆眠的弟弟，陆眠死后，他看你的眼神像看一个活着的证物。",
     choices: [
-      { text: "继续想下去", next: "pro_work_02" }
+      { text: "先翻陆眠置顶相册", next: "prologueAlbum" },
+      { text: "先看和周叙最后的聊天", next: "prologueZhouChat" },
+      { text: "先回想白祁为什么恨你", next: "prologueBaiMemory" }
     ]
   },
-  pro_work_02: {
-    art: "proAlbumMemory",
-    scene: "living",
+  prologueAlbum: {
+    art: "album",
+    scene: "videoRoom",
     effect: "photo",
-    speaker: "沈栀",
-    chapter: "序章 · 你信了",
-    text: "还好。还好。还好。我现在才发现，她把很多求救信号都包进这两个字里递给我，而我一次次信了。",
+    speaker: "旁白",
+    chapter: "序章 · 陆眠",
+    media: { type: "photo", title: "置顶照片", body: "今天也把栀栀捡回来啦。" },
+    text: "置顶照片里，陆眠穿着浅黄色卫衣，举着两杯热牛奶，对镜头笑得很近。照片备注是她写的：今天也把栀栀捡回来啦。你以前觉得这句话肉麻，现在却看得喉咙发紧，因为你想不起她最后一次把你捡回来是什么时候。",
     choices: [
-      { text: "查看草稿箱", next: "pro_draft_01" }
+      { text: "点开陆眠发来的短信", next: "smsRule" }
     ]
   },
-  pro_draft_01: {
-    art: "proDraftEvidence",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "序章 · 举报信",
-    media: { type: "note", title: "草稿箱", body: "三封写好但没有发出的举报信。格式完整，证据附件齐全。" },
-    text: "草稿箱里有三封写好没发出去的举报信。格式完整，附件齐全，就差按下发送。",
-    choices: [
-      { text: "继续看草稿", next: "pro_draft_02" }
-    ]
-  },
-  pro_draft_02: {
-    art: "proDraftEvidence",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "序章 · 没发出去",
-    text: "她在收集证据。她准备好了。然后她死了，什么都没发出去。我的视线又回到备忘录那句话：有一件事我从来没告诉过任何人。",
-    choices: [
-      { text: "重新判断线索", next: "pro_logic_01" }
-    ]
-  },
-  pro_logic_01: {
-    art: "proRealizeShen",
-    scene: "living",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "序章 · 不是这件事",
-    text: "不是这件事。林中的事很可怕，但她有证据，也知道怎么处理。备忘录指向的是另一件事，更早，更深。",
-    choices: [
-      { text: "继续思考", next: "pro_logic_02" }
-    ]
-  },
-  pro_logic_02: {
-    art: "proRealizeShen",
-    scene: "living",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "序章 · 更早的事",
-    text: "我不知道那是什么。我只知道，陆眠大学以后从来不提高中。唯独那几年，她像从人生里剪掉了。",
-    choices: [
-      { text: "决定下一步", next: "pro_choice" }
-    ]
-  },
-  pro_choice: {
-    art: "proChoicePhone",
-    scene: "living",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "序章 · 选择",
-    media: { type: "objective", title: "首要任务", body: "找到陆眠过去真相。选错线索，任务失败。" },
-    text: "雨还在下。手机屏幕暗了一次，又被我按亮。现在我只能选一条路。",
-    choices: [
-      { text: "打给白祁，问他知道多少", next: "pro_call_bai_01" },
-      { text: "打给周叙", next: "pro_call_zhou_01" },
-      { text: "自己去陆家", next: "pro_fail_alone_01" },
-      { text: "今晚先不动，等明天", next: "pro_fail_wait_01" }
-    ]
-  },
-  pro_call_bai_01: {
-    art: "proCallBai",
+  prologueZhouChat: {
+    art: "phone",
     scene: "living",
     effect: "message",
     speaker: "旁白",
-    chapter: "序章 · 打给白祁",
-    text: "白祁接得很快。电话那头安静得厉害，像他一直在等。",
+    chapter: "序章 · 周叙",
+    media: { type: "chat", title: "三年前最后聊天", body: "沈栀：我们分手吧。周叙：别用这种方式逼我。" },
+    text: "你和周叙最后一条聊天停在三年前 23:11。你说分手，他说别用这种方式逼我。再往下是三个未接语音，来自陆眠。你删过很多东西，却偏偏留下这一截，像是潜意识里等着今晚有人来质问你。",
     choices: [
-      { text: "继续", next: "pro_call_bai_02" }
+      { text: "点开陆眠发来的短信", next: "smsRule" }
     ]
   },
-  pro_call_bai_02: {
-    art: "proCallBai",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "序章 · 问白祁",
-    text: "白祁，她到底有什么事瞒着我？",
+  prologueBaiMemory: {
+    art: "studio",
+    scene: "studio",
+    effect: "photo",
+    speaker: "旁白",
+    chapter: "序章 · 白祁",
+    media: { type: "photo", title: "葬礼那天", body: "白祁说：你为什么还活着？" },
+    text: "陆眠葬礼那天，白祁拦在雨里问你：你为什么还活着？那时候他十七岁，袖口别着黑纱，眼睛红得像要把你拆开。你没有回答，因为你自己也不知道答案。",
     choices: [
-      { text: "继续听", next: "pro_call_bai_03" }
+      { text: "点开陆眠发来的短信", next: "smsRule" }
     ]
   },
-  pro_call_bai_03: {
-    art: "proCallBai",
+  smsRule: {
+    art: "phone",
     scene: "living",
     effect: "message",
     speaker: "旁白",
-    chapter: "序章 · 沉默",
-    text: "电话那头停了很久。久到我以为信号断了，白祁才终于开口。",
+    chapter: "序章 · 死亡短信",
+    media: { type: "sms", title: "陆眠", body: "栀栀，我快撑不住了。今晚十二点前，你必须选一个人替你活到明天。", choices: "候选人：周叙 / 白祁 / 沈栀" },
+    text: "短信不是一句恐吓。它像某种倒计时，连续跳出三条说明：第一，十二点前必须选择。第二，选错的人会失去明天。第三，如果你想改答案，就去找回三年前 23:17 被你删掉的记忆。你终于明白，今晚不是鬼魂来找你，是你一直没敢打开的过去来敲门。",
     choices: [
-      { text: "继续听", next: "pro_call_bai_04" }
+      { text: "先回拨陆眠电话", next: "callLu01" },
+      { text: "联系周叙：他是你前任", next: "zhou01" },
+      { text: "联系白祁：他是陆眠弟弟", next: "bai01" },
+      { text: "删掉短信，假装没看见", next: "escape01" }
     ]
   },
-  pro_call_bai_04: {
-    art: "proCallBai",
+  callLu01: {
+    art: "phone",
     scene: "living",
     effect: "message",
-    speaker: "白祁",
-    chapter: "序章 · 答案在家里",
-    text: "我不确定。她提过那段时间很难，但没说细节。我问她，她不说。可我觉得答案在家里。她留了很多东西，我没动。你来一趟吧。我在。",
+    speaker: "陆眠",
+    chapter: "序章 · 无人接听",
+    media: { type: "call", title: "通话中", body: "先别选别人。先确认你还记得我。" },
+    text: "电话竟然通了。听筒里没有哭声，也没有鬼故事里的电流，只有很轻的呼吸。然后陆眠的声音贴着耳边响起：栀栀，先别选别人。先确认你还记得我。电话挂断，你的相册自动打开。",
     choices: [
-      { text: "去陆家", next: "ch1_start" }
+      { text: "查看自动打开的相册", next: "album01" },
+      { text: "你害怕了，联系周叙", next: "zhou01" },
+      { text: "你想知道陆眠家人是否也收到短信", next: "bai01" }
     ]
   },
-  pro_call_zhou_01: {
-    art: "proCallZhou",
-    scene: "living",
-    effect: "rain",
+  album01: {
+    art: "album",
+    scene: "videoRoom",
+    effect: "photo",
     speaker: "旁白",
-    chapter: "序章 · 打给周叙",
-    text: "周叙接了，沉默了两秒才开口：沈栀。你们已经很久没有在深夜打过电话了。分手以后，你们把所有能避免的时间点都避开了，深夜尤其是其中之一。",
+    chapter: "序章 · 旧相册",
+    media: { type: "photo", title: "照片备注", body: "今天也把栀栀捡回来啦。" },
+    text: "相册停在三年前最后一组照片。便利店、天桥、摄影棚后台。最后一张模糊得厉害：你坐在顶楼边缘，陆眠蹲在你面前，手里拿着一罐热牛奶。备注是她写的：今天也把栀栀捡回来啦。",
     choices: [
-      { text: "问他", next: "pro_call_zhou_02" }
+      { text: "放大天台照片的时间码", next: "albumTimecode" },
+      { text: "检查画面边缘的黑色外套", next: "albumCoat" },
+      { text: "查看便利店照片的备注", next: "albumReceipt" }
     ]
   },
-  pro_call_zhou_02: {
-    art: "proCallZhou",
-    scene: "living",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "序章 · 她的过往",
-    text: "你没有寒暄，直接问：周叙，她的过往……你知道多少？他没有立刻回答。你听见那边有钥匙碰到桌面的声音，像他站了起来，又像他只是下意识抓住了什么东西。",
+  albumTimecode: {
+    art: "album",
+    scene: "videoRoom",
+    effect: "photo",
+    speaker: "旁白",
+    chapter: "调查 · 时间码",
+    media: { type: "photo", title: "照片信息", body: "23:16:54。拍摄者：陆眠。" },
+    text: "你把照片放到最大，右下角终于露出一行时间码：23:16:54。可陆眠的坠楼时间是 23:17。也就是说，这张照片不是事故后的记录，而是事故发生前十三秒。她那时还在救你。",
     choices: [
-      { text: "继续", next: "pro_call_zhou_03" }
+      { text: "继续检查照片里的人", next: "albumCoat" },
+      { text: "去摄影棚找原始录像", next: "bai01" }
     ]
   },
-  pro_call_zhou_03: {
-    art: "proCallZhou",
+  albumCoat: {
+    art: "album",
+    scene: "videoRoom",
+    effect: "photo",
+    speaker: "旁白",
+    chapter: "调查 · 黑色外套",
+    media: { type: "photo", title: "画面边缘", body: "一截黑色外套袖口，和周叙常穿的那件很像。" },
+    text: "照片边缘有一截黑色外套，被雨水和运动模糊拉成一条暗影。你认得那件外套。周叙三年前总穿它来接你下班。可如果他在现场附近，为什么他说自己只是没接到电话？",
+    choices: [
+      { text: "立刻打给周叙问清楚", next: "zhou01" },
+      { text: "先看陆眠留下的下一段视频残片", next: "albumClip" }
+    ]
+  },
+  albumReceipt: {
+    art: "album",
+    scene: "videoRoom",
+    effect: "photo",
+    speaker: "旁白",
+    chapter: "调查 · 便利店",
+    media: { type: "photo", title: "便利店小票", body: "热牛奶 x2 / 创可贴 / 23:03" },
+    text: "便利店照片下面还有一张小票。热牛奶两瓶，创可贴一盒，时间 23:03。你忽然想起那晚自己手腕上有伤，陆眠没有责备你，只是把创可贴拆开，说：先处理现在，别急着处理一辈子。",
+    choices: [
+      { text: "打开陆眠的视频残片", next: "albumClip" },
+      { text: "去找白祁，他可能有原件", next: "bai01" }
+    ]
+  },
+  albumClip: {
+    art: "lumianVideo",
+    scene: "videoRoom",
+    effect: "video",
+    speaker: "陆眠",
+    chapter: "调查 · 视频残片",
+    media: { type: "video", title: "自动恢复片段", body: "音频缺失，画面只有 5 秒。" },
+    text: "视频残片自动播放。陆眠举着手机跑上楼梯，镜头晃得厉害。她喘着气，嘴型像是在喊你的名字。最后一帧，她推开天台门，画面黑掉。你终于不再觉得自己是在被恐吓，而是在被人拼命叫醒。",
+    choices: [
+      { text: "去摄影棚找完整原片", next: "bai01" },
+      { text: "追问周叙为什么外套在现场", next: "zhou01" },
+      { text: "把残片导入剪辑软件继续查", next: "evidenceTable01" }
+    ]
+  },
+  evidenceTable01: {
+    art: "source",
+    scene: "source",
+    effect: "message",
+    speaker: "旁白",
+    chapter: "调查 · 剪辑台",
+    media: { type: "drive", title: "恢复素材", body: "rooftop_raw.mp4 / call_log.txt / lumian_cache.mov" },
+    text: "你把残片导入剪辑软件。时间轴上有三个异常：一段被降噪抹平的呼喊，一组被改过的文件时间，还有一帧被手动裁掉的楼梯口。你终于有了一点主动权：先查哪一个，真相就会先从哪一处裂开。",
+    choices: [
+      { text: "修复被抹掉的环境音", next: "evidenceAudio" },
+      { text: "核对素材创建时间", next: "evidenceMetadata" },
+      { text: "放大被裁掉的楼梯口", next: "evidenceStair" }
+    ]
+  },
+  evidenceAudio: {
+    art: "source",
+    scene: "source",
+    effect: "video",
+    speaker: "旁白",
+    chapter: "调查 · 环境音",
+    media: { type: "record", title: "音频恢复", body: "沈栀，回来。别看那边，看我。" },
+    text: "你把底噪一点点拉回来。雨声下面，陆眠的声音终于清楚：沈栀，回来。别看那边，看我。她没有在责怪你，也没有在求救。她是在用最平稳的声音，把站在边缘的你往回牵。",
+    choices: [
+      { text: "继续查素材创建时间", next: "evidenceMetadata" },
+      { text: "直接播放完整天台录像", next: "commonVideo01" }
+    ]
+  },
+  evidenceMetadata: {
+    art: "source",
+    scene: "source",
+    effect: "message",
+    speaker: "旁白",
+    chapter: "调查 · 文件时间",
+    media: { type: "code", title: "素材元数据", body: "23:17:13 自动备份；23:19:02 手动复制。" },
+    text: "元数据显示，原片在 23:17:13 自动备份，又在 23:19:02 被人手动复制过一次。那个人不是陆眠。你盯着电脑屏幕，突然明白白祁为什么能拿到证据，也明白周叙为什么这么多年不敢提那晚。",
+    choices: [
+      { text: "放大楼梯口那一帧", next: "evidenceStair" },
+      { text: "带着这条线索去找白祁", next: "bai01" }
+    ]
+  },
+  evidenceStair: {
+    art: "studio",
+    scene: "studio",
+    effect: "photo",
+    speaker: "旁白",
+    chapter: "调查 · 楼梯口",
+    media: { type: "photo", title: "楼梯口倒影", body: "白祁站在二楼，手里拿着陆眠的备用手机。" },
+    text: "你放大那一帧，楼梯口的玻璃反光里出现白祁。他那时还很年轻，惊慌得像下一秒就会哭出来。他手里攥着陆眠的备用手机。也许这不是某个人独自犯下的罪，而是一群人一起没能来得及救回她。",
+    choices: [
+      { text: "去摄影棚找白祁问清楚", next: "bai01" },
+      { text: "播放完整天台录像", next: "commonVideo01" }
+    ]
+  },
+
+  zhou01: {
+    art: "phone",
     scene: "living",
-    effect: "rain",
+    effect: "message",
     speaker: "周叙",
-    chapter: "序章 · 他也不知道",
-    text: "他说：她从来不提高中。我问过一次，她直接换话题，我就没再问。停顿以后，他又说：但那个换话题的方式……我一直觉得那里有什么东西。你说：我想去陆家看看。他没有迟疑：我陪你去。",
+    chapter: "周叙线 · 来电",
+    media: { type: "call", title: "周叙", body: "你也收到她的消息了？" },
+    text: "你拨给周叙。电话接通的第一秒，他没有问你怎么了，而是低声说：你也收到她的消息了？你听见他那边有车声。他像是已经在赶来的路上。",
     choices: [
-      { text: "和周叙一起去陆家", next: "ch1_start_zhou" }
+      { text: "问他为什么知道短信", next: "zhou02" },
+      { text: "让他先来你家", next: "zhou03" }
     ]
   },
-  pro_fail_alone_01: {
-    art: "proFailAlone",
-    scene: "home",
-    effect: "rain",
-    speaker: "旁白",
-    chapter: "任务失败 · 门外",
-    text: "你没有打给任何人，直接出门。走廊的灯感应亮了，雨声从楼道口传进来。你到了陆家楼下，按了对讲机。里面很久没有回应。",
-    choices: [
-      { text: "继续等待", next: "pro_fail_alone_02" }
-    ]
-  },
-  pro_fail_alone_02: {
-    art: "proFailAlone",
-    scene: "home",
-    effect: "rain",
-    speaker: "陆眠妈妈",
-    chapter: "任务失败 · 陆家",
-    text: "然后是陆眠妈妈的声音，很短：谁？你报了名字。又是一段沉默。她说：现在很晚了。门没有开。那句话不是拒绝，是提醒你，你在陆家眼里没有进入她遗物的资格。",
-    choices: [
-      { text: "继续", next: "pro_fail_alone_03" }
-    ]
-  },
-  pro_fail_alone_03: {
-    art: "proFailAlone",
-    scene: "home",
-    effect: "rain",
-    speaker: "旁白",
-    chapter: "任务失败",
-    text: "陆家不会在深夜让一个人独自进来。有些门，需要有人陪你才能推开。你在楼下站到雨停，手机电量一点点掉下去，线索断在门外。",
-    choices: [
-      { text: "回到首页", action: "title" }
-    ]
-  },
-  pro_fail_wait_01: {
-    art: "proRoomDark",
-    scene: "living",
-    effect: "rain",
-    speaker: "旁白",
-    chapter: "任务失败 · 等明天",
-    text: "你把手机放回桌上。太晚了。你太累了。你告诉自己，等明天想清楚了再说。你去洗了把脸，躺到床上。雨声一直在，你盯着天花板，睡不着，但身体不让你动。",
-    choices: [
-      { text: "天亮了", next: "pro_fail_wait_02" }
-    ]
-  },
-  pro_fail_wait_02: {
-    art: "proFailWait",
+  zhou02: {
+    art: "phone",
     scene: "living",
     effect: "message",
-    speaker: "旁白",
-    chapter: "任务失败 · 手机被取走",
-    text: "第二天早上九点多，白祁发消息：栀，我来取一下姐的手机。她之前交代过，那个手机不能放太久。你看着手机，没有来得及说什么，白祁已经在楼下了。",
+    speaker: "周叙",
+    chapter: "周叙线 · 三年前",
+    media: { type: "record", title: "周叙的沉默", body: "三年前，陆眠也让我做过选择。" },
+    text: "周叙沉默很久才说：三年前，陆眠也让我做过选择。她让我今晚无论如何看住你，可我没有接电话。沈栀，那天我不是凶手，但我也不干净。",
     choices: [
-      { text: "继续", next: "pro_fail_wait_03" }
+      { text: "把未接来电时间一条条逼问清楚", next: "zhou04" },
+      { text: "让他把证据带过来", next: "zhou03" }
     ]
   },
-  pro_fail_wait_03: {
-    art: "proFailWaitBai",
-    scene: "living",
-    effect: "rain",
-    speaker: "旁白",
-    chapter: "任务失败",
-    text: "他上来，拿走了手机，在门口站了一秒，说：有想问的，随时找我。然后走了。桌上什么都没有了。线索就这样断了。等待，有时候不是稳妥，是放弃。",
-    choices: [
-      { text: "回到首页", action: "title" }
-    ]
-  },
-  ch1_start: {
-    art: "door",
-    scene: "home",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "第一章 · 陆家门口",
-    text: "我来了。电梯门在身后合上，走廊很安静。我站在陆家门口，抬手敲门，指节碰到门板时，心里先响了一下。",
-    choices: [
-      { text: "再敲一次：白祁，是我", next: "ch1_start_02" }
-    ]
-  },
-  ch1_start_02: {
-    art: "door",
-    scene: "home",
-    effect: "rain",
-    speaker: "白祁",
-    chapter: "第一章 · 白祁开门",
-    text: "进来吧。门一直没锁。白祁站在门口，头发有点乱，眼睛却很清醒，像他早就在等我。",
-    choices: [
-      { text: "进门，先问一句：你一直醒着？", next: "ch1_living_01" }
-    ]
-  },
-  ch1_start_zhou: {
+  zhou03: {
     art: "zhouDoor",
-    scene: "home",
+    scene: "living",
     effect: "rain",
-    speaker: "沈栀",
-    chapter: "第一章 · 周叙同行",
-    text: "周叙把车停在小区外，一路都没逼我说话。我们上楼时，雨还粘在伞骨上，像没来得及放下的心事。",
+    speaker: "旁白",
+    chapter: "周叙线 · 门外的人",
+    media: { type: "chat", title: "陆眠旧聊天", body: "周叙，今晚看住栀栀。她说她不想活了。" },
+    text: "门铃响起时，你还没决定要不要开门。周叙站在门外，外套湿透。他第一眼不是看你，而是看向客厅那束白玫瑰。他说：她真的开始了。",
     choices: [
-      { text: "抬手敲门，顺便说：他陪我来的", next: "ch1_start_zhou_02" }
+      { text: "让他进来，把话说完", next: "zhou04" },
+      { text: "问他是不是也想让你忘掉", next: "zhou05" },
+      { text: "你没有开口，只是把门开大了一点", next: "zhou03_soft" }
     ]
   },
-  ch1_start_zhou_02: {
+  zhou03_soft: {
     art: "zhouDoor",
-    scene: "home",
-    effect: "rain",
-    speaker: "白祁",
-    chapter: "第一章 · 三个人",
-    text: "……进来吧。白祁看了我一眼，又看了周叙一眼，语气没有多余起伏，可门还是让开了。",
-    choices: [
-      { text: "和周叙一起进去", next: "ch1_living_zhou_01" }
-    ]
-  },
-  ch1_living_01: {
-    art: "studio",
-    scene: "home",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "第一章 · 陆家客厅",
-    text: "客厅没开主灯，只有一盏小夜灯。屋子太整齐了，整齐得像在故意装作什么都没发生过。",
-    choices: [
-      { text: "问白祁：她的房间还在吗", next: "ch1_living_02" }
-    ]
-  },
-  ch1_living_02: {
-    art: "studio",
-    scene: "home",
-    effect: "rain",
-    speaker: "白祁",
-    chapter: "第一章 · 体面",
-    text: "还在。没人动她的房间。白祁顿了一下，又补了一句：阿姨说，人走了也要体面。所以很多东西都收得很快。",
-    choices: [
-      { text: "看着他，问：你也觉得该这样吗", next: "ch1_living_03" }
-    ]
-  },
-  ch1_living_03: {
-    art: "studio",
-    scene: "home",
-    effect: "rain",
-    speaker: "白祁",
-    chapter: "第一章 · 她的房间",
-    text: "她房间在里面。我没动她的东西。大部分没动。白祁说完这句，像怕我不信，又把手收回去了。",
-    choices: [
-      { text: "去陆眠房间", next: "ch1_living_warm_01" }
-    ]
-  },
-  ch1_living_zhou_01: {
-    art: "studio",
-    scene: "home",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "第一章 · 陆家客厅",
-    text: "我和周叙坐下时，白祁也没赶人。三个人都没先开口，像谁先说话，谁就会先把伤口掀开。",
-    choices: [
-      { text: "问：你们昨天有没有人碰过她的房间", next: "ch1_living_zhou_02" }
-    ]
-  },
-  ch1_living_zhou_02: {
-    art: "studio",
-    scene: "home",
-    effect: "rain",
-    speaker: "周叙",
-    chapter: "第一章 · 体面",
-    text: "没有。周叙看着电视柜边上的照片，说得很慢：我们来的时候，门口就已经这样了。白祁没说话，只是把杯子往前推了一点。",
-    choices: [
-      { text: "顺着话问：那她的房间呢", next: "ch1_living_zhou_03" }
-    ]
-  },
-  ch1_living_zhou_03: {
-    art: "studio",
-    scene: "home",
-    effect: "rain",
-    speaker: "白祁",
-    chapter: "第一章 · 她的房间",
-    text: "她房间在里面。我没动她的东西。大部分没动。白祁这次说得更低，像在给我留一条能走过去的路。",
-    choices: [
-      { text: "去陆眠房间", next: "ch1_living_warm_01" }
-    ]
-  },
-  ch1_living_warm_01: {
-    art: "album",
-    scene: "home",
-    effect: "photo",
-    speaker: "白祁",
-    chapter: "第一章 · 别空腹喝咖啡",
-    stateDelta: { luTrust: 1, baiBond: 1, memoryCount: 1 },
-    media: { type: "note", title: "冰箱便利贴", body: "栀，别空腹喝咖啡。冰箱第二层有酸奶。" },
-    text: "等一下。白祁从冰箱门上撕下一张快褪色的便利贴递给我：她以前贴的。她总知道你会忘记吃东西。",
-    choices: [
-      { text: "收好便利贴，轻声说谢谢", next: "ch1_room_01" }
-    ]
-  },
-  ch1_room_01: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第一章 · 房间门口",
-    text: "陆眠的房门虚掩着。门缝里有一点旧书和洗衣液的味道，我站在门口，先没进去。",
-    choices: [
-      { text: "推门进去", next: "ch1_room_02" }
-    ]
-  },
-  ch1_room_02: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第一章 · 房间陈设",
-    text: "房间很小，但东西摆得很齐。床、书桌、书架、衣柜，像被人小心收过一遍，又没收完。",
-    choices: [
-      { text: "往里走一步", next: "ch1_room_03" }
-    ]
-  },
-  ch1_room_03: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第一章 · 没清完的痕迹",
-    text: "这里也被整理过，但不彻底。有人只收了表面，没敢把真正重要的东西拿走。",
-    choices: [
-      { text: "先看书桌角落", next: "ch1_room_memory_01" }
-    ]
-  },
-  ch1_room_memory_01: {
-    art: "album",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 她还在这里",
-    stateDelta: { luTrust: 1, memoryCount: 1 },
-    media: { type: "photo", title: "便利店合照", body: "陆眠和沈栀隔着玻璃坐着，桌上放着两杯热饮。" },
-    text: "书桌角落压着一张拍立得。照片里我和陆眠坐在便利店靠窗的位置，她没看镜头，只是在看我。背面写着：别把今天也熬成明天。",
-    choices: [
-      { text: "把照片收好", next: "ch1_choose_search" }
-    ]
-  },
-  ch1_choose_search: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第一章 · 先看哪里",
-    media: { type: "objective", title: "线索搜索", body: "这一组选项都能继续，只会发现不同线索。真正的关键选择在后面。" },
-    text: "房间里还有很多东西没看完。我得一个个问过去。",
-    choices: [
-      { text: "看书桌抽屉", next: "ch1_desk_01" },
-      { text: "看床头柜", next: "ch1_bedside_01" },
-      { text: "看书架", next: "ch1_shelf_01" }
-    ]
-  },
-  ch1_desk_01: {
-    art: "studio",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 书桌抽屉",
-    text: "抽屉里有回形针、橡皮、电池，还有一片没拆开的创可贴。太普通了，普通得像她明天还会回来继续用。",
-    choices: [
-      { text: "继续翻抽屉", next: "ch1_desk_02" }
-    ]
-  },
-  ch1_desk_02: {
-    art: "studio",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 练习册",
-    text: "中间那格是几本练习册，封面写着陆眠的名字。她的字总是很稳，最后一笔却会轻一点，像怕把纸戳疼。",
-    choices: [
-      { text: "翻到背面，看那个太阳", next: "ch1_desk_03" }
-    ]
-  },
-  ch1_desk_03: {
-    art: "studio",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 被涂掉的小太阳",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "photo", title: "练习册背面", body: "右下角的小太阳被铅笔反复涂黑，纸面几乎被压破。" },
-    text: "右下角画着一个小太阳，又被反复涂黑，纸面都快压破了。那不是随手一划，更像是有人想把某个念头按回去。",
-    choices: [
-      { text: "把东西放回原位", next: "ch1_bai_appears_01" }
-    ]
-  },
-  ch1_bedside_01: {
-    art: "studio",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 床头柜",
-    text: "床头柜上放着一瓶空了的护手霜。下面那层有个深蓝色铁皮盒，盖子压得很紧。",
-    choices: [
-      { text: "打开铁皮盒", next: "ch1_bedside_02" }
-    ]
-  },
-  ch1_bedside_02: {
-    art: "studio",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 铁皮盒",
-    text: "盒子里只有两样东西：一枚高中校徽，一张心理科挂号单。日期是高二下学期。",
-    choices: [
-      { text: "翻看挂号单背面", next: "ch1_bedside_03" }
-    ]
-  },
-  ch1_bedside_03: {
-    art: "studio",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 我去了。没用。",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "note", title: "心理科挂号单", body: "背面写着：我去了。没用。" },
-    text: "背面只有四个字：我去了。没用。字写得很急，像那天她已经不想再解释第二遍。",
-    choices: [
-      { text: "把盒子放回去", next: "ch1_bai_appears_01" }
-    ]
-  },
-  ch1_shelf_01: {
-    art: "studio",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 书架",
-    text: "书架很整齐，最下面却压着几本横放的书。像是故意藏起来的。",
-    choices: [
-      { text: "抽出日记本", next: "ch1_shelf_02" }
-    ]
-  },
-  ch1_shelf_02: {
-    art: "studio",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 日记第一页",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "note", title: "日记本 · 高二上学期九月", body: "如果有人能替我记住这件事就好了。但没有人会信。所以还是算了。" },
-    text: "日记本没有名字。第一页只写着一句话：如果有人能替我记住这件事就好了。",
-    choices: [
-      { text: "继续往后翻", next: "ch1_shelf_03" }
-    ]
-  },
-  ch1_shelf_03: {
-    art: "studio",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 撕掉的页",
-    text: "很多页被撕掉了，只剩锯齿形的边。剩下的那几页里，有一句话只写到一半：今天他又——",
-    choices: [
-      { text: "先合上日记", next: "ch1_shelf_04" }
-    ]
-  },
-  ch1_shelf_04: {
-    art: "studio",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 暂时不看完",
-    text: "我没有继续看完。不是不想知道，是我忽然明白，有些东西不能硬拆开。",
-    choices: [
-      { text: "站起来", next: "ch1_bai_appears_01" }
-    ]
-  },
-  ch1_bai_appears_01: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第一章 · 门框里的人",
-    text: "别翻得太快。你找到什么了？白祁靠在门框上，像早就知道我会把房间看一遍。",
-    choices: [
-      { text: "回答他", next: "ch1_bai_appears_02" }
-    ]
-  },
-  ch1_bai_appears_02: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第一章 · 找到什么了",
-    text: "白祁问得很轻：找到什么了？我听得出来，他不是想听结果，是想确认我有没有碰到她最不想被看见的那部分。",
-    choices: [
-      { text: "回答白祁", next: "ch1_choose_answer" }
-    ]
-  },
-  ch1_choose_answer: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第一章 · 怎么回答",
-    text: "现在轮到我问了。我可以问高中，也可以先问他有没有好好睡觉。",
-    choices: [
-      { text: "你知道高中发生了什么吗", next: "ch1_ans_a_01" },
-      { text: "你这几天是不是没睡", next: "ch1_ans_b_01" },
-      { text: "先别站着，进来坐一下", next: "ch1_ans_c_01" }
-    ]
-  },
-  ch1_ans_a_01: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第一章 · 知道一点",
-    text: "知道一点，但不是全部。姐不让我查。她说那些事都过去了，没必要翻旧账。",
-    choices: [
-      { text: "继续听", next: "ch1_ans_a_02" }
-    ]
-  },
-  ch1_ans_a_02: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第一章 · 过去了",
-    text: "后来我才明白，她说过去了，不是真的过去了。她只是觉得，说了也没用。",
-    choices: [
-      { text: "去衣柜找", next: "ch1_wardrobe_01" }
-    ]
-  },
-  ch1_ans_b_01: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第一章 · 没怎么睡",
-    stateDelta: { baiBond: 1 },
-    text: "睡了一点，不多。她出事以后，我总在这儿，怕屋子太安静。",
-    choices: [
-      { text: "继续听", next: "ch1_ans_b_02" }
-    ]
-  },
-  ch1_ans_b_02: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第一章 · 旧手机",
-    text: "衣柜最里面有部旧手机。高中的。我没开过，觉得不该是我先看。",
-    choices: [
-      { text: "去衣柜找", next: "ch1_wardrobe_01" }
-    ]
-  },
-  ch1_ans_c_01: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第一章 · 不回答",
-    text: "我没回答，只往旁边让了一点。白祁坐下来，没走，也没再问。",
-    choices: [
-      { text: "继续找", next: "ch1_ans_c_02" }
-    ]
-  },
-  ch1_ans_c_02: {
-    art: "studio",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第一章 · 默许",
-    stateDelta: { baiBond: 1 },
-    text: "你找吧。我不拦你。白祁说完这句，像终于把房间让给了我一点。",
-    choices: [
-      { text: "去衣柜找", next: "ch1_wardrobe_01" }
-    ]
-  },
-  ch1_wardrobe_01: {
-    art: "source",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第一章 · 衣柜",
-    text: "衣柜里一层层叠着盒子。最里面的角落，有部黑色手机，屏幕朝下放着。",
-    choices: [
-      { text: "拿起旧手机", next: "ch1_wardrobe_02" }
-    ]
-  },
-  ch1_wardrobe_02: {
-    art: "source",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 旧手机",
-    media: { type: "phone", title: "旧手机", body: "黑色机身，透明星星贴纸快掉了，屏幕左上角有弧形划痕。" },
-    text: "手机背面贴着快掉的星星贴纸，屏幕左上角还有一道划痕。它很旧，但还留着能被叫醒的样子。",
-    choices: [
-      { text: "查看手机下面", next: "ch1_wardrobe_03" }
-    ]
-  },
-  ch1_wardrobe_03: {
-    art: "album",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 照片",
-    media: { type: "photo", title: "压在手机下的照片", body: "高中走廊。一个陌生男生站在陆眠侧后方。照片背面无字。" },
-    text: "手机下面还压着一张照片。陆眠站在走廊里，旁边有个陌生男生。她没有看镜头，像在躲什么。",
-    choices: [
-      { text: "翻看背面", next: "ch1_wardrobe_04" }
-    ]
-  },
-  ch1_wardrobe_04: {
-    art: "album",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第一章 · 背面无字",
-    text: "照片背面是空的。陆眠把它压在手机下面，没有扔掉，也没有再看第二眼。",
-    choices: [
-      { text: "决定带走什么", next: "ch1_choose_take" }
-    ]
-  },
-  ch1_choose_take: {
-    art: "source",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第一章 · 带走什么",
-    media: { type: "objective", title: "关键选择", body: "首要任务：知晓陆眠过去真相并解救她。选错关键线索，任务失败。" },
-    text: "我只能帮你带走一样。少一件，阿姨一定会发现。白祁说完，没再催我。",
-    choices: [
-      { text: "带走旧手机", next: "ch1_take_phone_01" },
-      { text: "带走照片", next: "ch1_take_photo_01" },
-      { text: "什么都不带", next: "ch1_take_nothing_01" }
-    ]
-  },
-  ch1_take_phone_01: {
-    art: "source",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第一章 · 正确线索",
-    text: "我把旧手机收进口袋。白祁看了一眼，点头让我把照片放回去。",
-    choices: [
-      { text: "听白祁说", next: "ch1_take_phone_02" }
-    ]
-  },
-  ch1_take_phone_02: {
-    art: "source",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第一章 · 恢复原状",
-    text: "如果里面真有东西，别一个人扛。白祁把盒子搬回去，动作很轻。",
-    choices: [
-      { text: "离开房间", next: "ch1_leave_01" }
-    ]
-  },
-  ch1_take_photo_01: {
-    art: "album",
-    scene: "studio",
-    effect: "rain",
-    speaker: "旁白",
-    chapter: "任务失败",
-    text: "任务失败。你带走了照片。可照片里只有一张陌生的、模糊的脸。没有名字，没有校牌，没有时间，也没有任何能够追溯的号码。你回到家查了一整夜，只查到一片空白。旧手机留在衣柜里，第二天被清理掉。通往过去的门，就这样关上了。",
-    choices: [
-      { text: "回到首页", action: "title" }
-    ]
-  },
-  ch1_take_nothing_01: {
-    art: "source",
-    scene: "studio",
-    effect: "rain",
-    speaker: "旁白",
-    chapter: "任务失败",
-    text: "任务失败。你什么都没有带走。离开陆家以后，所有线索只剩回忆里的形状。没有实物，没有旧号码，没有任何可以触发异常的载体。你以为记住就够了，但有些门，需要钥匙才能打开。",
-    choices: [
-      { text: "回到首页", action: "title" }
-    ]
-  },
-  ch1_leave_01: {
-    art: "door",
-    scene: "home",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "第一章 · 送你离开",
-    text: "我走出房间时，客厅还是那盏小夜灯。白祁走在前面替我开门，像怕我回头会后悔。",
-    choices: [
-      { text: "走到门口", next: "ch1_leave_02" }
-    ]
-  },
-  ch1_leave_02: {
-    art: "door",
-    scene: "home",
-    effect: "rain",
-    speaker: "白祁",
-    chapter: "第一章 · 早点来",
-    text: "栀。她跟我说过一句话，我一直不明白是什么意思。她说，要是有人早点来就好了。",
-    choices: [
-      { text: "问他：她说的是谁", next: "ch1_leave_03" }
-    ]
-  },
-  ch1_leave_03: {
-    art: "door",
-    scene: "home",
-    effect: "rain",
-    speaker: "白祁",
-    chapter: "第一章 · 可能不是我",
-    text: "我以前以为是我。现在又觉得，可能不是。白祁看着走廊另一头，声音低下去：也可能是她一直在等一个敢问到底的人。",
-    choices: [
-      { text: "下楼", next: "ch1_leave_04" }
-    ]
-  },
-  ch1_leave_04: {
-    art: "door",
-    scene: "home",
-    effect: "rain",
-    speaker: "白祁",
-    chapter: "第一章 · 一把黑伞",
-    stateDelta: { baiBond: 1 },
-    text: "等等。白祁又把门打开一条缝，递出一把黑伞：姐以前放在我这儿的。她说你总是不带伞。",
-    choices: [
-      { text: "接过伞，进电梯", next: "ch1_end_01" }
-    ]
-  },
-  ch1_end_01: {
-    art: "source",
-    scene: "living",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "第一章 · 口袋里的重量",
-    text: "电梯门合上，我在镜子里看见自己的脸。口袋里的旧手机很冷，黑伞却还带着一点白祁手心的温度。",
-    choices: [
-      { text: "回家给旧手机充电", next: "ch1_end_02" }
-    ]
-  },
-  ch1_end_02: {
-    art: "source",
-    scene: "living",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "第一章 · 第一把钥匙",
-    text: "陆眠，你到底想让我看见什么？我把手机握紧，第一次觉得它不像遗物，更像一把钥匙。",
-    choices: [
-      { text: "进入第二章", next: "ch2_trigger" }
-    ]
-  },
-  ch2_trigger: {
-    art: "source",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第二章 · 旧手机开机",
-    text: "我把旧手机插上充电线。屏幕黑了很久才亮，像有人从很远的地方睁开眼睛。",
-    choices: [
-      { text: "解锁旧手机", next: "ch2_trigger_02" }
-    ]
-  },
-  ch2_trigger_02: {
-    art: "source",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第二章 · 通讯录",
-    media: { type: "phone", title: "旧通讯录", body: "只有一个没有备注的联系人，头像空着。" },
-    text: "旧手机没有密码。通讯录里只剩一个没有备注的号码，没有班级，也没有解释。",
-    choices: [
-      { text: "盯着这个号码", next: "ch2_trigger_03" }
-    ]
-  },
-  ch2_trigger_03: {
-    art: "source",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第二章 · 你对她做了什么",
-    text: "你打开短信输入框。也许是太累，也许是盯着那串号码太久，你打下一句话：你对她做了什么。发送成功。下一秒，手机屏幕突然变白。不是死机，是那种白得像一张纸，像一扇门的光。",
-    choices: [
-      { text: "坠入白光", next: "ch2_trigger_04" }
-    ]
-  },
-  ch2_trigger_04: {
-    art: "source",
-    scene: "living",
-    effect: "message",
-    speaker: "旁白",
-    chapter: "第二章 · 坠落",
-    text: "你感觉自己在往下坠。不是从高处，而是从现在，坠进某个更早的时间里。最后一个清醒的念头是：这不可能。然后雨声消失，取而代之的是上课铃。",
-    choices: [
-      { text: "睁开眼", next: "ch2_arrive_01" }
-    ]
-  },
-  ch2_arrive_01: {
-    art: "rooftop",
-    scene: "school",
-    effect: "ambient",
-    speaker: "旁白",
-    chapter: "第二章 · 高二开学",
-    text: "画面亮起来的时候，你站在高中操场边。阳光是下午三四点的角度，打在跑道上。你手里拿着一个不认识的书包，身上穿着校服，胸牌边缘写着转学生。风里有塑胶跑道被晒过的味道。",
-    choices: [
-      { text: "环顾四周", next: "ch2_arrive_02" }
-    ]
-  },
-  ch2_arrive_02: {
-    art: "rooftop",
-    scene: "school",
-    effect: "ambient",
-    speaker: "旁白",
-    chapter: "第二章 · 她还在",
-    text: "有人从你身边跑过去，校服，马尾。然后那个人停住，转过来。是陆眠。她比你记忆里的陆眠小了很多，脸还是那张脸，但眼睛里有一种你后来再没见过的东西：干净，轻，没有设防。",
-    choices: [
-      { text: "听她说话", next: "ch2_arrive_03" }
-    ]
-  },
-  ch2_arrive_03: {
-    art: "rooftop",
-    scene: "school",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 转学生",
-    text: "陆眠看着你，愣了一秒，然后皱起眉：你怎么在这里站着发呆，下午还有课。她认识你。在这里，你们是同学。你是刚转来的学生，她是第一个主动跟你说话的人。",
-    choices: [
-      { text: "选择回应", next: "ch2_choose_respond" }
-    ]
-  },
-  ch2_choose_respond: {
-    art: "rooftop",
-    scene: "school",
-    effect: "ambient",
-    speaker: "旁白",
-    chapter: "第二章 · 怎么回应",
-    text: "十七岁的陆眠站在你面前，是真的在等你回答。你知道自己回来了，可她不知道。她只看到一个转学生站在操场边，像突然被什么吓住。",
-    choices: [
-      { text: "我在想事情", next: "ch2_resp_a_01" },
-      { text: "对不起，我刚才想到一件事", next: "ch2_resp_b_01" },
-      { text: "跟上去，什么都不说", next: "ch2_resp_c_01" }
-    ]
-  },
-  ch2_resp_a_01: {
-    art: "rooftop",
-    scene: "school",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 奇怪的转学生",
-    text: "陆眠歪了歪头：想什么？你顿了一下，说：在想你这个人。陆眠愣住，随即笑了，是那种有点不好意思但还是笑出来的表情：转学生都这么奇怪的吗。走啦，一起去教室。",
-    choices: [
-      { text: "跟她去教室", next: "ch2_classroom_01" }
-    ]
-  },
-  ch2_resp_b_01: {
-    art: "rooftop",
-    scene: "school",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 别迟到",
-    text: "你说：对不起，我刚才想到一件事。陆眠没有追问，只是点点头：行，但别迟到，班主任会点名的。她走在你前面，又回头等你，像这个动作已经做过很多次。",
-    choices: [
-      { text: "跟她去教室", next: "ch2_classroom_01" }
-    ]
-  },
-  ch2_resp_c_01: {
-    art: "rooftop",
-    scene: "school",
-    effect: "ambient",
-    speaker: "旁白",
-    chapter: "第二章 · 安静的人",
-    text: "你没有解释，只跟上去。陆眠走了几步，发现你在旁边，侧过头看了你一眼，也没说话。操场的风把她的发丝吹起来一点。她像是记住了：你是一个不太爱说话的人。",
-    choices: [
-      { text: "一起去教室", next: "ch2_classroom_01" }
-    ]
-  },
-  ch2_classroom_01: {
-    art: "studio",
-    scene: "classroom",
-    effect: "ambient",
-    speaker: "旁白",
-    chapter: "第二章 · 教室",
-    text: "你坐在陆眠后排靠窗的位置。这是你在这个时间点的第一天，大家对你还陌生。教室里粉笔灰味很重，窗帘被风吹起一点，窗外有两个男生站在走廊说话。",
-    choices: [
-      { text: "看向走廊", next: "ch2_classroom_02" }
-    ]
-  },
-  ch2_classroom_02: {
-    art: "studio",
-    scene: "classroom",
-    effect: "ambient",
-    speaker: "旁白",
-    chapter: "第二章 · 走廊那边",
-    text: "你认出了其中一个。白祁，更小，还带着一点少年气，但眉眼已经是那个样子。另一个你没见过，高，侧脸，站在走廊窗边逆光，看不清表情。陆眠回头，压低声音说：别看那边。",
-    choices: [
-      { text: "问为什么", next: "ch2_classroom_03" }
-    ]
-  },
-  ch2_classroom_03: {
-    art: "studio",
-    scene: "classroom",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 走廊那边",
-    text: "你问：为什么？陆眠低下头，声音更轻：别问了。她没有再多说。可她捏紧了校服下摆。你顺着她的目光看过去，只记住走廊窗边那个逆光的侧影。",
-    choices: [
-      { text: "下午运动会", next: "ch2_sports_01" }
-    ]
-  },
-  ch2_sports_01: {
-    art: "sportsDay",
-    scene: "school",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 运动会",
-    stateDelta: { luTrust: 1, memoryCount: 1 },
-    media: { type: "photo", title: "班级号码布", body: "四乘一百米接力。第三棒：陆眠。临时替补：沈栀。" },
-    text: "过来，号码布歪了。陆眠低头替我别好别针，指尖隔着校服碰到我，很轻：等会儿你站我旁边，别乱跑。",
-    choices: [
-      { text: "帮她也整理号码布", next: "ch2_sports_02" },
-      { text: "问她紧不紧张", next: "ch2_sports_03" }
-    ]
-  },
-  ch2_sports_02: {
-    art: "sportsDay",
-    scene: "school",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 站我旁边",
-    stateDelta: { luTrust: 1 },
-    text: "你还挺会照顾人。陆眠没躲，只是低头看着我替她别号码布。风吹过来，她忽然笑了一下：那等会儿我跑完，你也要在终点接我。",
-    choices: [
-      { text: "答应她：我会在终点", next: "ch2_sports_04" }
-    ]
-  },
-  ch2_sports_03: {
-    art: "sportsDay",
-    scene: "school",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 不紧张",
-    stateDelta: { luTrust: 1 },
-    text: "不紧张。陆眠把发绳咬在唇边，声音有点含糊：我就是讨厌有人盯着终点。她很快又弯起眼睛：你别摔就行，我会笑很大声。",
-    choices: [
-      { text: "笑她：那你得跑快一点", next: "ch2_sports_04" }
-    ]
-  },
-  ch2_sports_04: {
-    art: "sportsDay",
-    scene: "school",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 看台边",
-    stateDelta: { baiBond: 1 },
-    text: "白祁抱着两瓶水挤过来，把冰水贴到陆眠脸侧。她被冰得缩了一下，转头就要踢他。我正想笑，却看见看台另一头有人停住了。",
-    choices: [
-      { text: "留在陆眠身边", next: "ch2_sports_05" },
-      { text: "看向那边", next: "ch2_sports_06" }
-    ]
-  },
-  ch2_sports_05: {
-    art: "sportsDay",
-    scene: "school",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 接力",
-    stateDelta: { luTrust: 1 },
-    text: "我没有追着看那个人，只往陆眠身边靠了一步。她把水瓶塞给我：帮我拿着。接力开始后，她跑得很快。冲过终点时，她第一眼找的不是成绩牌，是我站的位置。",
-    choices: [
-      { text: "跑过去接她", next: "ch2_store_01" }
-    ]
-  },
-  ch2_sports_06: {
-    art: "sportsDay",
-    scene: "school",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 视线",
-    stateDelta: { baiClue: 1, memoryCount: 1 },
-    media: { type: "note", title: "运动会视线", body: "操场看台。有人看见陆眠时停住，白祁下意识挡到了她前面。" },
-    text: "我顺着那道视线看过去。那个人和几个男生站在一起，像只是路过。可白祁也看见了。他把水瓶换到左手，右手垂下来，正好挡在陆眠和看台之间。",
-    choices: [
-      { text: "把视线收回来", next: "ch2_store_01" }
-    ]
-  },
-  ch2_store_01: {
-    art: "album",
-    scene: "store",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 小卖部",
-    text: "给你。陆眠把冰棍递过来，脸颊还带着跑完步的热：别说我没照顾转学生。白祁在旁边替她把快滑下来的发绳往上推，她立刻拍开他的手。",
-    choices: [
-      { text: "接过冰棍，看向白祁", next: "ch2_store_02" }
-    ]
-  },
-  ch2_store_02: {
-    art: "album",
-    scene: "store",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第二章 · 表弟",
-    text: "你就是新来的？白祁看我一眼，又看向陆眠。陆眠咬着冰棍替我说话：她刚刚跑得还行。白祁这才说：那以后多看着她点。",
-    choices: [
-      { text: "问白祁那个人是谁", next: "ch2_ask_bai_01" },
-      { text: "不问，跟他们一起走", next: "ch2_walk_together_01" },
-      { text: "问陆眠刚才怎么了", next: "ch2_ask_lu_01" }
-    ]
-  },
-  ch2_ask_bai_01: {
-    art: "album",
-    scene: "store",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第二章 · 碎片 ①",
-    stateDelta: { baiClue: 1, baiBond: 1, memoryCount: 1 },
-    media: { type: "note", title: "记忆碎片 ①", body: "白祁听见你提到那个人时，第一眼看的不是你，是陆眠。" },
-    text: "隔壁班的。白祁的表情很快恢复正常，可第一眼看的不是我，是陆眠。他压低声音：别跟他搭上关系就行。",
-    choices: [
-      { text: "记住这个名字", next: "ch2_library_01" }
-    ]
-  },
-  ch2_walk_together_01: {
-    art: "album",
-    scene: "store",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 普通下午",
-    stateDelta: { luTrust: 1, memoryCount: 1 },
-    text: "我没有问。三个人一起走出校门，陆眠把最甜的那一截冰棍留给我，说转学生跑完步应该补糖。那一刻太普通了，普通到我舍不得它结束。",
-    choices: [
-      { text: "把这个下午记住", next: "ch2_library_01" }
-    ]
-  },
-  ch2_ask_lu_01: {
-    art: "album",
-    scene: "store",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 碎片 ②",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "note", title: "记忆碎片 ②", body: "陆眠一看见那个人，就先确认周围有没有人在看。" },
-    text: "没什么，别管他。陆眠说得很平，可她先看了一眼小卖部门口的人群，才低头把冰棍纸捏皱。",
-    choices: [
-      { text: "不再逼问她", next: "ch2_library_01" }
-    ]
-  },
-  ch2_library_01: {
-    art: "studio",
-    scene: "library",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 图书馆",
-    text: "傍晚，我找了个借口留在图书馆。运动会散场时，我看见周叙也停过脚步。他也看见了那个人。",
-    choices: [
-      { text: "找到周叙", next: "ch2_library_02" }
-    ]
-  },
-  ch2_library_02: {
-    art: "studio",
-    scene: "library",
-    effect: "ambient",
-    speaker: "周叙",
-    chapter: "第二章 · 高中时的周叙",
-    text: "你找我？周叙把旁边那把椅子往外挪了一点，语气冷淡，动作却不像要赶人。",
-    choices: [
-      { text: "问他知道那个人吗", next: "ch2_ask_zhou_zhang_01" },
-      { text: "问他也认识陆眠？", next: "ch2_ask_zhou_lu_01" },
-      { text: "不说话，在附近坐下", next: "ch2_watch_zhou_01" }
-    ]
-  },
-  ch2_ask_zhou_zhang_01: {
-    art: "studio",
-    scene: "library",
-    effect: "ambient",
-    speaker: "周叙",
-    chapter: "第二章 · 碎片 ③",
-    stateDelta: { zhouClue: 1, zhouBond: 1, memoryCount: 1 },
-    media: { type: "note", title: "记忆碎片 ③", body: "周叙说见过一次。说这句话时，他把笔帽扣得很紧。" },
-    text: "见过一次。周叙把笔帽扣上，声音压低：不清楚他对陆眠做过什么。但如果你跟她走得近，就别让她一个人落单。",
-    choices: [
-      { text: "追问：你是不是看见过什么", next: "ch2_library_03" }
-    ]
-  },
-  ch2_ask_zhou_lu_01: {
-    art: "studio",
-    scene: "library",
-    effect: "ambient",
-    speaker: "周叙",
-    chapter: "第二章 · 普通认识",
-    stateDelta: { zhouBond: 1 },
-    text: "同届，不同班。见过。周叙回答得很短，目光却停在我胸前还没摘掉的号码布上：你们今天一起跑接力？",
-    choices: [
-      { text: "点头：她跑得很好", next: "ch2_library_03" }
-    ]
-  },
-  ch2_watch_zhou_01: {
-    art: "studio",
-    scene: "library",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 旁观周叙",
-    stateDelta: { zhouBond: 1 },
-    text: "我没有开口，只在附近坐下。周叙也没追问，只把桌上没开封的水推到两张桌子的中线。",
-    choices: [
-      { text: "接过那瓶水", next: "ch2_library_03" }
-    ]
-  },
-  ch2_library_03: {
-    art: "studio",
-    scene: "library",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 熄灯前",
-    text: "离开图书馆时，天已经暗了。我只拼出三个细节：陆眠会躲，白祁会挡，周叙会沉默。可真正的事，还在更后面。",
-    choices: [
-      { text: "第二天早自习", next: "ch2_morning_01" }
-    ]
-  },
-  ch2_morning_01: {
-    art: "studio",
-    scene: "classroom",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 早自习",
-    text: "第二天我早到，陆眠已经趴在桌上。我坐到她旁边，小声问：昨晚没睡好？",
-    choices: [
-      { text: "问她梦见什么", next: "ch2_morning_02" }
-    ]
-  },
-  ch2_morning_02: {
-    art: "studio",
-    scene: "classroom",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 梦见一件事",
-    text: "梦见一件事。我一直以为我忘了，结果没有。陆眠没有再说，桌上也没有早饭。",
-    choices: [
-      { text: "把自己的早饭分给她", next: "ch2_food_01" },
-      { text: "那件事，你想说吗？", next: "ch2_ask_event_01" },
-      { text: "不说话，陪她坐着", next: "ch2_silent_01" }
-    ]
-  },
-  ch2_food_01: {
-    art: "studio",
-    scene: "classroom",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 分给她的早饭",
-    stateDelta: { luTrust: 2, memoryCount: 1 },
-    text: "那你呢？陆眠没有立刻接。我说不饿。她拆开袋子，只拿了一半，又把另一半推回来：别装，跑接力的人第二天最容易低血糖。",
-    choices: [
-      { text: "问她：你是不是也总这样照顾别人", next: "ch2_corridor_01" }
-    ]
-  },
-  ch2_ask_event_01: {
-    art: "studio",
-    scene: "classroom",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第二章 · 碎片 ④",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "note", title: "记忆碎片 ④", body: "陆眠说：说了也没用。她没有解释这句话从哪里来。" },
-    text: "没什么好说的。陆眠转头看向窗外，声音很轻：说了也没用。",
-    choices: [
-      { text: "不逼她，换个话题", next: "ch2_corridor_01" }
-    ]
-  },
-  ch2_silent_01: {
-    art: "studio",
-    scene: "classroom",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 不追问",
-    stateDelta: { luTrust: 1, memoryCount: 1 },
-    text: "我没有追问，只是坐在她旁边。早自习开始后，陆眠把半块橡皮推过来，小声说：你桌子晃，垫一下。",
-    choices: [
-      { text: "接过橡皮", next: "ch2_corridor_01" }
-    ]
-  },
-  ch2_corridor_01: {
-    art: "studio",
-    scene: "corridor",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 水房外",
-    text: "中午，我在水房外听见有人压低声音说话。我走近一点，看见那个人站在陆眠面前。她背靠着墙，肩膀绷得很紧。",
-    choices: [
-      { text: "继续看", next: "ch2_corridor_02" }
-    ]
-  },
-  ch2_corridor_02: {
-    art: "studio",
-    scene: "corridor",
-    effect: "ambient",
-    speaker: "周叙",
-    chapter: "第二章 · 周叙开口",
-    text: "周叙从另一侧走过来，停在他们面前：班主任叫你。我听得出来，这是临时编出来的借口。",
-    choices: [
-      { text: "继续看那个人反应", next: "ch2_corridor_03" }
-    ]
-  },
-  ch2_corridor_03: {
-    art: "studio",
-    scene: "corridor",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 没有被救",
-    text: "那个人看了周叙一眼，又看了陆眠一眼，才转身离开。陆眠站在原地没动。周叙低声问了句什么，她只是摇头。",
-    choices: [
-      { text: "看陆眠有没有受伤", next: "ch2_corridor_04" }
-    ]
-  },
-  ch2_corridor_04: {
-    art: "studio",
-    scene: "corridor",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 楼梯口的回头",
-    text: "陆眠经过我身边时，手指还在发抖。那个人转进楼梯口前又回头看了一眼，那一眼没有落在周叙身上，而是落在陆眠离开的方向。",
-    choices: [
-      { text: "你怎么做", next: "ch2_choose_after" }
-    ]
-  },
-  ch2_choose_after: {
-    art: "studio",
-    scene: "corridor",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 之后怎么做",
-    text: "走廊很快恢复吵闹，像刚才什么都没发生。可我知道不能当没看见。我只有几秒钟决定。",
-    choices: [
-      { text: "走过去，问周叙那是怎么回事", next: "ch2_ask_zhou_after_01" },
-      { text: "什么都没看见，离开", next: "ch2_ignore_01" },
-      { text: "跟上陆眠", next: "ch2_follow_lu_01" }
-    ]
-  },
-  ch2_ask_zhou_after_01: {
-    art: "studio",
-    scene: "corridor",
-    effect: "ambient",
-    speaker: "周叙",
-    chapter: "第二章 · 碎片 ⑤",
-    stateDelta: { zhouClue: 1, zhouBond: 1, memoryCount: 1 },
-    media: { type: "note", title: "记忆碎片 ⑤", body: "周叙刚才叫走那个人，是临时编出来的理由。" },
-    text: "老师没叫他。周叙看向楼梯口，又把目光收回来：我只是看见她的表情不像没事。",
-    choices: [
-      { text: "记住周叙这句话", next: "ch2_evening_01" }
-    ]
-  },
-  ch2_ignore_01: {
-    art: "studio",
-    scene: "corridor",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第二章 · 错过一块拼图",
-    text: "我把水打完，走回教室。陆眠已经回来了，趴在桌上，看不见脸。我坐下，忽然觉得这次沉默不叫陪伴，叫错过。",
-    choices: [
-      { text: "把这块空白记住", next: "ch2_evening_01" }
-    ]
-  },
-  ch2_follow_lu_01: {
-    art: "studio",
-    scene: "corridor",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第二章 · 跟上她",
-    text: "我放下水杯，跟上陆眠。她站在镜子前，手撑着台面，听见动静才抬眼看我。",
-    choices: [
-      { text: "轻声说：我不是来逼你的", next: "ch2_follow_lu_02" }
-    ]
-  },
-  ch2_follow_lu_02: {
-    art: "studio",
-    scene: "corridor",
-    effect: "photo",
-    speaker: "陆眠",
-    chapter: "第二章 · 我只是不想走",
-    stateDelta: { luTrust: 2, memoryCount: 1 },
-    media: { type: "note", title: "核心记忆", body: "陆眠记住了这一天：有人没有逼问，也没有离开。" },
-    text: "你不用管这件事。我说：我没说我要管。运动会的时候，你让我站你旁边。现在我也站这儿。陆眠看着镜子里的我，过了很久，才很轻地笑了一下：你真的很奇怪。",
-    choices: [
-      { text: "陪她一起出去", next: "ch2_evening_01" }
-    ]
-  },
-  ch2_evening_01: {
-    art: "sportsDay",
-    scene: "school",
-    effect: "photo",
-    speaker: "陆眠",
-    chapter: "第二章 · 傍晚",
-    text: "喂，一起回去。陆眠从背后拍了我一下，把那根松掉的发绳递过来：你拿着吧，反正你今天帮我别过号码布。",
-    choices: [
-      { text: "问她早一点来做什么", next: "ch2_evening_02" }
-    ]
-  },
-  ch2_evening_02: {
-    art: "sportsDay",
-    scene: "school",
-    effect: "photo",
-    speaker: "陆眠",
-    chapter: "第二章 · 来我旁边",
-    text: "有时候我觉得，要是有个人早一点来就好了。我问：早一点来做什么？陆眠看着跑道，声音很轻：来我旁边。",
-    choices: [
-      { text: "握紧那根发绳", next: "ch2_evening_03" }
-    ]
-  },
-  ch2_evening_03: {
-    art: "sportsDay",
-    scene: "school",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第二章 · 回拉",
-    text: "下一秒，白光从跑道尽头漫过来。陆眠的声音被拉远，我只来得及在心里说：我会再来的。",
-    choices: [
-      { text: "回到现实", next: "ch2_return_01" }
-    ]
-  },
-  ch2_return_01: {
-    art: "source",
-    scene: "living",
-    effect: "message",
-    speaker: "旁白",
-    chapter: "第二章 · 回到现实",
-    media: { type: "phone", title: "旧手机", body: "屏幕亮着。发给那个号码的短信显示：已发送。" },
-    text: () => buildChapterTwoReturnText(),
-    choices: [
-      { text: "继续", next: "ch2_return_02" }
-    ]
-  },
-  ch2_return_02: {
-    art: "source",
-    scene: "living",
-    effect: "message",
-    speaker: "旁白",
-    chapter: "第二章 · 轮廓",
-    text: () => buildChapterTwoCliffhangerText(),
-    choices: [
-      { text: "继续", next: "ch3_reality_01" }
-    ]
-  },
-  ch3_reality_01: {
-    art: "ch2PhoneWhiteflash",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第三章 · 别再往回走",
-    media: { type: "sms", title: "陌生短信", body: "别再往回走。你已经来过一次了。" },
-    text: "我盯着那行字，手指一点点凉下去。短信很短，语气却太熟，像有人刚刚伸手碰过我的背。我不能把它当成答案，也不能立刻把它当成威胁，只能先记住它出现的时机。",
-    choices: [
-      { text: "截屏，先保留证据", next: "ch3_reality_02" }
-    ]
-  },
-  ch3_reality_02: {
-    art: "source",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第三章 · 现实没有暂停",
-    stateDelta: { memoryCount: 1 },
-    text: "客厅里只有雨声。旧手机还亮着，新手机也在震。我第一次清楚地意识到，回到过去不是逃离现实。过去动一下，现实就会在我脚边裂开一道缝。",
-    choices: [
-      { text: "决定先联系谁", next: "ch3_choice_first" }
-    ]
-  },
-  ch3_choice_first: {
-    art: "source",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第三章 · 第一通电话",
-    text: "我不能一个人查下去。可第一个被我拉进来的人，会决定我接下来得到的是保护、证词，还是另一层沉默。",
-    choices: [
-      { text: "把截图发给白祁", next: "ch3_bai_call_01" },
-      { text: "打给周叙，问走廊那边", next: "ch3_zhou_call_01" },
-      { text: "先不惊动任何人，查旧手机", next: "ch3_phone_search_01" }
-    ]
-  },
-  ch3_bai_call_01: {
-    art: "proCallBai",
-    scene: "living",
-    effect: "message",
-    speaker: "白祁",
-    chapter: "第三章 · 白祁的停顿",
-    stateDelta: { baiBond: 1 },
-    text: "白祁接得很快。我把截图发过去，电话那头静了几秒。他没有问我为什么半夜还醒着，只说：不要回。也不要删。我过去。",
-    choices: [
-      { text: "问他：你以前见过这个人吗", next: "ch3_bai_call_02" }
-    ]
-  },
-  ch3_bai_call_02: {
-    art: "proCallBai",
-    scene: "living",
-    effect: "message",
-    speaker: "白祁",
-    chapter: "第三章 · 他知道一点",
-    text: "见过。白祁的声音压得很低：我姐高中的时候，有一段时间，只要那段事被提起，她就会把耳机音量调到最大。她不说，我也不敢问。",
-    choices: [
-      { text: "让白祁过来", next: "ch3_bai_call_03" }
-    ]
-  },
-  ch3_bai_call_03: {
-    art: "proCallBai",
-    scene: "living",
-    effect: "rain",
-    speaker: "白祁",
-    chapter: "第三章 · 我在路上",
-    text: "他像已经穿好外套，呼吸里带着电梯间的空响：沈栀，你别一个人撑着。她以前就是这样，什么都不说，最后所有人都以为她没事。",
-    choices: [
-      { text: "等他来", next: "ch3_wait_01" }
-    ]
-  },
-  ch3_zhou_call_01: {
-    art: "proCallZhou",
-    scene: "living",
-    effect: "message",
-    speaker: "周叙",
-    chapter: "第三章 · 周叙没有问为什么",
-    stateDelta: { zhouBond: 1 },
-    text: "周叙听完短信内容，没有问我从哪里拿到的。他只问：你现在在哪？我说在家。他说：锁门，别回短信，我查一下旧同学群。",
-    choices: [
-      { text: "问他高中那段事", next: "ch3_zhou_call_02" }
-    ]
-  },
-  ch3_zhou_call_02: {
-    art: "proCallZhou",
-    scene: "living",
-    effect: "message",
-    speaker: "周叙",
-    chapter: "第三章 · 不太对劲的人",
-    text: "那个人不算显眼。周叙顿了顿：就是那种总在边上看热闹的人。别人起哄，他不一定开口，但你回头的时候，会发现他一直在那里。",
-    choices: [
-      { text: "听他继续", next: "ch3_zhou_call_03" }
-    ]
-  },
-  ch3_zhou_call_03: {
-    art: "proCallZhou",
-    scene: "living",
-    effect: "message",
-    speaker: "周叙",
-    chapter: "第三章 · 一张旧截图",
-    stateDelta: { zhouClue: 1, memoryCount: 1 },
-    media: { type: "chat", title: "旧同学群截图", body: "有人问：当年摄影社那个林中还在不在群里？下面很快没人接话。" },
-    text: "他很快发来一张截图。旧同学群里有人提到另一个名字：林中。我看着那两个字，心里忽然沉了一下。原来线头不止一条。",
-    choices: [
-      { text: "让周叙也过来", next: "ch3_wait_01" }
-    ]
-  },
-  ch3_phone_search_01: {
-    art: "source",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第三章 · 先查旧手机",
-    text: "我没有立刻打给任何人，先把旧手机调成飞行模式。屏幕里有很多年以前的灰尘，通讯录、短信、相册，每个图标都像一个还没打开的房间。",
-    choices: [
-      { text: "打开通讯录", next: "ch3_phone_search_02" }
-    ]
-  },
-  ch3_phone_search_02: {
-    art: "source",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第三章 · 林中",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "phone", title: "通讯录", body: "一个没有头像的号码，旁边还有另一个名字。备注都被删掉，只剩号码。" },
-    text: "通讯录里，那个没有头像的号码下面，还有一个名字叫林中。不是昵称，像真名，又像被故意留下来的一块指路牌。",
-    choices: [
-      { text: "这时门铃响了", next: "ch3_wait_01" }
-    ]
-  },
-  ch3_wait_01: {
-    art: "ch1DoorBai",
-    scene: "home",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "第三章 · 门铃",
-    text: "门铃响的时候，我第一反应不是开门，而是把旧手机扣在桌上。这个动作让我自己都愣了一下。原来我已经开始害怕被人看见它。",
-    choices: [
-      { text: "确认猫眼", next: "ch3_bai_arrive_01" }
-    ]
-  },
-  ch3_bai_arrive_01: {
-    art: "ch1DoorBai",
-    scene: "home",
-    effect: "rain",
-    speaker: "白祁",
-    chapter: "第三章 · 他没带伞",
-    text: "猫眼里是白祁。他没带伞，肩膀湿了一片，手里却抱着一个塑料收纳箱。门一开，他先看我，再看桌上的旧手机，声音很轻：你脸色很差。",
-    choices: [
-      { text: "让他进来", next: "ch3_bai_arrive_02" }
-    ]
-  },
-  ch3_bai_arrive_02: {
-    art: "ch1LivingBai",
-    scene: "living",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "第三章 · 陆眠的箱子",
-    text: "他把收纳箱放到地上。箱盖上贴着陆眠的名字，字迹很端正，像她明知道有一天会有人翻开，所以提前把自己收好。",
-    choices: [
-      { text: "问箱子里是什么", next: "ch3_bai_arrive_03" }
-    ]
-  },
-  ch3_bai_arrive_03: {
-    art: "ch1LivingBai",
-    scene: "living",
-    effect: "photo",
-    speaker: "白祁",
-    chapter: "第三章 · 不敢看的东西",
-    stateDelta: { baiBond: 1 },
-    text: "她高中带回来的东西。我以前不敢看，怕看见她那时候过得不好。白祁低头笑了一下，不像笑，更像认输：现在不敢也得看了。",
-    choices: [
-      { text: "和他一起打开箱子", next: "ch3_box_01" }
-    ]
-  },
-  ch3_box_01: {
-    art: "ch1TinboxClinic",
-    scene: "living",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第三章 · 箱底",
-    media: { type: "photo", title: "旧箱子", body: "校徽、空药盒、半本相册、几张没有寄出的明信片。" },
-    text: "箱子里没有惊天动地的证据。只有校徽、空药盒、半本相册、几张没有寄出的明信片。越普通，越像一个人曾经努力活下去的全部证据。",
-    choices: [
-      { text: "翻开半本相册", next: "ch3_box_02" }
-    ]
-  },
-  ch3_box_02: {
-    art: "ch1PolaroidDesk",
-    scene: "living",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第三章 · 被裁掉的人",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "photo", title: "相册缺口", body: "很多合照只剩陆眠半边肩膀，另一个人被整齐裁掉。" },
-    text: "有几张照片被裁过。陆眠还在画面里，另一个人被整齐地剪掉，只剩半截袖口。那袖口上有摄影社的胸针，像一只银色的眼睛。",
-    choices: [
-      { text: "把照片递给白祁看", next: "ch3_box_03" }
-    ]
-  },
-  ch3_box_03: {
-    art: "ch1LivingBai",
-    scene: "living",
-    effect: "photo",
-    speaker: "白祁",
-    chapter: "第三章 · 摄影社",
-    stateDelta: { baiClue: 1, baiBond: 1 },
-    text: "白祁看了很久：这个胸针我见过。姐以前说，摄影社的人最会把别人拍成他们想看的样子。那时候我听不懂。",
-    choices: [
-      { text: "继续查旧手机", next: "ch3_phone_hub_01" }
-    ]
-  },
-  ch3_phone_hub_01: {
-    art: "source",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第三章 · 三个入口",
-    text: "旧手机的电量停在百分之四十九，不再往下掉。像它也在等我选择。短信、相册、备忘录，三个入口都能打开同一段高中。",
-    choices: [
-      { text: "先看短信", next: "ch3_sms_01" },
-      { text: "先看相册", next: "ch3_album_01" },
-      { text: "先看备忘录", next: "ch3_memo_01" }
-    ]
-  },
-  ch3_sms_01: {
-    art: "proSmsThreat",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第三章 · 同一句话",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "sms", title: "旧短信", body: "别回头。别告诉别人。说了也没用。" },
-    text: "旧短信里反复出现一句话：说了也没用。我在第二章听陆眠亲口说过。原来那不是她天生悲观，是有人一遍遍把这句话塞进她心里。",
-    choices: [
-      { text: "继续往下翻", next: "ch3_zhou_arrive_01" }
-    ]
-  },
-  ch3_album_01: {
-    art: "ch1PolaroidDesk",
-    scene: "living",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第三章 · 照片背面",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "photo", title: "照片背面", body: "角落有一行很浅的水印：LIN PHOTO。" },
-    text: "相册里有一张照片背面被磨得发白。我把台灯压低，看见角落里一行很浅的水印：LIN PHOTO。林中不是路人。",
-    choices: [
-      { text: "把水印拍下来", next: "ch3_zhou_arrive_01" }
-    ]
-  },
-  ch3_memo_01: {
-    art: "proDraftEvidence",
-    scene: "living",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第三章 · 没发出去的备忘",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "note", title: "备忘录草稿", body: "如果我说出来，白祁会不会也被他们盯上？" },
-    text: "备忘录里没有完整控诉，只有一行又一行删剩下的短句。最上面那句是：如果我说出来，白祁会不会也被他们盯上？",
-    choices: [
-      { text: "把手机推给白祁", next: "ch3_zhou_arrive_01" }
-    ]
-  },
-  ch3_zhou_arrive_01: {
-    art: "ch1LivingThree",
     scene: "living",
     effect: "rain",
     speaker: "周叙",
-    chapter: "第三章 · 周叙也来了",
-    text: "门外又响了一声。周叙站在门口，外套上也有雨。他看见白祁，像并不意外，只把手机递给我：旧同学群里，有人把林中踢出群过。",
+    chapter: "周叙线 · 门缝",
+    media: { type: "chat", title: "未发出的消息", body: '你发了"周叙"两个字，删掉了，重新发了"你还好吗"，再次删掉。' },
+    text: "你没有说话，只是把门开大了一点。周叙停了三秒，低头笑了一下，那个笑里有什么东西刚刚裂开。他没有立刻进来，先把伞靠在门框边，像是在确认你真的愿意让他进来。",
     choices: [
-      { text: "看周叙的手机", next: "ch3_zhou_arrive_02" }
+      { text: "让开，让他进来", next: "zhou04" },
+      { text: "说：你脚踏进来了", next: "zhou03_flirt" }
     ]
   },
-  ch3_zhou_arrive_02: {
-    art: "ch1LivingThree",
-    scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第三章 · 被踢出群的人",
-    stateDelta: { zhouClue: 1 },
-    media: { type: "chat", title: "旧群记录", body: "林中被移出群聊。移除人：班长。时间：高二下学期五月。" },
-    text: "群记录很短。林中被移出群聊，时间是高二下学期五月。再往上翻，有人发过一句：别再传那个链接了。没有人接。",
-    choices: [
-      { text: "问那个链接是什么", next: "ch3_zhou_arrive_03" }
-    ]
-  },
-  ch3_zhou_arrive_03: {
-    art: "ch1LivingThree",
+  zhou03_flirt: {
+    art: "zhouDoor",
     scene: "living",
     effect: "rain",
     speaker: "周叙",
-    chapter: "第三章 · 匿名墙",
-    stateDelta: { zhouBond: 1 },
-    text: "一个匿名投稿墙。周叙说：那时候很多学校都有，表白、吐槽、照片，什么都发。后来出过事，页面关了。我以为只是普通校园闹剧。",
+    chapter: "周叙线 · 踏进来的脚",
+    media: { type: "chat", title: "三年前晚上", body: "你送他到门口，他一直没走。" },
+    text: "周叙低头看了眼自己的脚，嘴角微微弯起来，那个弧度比哭还危险。他说：是的。你要赶我走吗？他问这句话的语气不像在求情，更像是在赌你不会。你沉默了三秒，步子往后退了一步。他跟进来了。",
     choices: [
-      { text: "白祁听见后变了脸色", next: "ch3_bai_memory_01" }
+      { text: "把话说完再决定", next: "zhou04" }
     ]
   },
-  ch3_bai_memory_01: {
-    art: "ch1BaiDoorframe",
+  zhou04: {
+    art: "phone",
     scene: "living",
     effect: "memory",
-    speaker: "白祁",
-    chapter: "第三章 · 她关掉过屏幕",
-    text: "我想起来了。白祁的声音忽然哑了：有一次我进她房间，她正在关电脑。她看见我，就把显示器电源拔了。她说网页太亮，刺眼。",
+    speaker: "周叙",
+    chapter: "周叙线 · 未接来电",
+    media: { type: "record", title: "通话记录", body: "陆眠 · 未接来电 23:17 / 23:19 / 23:22" },
+    text: "周叙把三年前的通话记录给你看。陆眠在 23:17、23:19、23:22 连打三次。他都没接。他说那晚你提了分手，他以为陆眠只是替你求情，直到凌晨，白祁打来电话说姐姐坠楼了。",
     choices: [
-      { text: "问他还记得日期吗", next: "ch3_bai_memory_02" }
+      { text: "问：那我当时在哪里", next: "zhou05" },
+      { text: "问：你为什么今天才说", next: "zhou06" },
+      { text: "你把他的手机推开了", next: "zhou04_push" }
     ]
   },
-  ch3_bai_memory_02: {
-    art: "ch1BaiDoorframe",
+  zhou04_push: {
+    art: "phone",
     scene: "living",
     effect: "memory",
-    speaker: "白祁",
-    chapter: "第三章 · 校庆前一天",
-    stateDelta: { baiClue: 1, memoryCount: 1 },
-    media: { type: "note", title: "时间点", body: "高二校庆前一天晚上，陆眠关掉过一个刺眼的网页。" },
-    text: "白祁闭上眼想了很久：校庆前一天。因为第二天学校放半天假，我还问她能不能带我去小卖部买汽水。她说别来学校。",
-    choices: [
-      { text: "去旧学校查校庆资料", next: "ch3_school_01" }
-    ]
-  },
-  ch3_school_01: {
-    art: "ch2TrackArriveBg",
-    scene: "school",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第三章 · 旧学校",
-    text: "雨停时，我们到了旧学校。门卫室的灯还亮着，操场被夜色压得很低。我站在校门口，忽然想起陆眠在阳光里回头看我的样子。",
-    choices: [
-      { text: "进门登记", next: "ch3_school_02" }
-    ]
-  },
-  ch3_school_02: {
-    art: "ch2ClassroomZhang",
-    scene: "school",
-    effect: "ambient",
-    speaker: "门卫",
-    chapter: "第三章 · 校庆册",
-    text: "校庆资料？门卫大叔看了我们一眼：档案室没有，展览室有纪念册。你们别乱翻，十分钟。",
-    choices: [
-      { text: "去展览室", next: "ch3_school_03" }
-    ]
-  },
-  ch3_school_03: {
-    art: "court",
-    scene: "school",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第三章 · 纪念册缺页",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "photo", title: "校庆纪念册", body: "摄影社展页被人撕掉半页，只剩标题：溯光。" },
-    text: "纪念册翻到摄影社那页时，我停住了。半页被撕掉，只剩一个标题：溯光。纸边不新，像很多年前就被人处理过。",
-    choices: [
-      { text: "看剩下的名单", next: "ch3_school_04" }
-    ]
-  },
-  ch3_school_04: {
-    art: "court",
-    scene: "school",
-    effect: "photo",
     speaker: "周叙",
-    chapter: "第三章 · 名单",
-    media: { type: "note", title: "摄影社名单", body: "指导老师空缺。负责人：林中。协助栏被刮花，只剩一小截笔画。" },
-    text: "周叙把纪念册转到灯下。名单没被撕干净。负责人：林中还在，协助栏却被人刮花，像故意不让后来的人看见全部。白祁在旁边低声说：这页有人动过手脚。",
+    chapter: "周叙线 · 别给我看",
+    media: { type: "record", title: "通话记录", body: "你不想看那三个时间。" },
+    text: "你把手机推开。周叙没有坚持，把屏幕扣下来。他靠着沙发，沉默了很久，才说：沈栀，你现在还是会帮我挡掉那些东西。就像三年前一样。你问他什么意思，他摇了摇头，说：你自己想。",
     choices: [
-      { text: "我说：还不能确定", next: "ch3_school_05" }
+      { text: "盯着他看：你说清楚", next: "zhou05" },
+      { text: "往他旁边坐了一点", next: "zhou04_close" }
     ]
   },
-  ch3_school_05: {
-    art: "ch1LivingThree",
-    scene: "school",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "第三章 · 不把猜测当真相",
-    text: "我强迫自己把那句话咽回去。不能因为愤怒就替陆眠补完证词。她没亲口说的地方，我只能叫线索，不能叫真相。",
-    choices: [
-      { text: "离开展览室", next: "ch3_threat_01" }
-    ]
-  },
-  ch3_threat_01: {
-    art: "proSmsThreat",
-    scene: "school",
-    effect: "message",
-    speaker: "旁白",
-    chapter: "第三章 · 第二条短信",
-    media: { type: "sms", title: "未知号码", body: "别带周叙。也别带那个小孩。" },
-    text: "旧手机忽然震了一下。屏幕上跳出第二条短信：别带周叙。也别带那个小孩。我抬头时，展览室窗外只有树影。",
-    choices: [
-      { text: "你怎么处理这条短信", next: "ch3_choice_threat" }
-    ]
-  },
-  ch3_choice_threat: {
-    art: "proSmsThreat",
-    scene: "school",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第三章 · 回不回复",
-    text: "如果回，我也许能套出对方是谁。如果删，白祁和周叙会少一点危险。如果不动，至少证据还在。",
-    choices: [
-      { text: "回复：你是谁", next: "ch3_reply_01" },
-      { text: "不回复，立刻备份", next: "ch3_backup_01" },
-      { text: "先删掉，别牵连他们", next: "ch3_delete_01" }
-    ]
-  },
-  ch3_reply_01: {
-    art: "proSmsThreat",
-    scene: "school",
-    effect: "horror",
-    speaker: "未知号码",
-    chapter: "第三章 · 对方在看",
-    text: "对方几乎秒回：你还是这么喜欢替她决定。下一秒，手机自动打开相机。黑色屏幕里映出我、白祁、周叙三个人的脸。",
-    choices: [
-      { text: "马上锁屏", next: "ch3_backup_01" }
-    ]
-  },
-  ch3_backup_01: {
-    art: "source",
-    scene: "school",
-    effect: "message",
-    speaker: "周叙",
-    chapter: "第三章 · 备份",
-    stateDelta: { zhouClue: 1, memoryCount: 1 },
-    media: { type: "drive", title: "证据备份", body: "短信、纪念册照片、LIN PHOTO 水印、旧群记录已分别保存。" },
-    text: "周叙拿出自己的手机：我备份。白祁看着我，说：我也备一份。那一刻我忽然觉得，我们不是三个人围着一件旧案，是三个人终于站到了陆眠没等到的位置。",
-    choices: [
-      { text: "旧手机开始发烫", next: "ch3_flash_01" }
-    ]
-  },
-  ch3_delete_01: {
-    art: "source",
-    scene: "school",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第三章 · 删掉之后",
-    stateDelta: { memoryCount: -1 },
-    text: "我按下删除。屏幕干净了，可我的心没有轻一点。白祁看着我，声音很低：你刚才删掉的，可能就是她当年没能留下的东西。",
-    choices: [
-      { text: "沉默，重新把剩下证据备份", next: "ch3_backup_01" }
-    ]
-  },
-  ch3_flash_01: {
-    art: "ch2PhoneWhiteflash",
-    scene: "school",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第三章 · 校庆前一天",
-    text: "旧手机在我掌心发烫，屏幕白得像一扇被强行打开的门。白祁伸手来拉我，周叙喊了我的名字。可我已经听不清了。",
-    choices: [
-      { text: "回到校庆前一天", next: "ch4_arrive_01" }
-    ]
-  },
-  ch4_arrive_01: {
-    art: "ch2TrackArriveBg",
-    scene: "school",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第四章 · 第二次回去",
-    text: "我睁开眼时，广播里正在试音。操场边挂着校庆横幅，风把红布吹得鼓起来。有人从身后拍了我一下：喂，你又发呆。",
-    choices: [
-      { text: "回头看陆眠", next: "ch4_lu_01" }
-    ]
-  },
-  ch4_lu_01: {
-    art: "ch2ArriveLu",
-    scene: "school",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第四章 · 她记得一点",
-    text: "陆眠站在阳光里，手腕上那根发绳还在。她眯着眼看我：你今天怎么像好久没见过我一样？",
-    choices: [
-      { text: "说：因为我真的很想见你", next: "ch4_lu_02" },
-      { text: "装作轻松：可能是昨晚没睡好", next: "ch4_lu_03" }
-    ]
-  },
-  ch4_lu_02: {
-    art: "ch2ArriveLu",
-    scene: "school",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第四章 · 很想见你",
-    stateDelta: { luTrust: 2 },
-    text: "陆眠愣了一下，耳尖慢慢红了：你这人，突然说这种话很犯规。她低头把发绳绕紧，声音小了些：那今天别乱跑，我也想见你。",
-    choices: [
-      { text: "答应她", next: "ch4_class_01" }
-    ]
-  },
-  ch4_lu_03: {
-    art: "ch2ArriveLu",
-    scene: "school",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第四章 · 没睡好",
-    stateDelta: { luTrust: 1 },
-    text: "陆眠伸手在我额头碰了一下：没发烧。那你今天跟着我，别又突然消失。她说得像玩笑，可最后几个字放得很轻。",
-    choices: [
-      { text: "跟她去教室", next: "ch4_class_01" }
-    ]
-  },
-  ch4_class_01: {
-    art: "ch2ClassroomZhang",
-    scene: "classroom",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第四章 · 校庆前的教室",
-    text: "教室里到处都是彩纸和气球。陆眠坐下时，课桌里掉出一张折成方块的纸。她脸上的笑一下收住了。",
-    choices: [
-      { text: "看那张纸", next: "ch4_note_01" }
-    ]
-  },
-  ch4_note_01: {
-    art: "proSmsThreat",
-    scene: "classroom",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第四章 · 纸条",
-    media: { type: "note", title: "匿名纸条", body: "下午四点，摄影社。你不来，照片会替你来。" },
-    text: "纸条上没有署名。下午四点，摄影社。你不来，照片会替你来。我的指尖压在那行字上，终于知道这一天不是普通校庆前夕。",
-    choices: [
-      { text: "先看陆眠反应", next: "ch4_lu_note_01" }
-    ]
-  },
-  ch4_lu_note_01: {
-    art: "ch2MorningFood",
-    scene: "classroom",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第四章 · 她想笑过去",
-    text: "陆眠把纸条揉进掌心，抬头时又笑了：恶作剧吧。校庆前大家都很闲。我说：你手在抖。她的笑停了一下。",
-    choices: [
-      { text: "把纸条还给她，问她想怎么做", next: "ch4_choice_after_note" }
-    ]
-  },
-  ch4_choice_after_note: {
-    art: "ch2MorningFood",
-    scene: "classroom",
-    effect: "ambient",
-    speaker: "沈栀",
-    chapter: "第四章 · 先做什么",
-    text: "我不能替她做决定。但我也不能站在原地等。现在最重要的不是把那个放纸条的人逼出来，是让陆眠知道，她不是一个人走向那间摄影社。",
-    choices: [
-      { text: "陪陆眠去小卖部，先让她缓下来", next: "ch4_store_01" },
-      { text: "去找白祁，让他今天别靠近摄影社", next: "ch4_bai_01" },
-      { text: "去图书馆找周叙，问匿名墙", next: "ch4_zhou_01" }
-    ]
-  },
-  ch4_store_01: {
-    art: "ch2StoreTrio",
-    scene: "school",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第四章 · 小卖部的汽水",
-    stateDelta: { luTrust: 2 },
-    text: "陆眠挑了一瓶橘子汽水，又拿了一盒牛奶塞给我：你脸色比我还差。我说你还有心情管我。她拧开瓶盖，气泡轻轻炸开：管你会让我没那么怕。",
-    choices: [
-      { text: "问她怕什么", next: "ch4_store_02" }
-    ]
-  },
-  ch4_store_02: {
-    art: "ch2StoreTrio",
-    scene: "school",
-    effect: "ambient",
-    speaker: "陆眠",
-    chapter: "第四章 · 怕被看见",
-    stateDelta: { memoryCount: 1 },
-    text: "不是怕照片。陆眠看着冰柜玻璃里的自己：是怕所有人都看见以后，还觉得只是玩笑。那样我就再也不知道该相信谁了。",
-    choices: [
-      { text: "说：那先相信我一分钟", next: "ch4_artroom_01" }
-    ]
-  },
-  ch4_artroom_01: {
-    art: "album",
-    scene: "classroom",
-    effect: "memory",
-    speaker: "沈栀",
-    chapter: "第四章 · 美术教室",
-    text: "陆眠没有立刻回教室，而是带我去了美术教室。那里没人，窗台上堆着没晾干的水彩纸，阳光透过玻璃落在她的校服袖口上。",
-    choices: [
-      { text: "坐到她旁边", next: "ch4_artroom_02" }
-    ]
-  },
-  ch4_artroom_02: {
-    art: "album",
-    scene: "classroom",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第四章 · 她画的明天",
-    stateDelta: { luTrust: 1 },
-    media: { type: "photo", title: "水彩纸", body: "一条很亮的街，街角有花店，窗边坐着两个女孩子。" },
-    text: "陆眠把一张水彩纸翻过来给我看。画上是一条很亮的街，街角有花店，窗边坐着两个女孩子。她说：我以前想过，以后开一家很小的花店。",
-    choices: [
-      { text: "问她为什么是花店", next: "ch4_artroom_03" }
-    ]
-  },
-  ch4_artroom_03: {
-    art: "flowerShop",
-    scene: "classroom",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第四章 · 因为花会明天再开",
-    text: "因为花很诚实。陆眠用笔尖点了点纸上的窗：今天开不好，明天还会再试。人就不一样，人会假装自己一直很好。",
-    choices: [
-      { text: "认真告诉她：你不用一直很好", next: "ch4_artroom_04" }
-    ]
-  },
-  ch4_artroom_04: {
-    art: "ch2EveningHairtie",
-    scene: "classroom",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第四章 · 很慢的一秒",
-    stateDelta: { luTrust: 2, memoryCount: 1 },
-    text: "陆眠看着我，很慢地眨了一下眼。她没有笑，也没有躲开。只是把那张水彩纸推到我们中间，说：那你也别一直装得很会救人。",
-    choices: [
-      { text: "低声说：好", next: "ch4_artroom_05" }
-    ]
-  },
-  ch4_artroom_05: {
-    art: "source",
-    scene: "classroom",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第四章 · 画纸背面",
-    media: { type: "note", title: "画纸背面", body: "背面贴着一枚旧标签：溯光摄影社回收作品。" },
-    text: "我把画纸收好时，看见背面贴着一枚旧标签：溯光摄影社回收作品。美好的东西也被他们碰过，这让我胸口发紧。",
-    choices: [
-      { text: "去找白祁", next: "ch4_bai_01" }
-    ]
-  },
-  ch4_bai_01: {
-    art: "ch2SportsBaiWater",
-    scene: "school",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第四章 · 十六岁的白祁",
-    text: "白祁抱着一袋练习册从楼梯口下来，看见陆眠就皱眉：你又没吃午饭？陆眠说关你什么事。他把面包往她桌上一放：关我事。",
-    choices: [
-      { text: "把纸条给白祁看", next: "ch4_bai_02" }
-    ]
-  },
-  ch4_bai_02: {
-    art: "ch2SportsBaiWater",
-    scene: "school",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第四章 · 他想冲过去",
-    stateDelta: { baiBond: 1 },
-    text: "白祁看完纸条，脸色一下冷下来：谁放的？我按住他的手腕：你现在冲过去，只会让她更难收场。他看着我，很不甘心，但没有甩开。",
-    choices: [
-      { text: "告诉他：你今天守楼梯口", next: "ch4_bai_03" }
-    ]
-  },
-  ch4_bai_03: {
-    art: "ch2SportsBaiWater",
-    scene: "school",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第四章 · 不是小孩",
-    stateDelta: { baiClue: 1 },
-    text: "白祁说：我不是小孩。我说我知道，所以才找你。你守楼梯口，不是为了打人，是为了让陆眠知道，有一条路能离开。白祁低下头：好。",
-    choices: [
-      { text: "去找周叙", next: "ch4_zhou_01" }
-    ]
-  },
-  ch4_zhou_01: {
-    art: "ch2LibraryZhou",
-    scene: "library",
-    effect: "ambient",
-    speaker: "周叙",
-    chapter: "第四章 · 图书馆的周叙",
-    text: "周叙坐在靠窗的位置，桌上摊着校庆节目单。我还没开口，他先说：如果你是来问匿名墙，页面在校内网，下午三点会更新。",
-    choices: [
-      { text: "问他为什么知道", next: "ch4_zhou_02" }
-    ]
-  },
-  ch4_zhou_02: {
-    art: "ch2LibraryZhou",
-    scene: "library",
-    effect: "ambient",
-    speaker: "周叙",
-    chapter: "第四章 · 他一直在看",
-    stateDelta: { zhouBond: 1 },
-    text: "因为上次有人把照片传上去，陆眠一天没来上课。周叙的笔尖停住：我那时候以为她只是不舒服。后来才知道，不舒服也分很多种。",
-    choices: [
-      { text: "问他能不能帮忙", next: "ch4_zhou_03" }
-    ]
-  },
-  ch4_zhou_03: {
-    art: "ch2LibraryZhou",
-    scene: "library",
-    effect: "photo",
-    speaker: "周叙",
-    chapter: "第四章 · 校内网入口",
-    stateDelta: { zhouClue: 1, memoryCount: 1 },
-    media: { type: "screen", title: "校内网页面", body: "匿名墙后台入口需要摄影社账号。账号名：linphoto。" },
-    text: "周叙把笔记本转向我。匿名墙后台入口还没关，账号名是 linphoto。林中把名字藏得很浅，浅到像笃定没人会认真看。",
-    choices: [
-      { text: "三点快到了", next: "ch4_update_01" }
-    ]
-  },
-  ch4_update_01: {
-    art: "source",
-    scene: "library",
-    effect: "message",
-    speaker: "旁白",
-    chapter: "第四章 · 三点更新",
-    media: { type: "screen", title: "匿名墙预览", body: "一张模糊照片正在排队发布。照片角落露出陆眠校服袖口。" },
-    text: "三点整，页面刷新。待发布列表里多了一张照片。没有脸，只有校服袖口、操场栏杆、和一个足够让熟人猜出来的侧影。",
-    choices: [
-      { text: "立刻处理", next: "ch4_choice_wall" }
-    ]
-  },
-  ch4_choice_wall: {
-    art: "source",
-    scene: "library",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第四章 · 怎么阻止照片",
-    text: "我只有几分钟。粗暴删掉，后台可能留下痕迹。公开撕破，陆眠会被所有人盯住。最难的，是不让她再次成为被围观的人。",
-    choices: [
-      { text: "让周叙截证，白祁去关展厅电源", next: "ch4_wall_good_01" },
-      { text: "冲到走廊，当众质问那个人", next: "ch4_wall_public_01" },
-      { text: "先问陆眠要不要自己处理", next: "ch4_wall_lu_01" }
-    ]
-  },
-  ch4_wall_good_01: {
-    art: "ch2CorridorConfront",
-    scene: "corridor",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第四章 · 不让她被围观",
-    stateDelta: { luTrust: 1, baiClue: 1, zhouClue: 1, memoryCount: 1 },
-    text: "周叙截下页面和后台时间，白祁去展厅门口找电闸。我留在陆眠身边。走廊的广播忽然断了一秒，像整栋楼一起屏住呼吸。",
-    choices: [
-      { text: "陪陆眠去摄影社", next: "ch4_photo_room_01" }
-    ]
-  },
-  ch4_wall_public_01: {
-    art: "ch2CorridorConfront",
-    scene: "corridor",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第四章 · 当众质问",
-    stateDelta: { luTrust: -1, memoryCount: 1 },
-    text: "我冲到走廊叫住那个人。周围的同学立刻看过来。他举起双手，笑得很无辜：我什么都没做啊。陆眠站在人群后面，脸色一点点白下去。",
-    choices: [
-      { text: "意识到自己把她推到了人群里", next: "ch4_photo_room_01" }
-    ]
-  },
-  ch4_wall_lu_01: {
-    art: "ch2FollowMirror",
-    scene: "corridor",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第四章 · 她自己的选择",
-    stateDelta: { luTrust: 2, memoryCount: 1 },
-    text: "陆眠看着我，像第一次被允许拥有选择。她说：我现在还做不到一个人处理。可是如果你在旁边，我可以走过去看看。",
-    choices: [
-      { text: "说：我在", next: "ch4_photo_room_01" }
-    ]
-  },
-  ch4_photo_room_01: {
-    art: "studio",
-    scene: "studio",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第四章 · 摄影社",
-    text: "摄影社在实验楼顶层。门半开着，里面有冲洗药水的味道。墙上挂着很多校庆照片，每一张笑脸都被灯照得过分明亮。",
-    choices: [
-      { text: "走进去", next: "ch4_photo_room_02" }
-    ]
-  },
-  ch4_photo_room_02: {
-    art: "studio",
-    scene: "studio",
-    effect: "horror",
-    speaker: "门口那个人",
-    chapter: "第四章 · 他在等",
-    stateDelta: { zhangKnown: 1 },
-    text: "暗房门口坐着一个男生，手里转着一个胶卷盒。门外有人低声叫了他一声：张恒。他抬眼看见陆眠，笑了一下：你终于来了。我往前站半步，他的目光才落到我身上：新来的，你管太多了。",
-    choices: [
-      { text: "不接他的话，只看陆眠", next: "ch4_photo_room_03" }
-    ]
-  },
-  ch4_photo_room_03: {
-    art: "ch2FollowMirror",
-    scene: "studio",
-    effect: "memory",
-    speaker: "沈栀",
-    chapter: "第四章 · 不替她回答",
-    text: "我没有替陆眠骂回去，也没有替她解释。我只是把手伸到她能碰到的位置。陆眠看着那只手，慢慢吸了一口气。",
-    choices: [
-      { text: "等陆眠开口", next: "ch4_lu_speaks_01" }
-    ]
-  },
-  ch4_lu_speaks_01: {
-    art: "ch2EveningHairtie",
-    scene: "studio",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第四章 · 她说不",
-    stateDelta: { luTrust: 2, memoryCount: 1 },
-    text: "陆眠说：我不拍。声音不大，但很清楚。门口那个人的笑停了一下。她又说了一遍：我不拍，也不去匿名墙道歉。你们发什么，都不是我的错。",
-    choices: [
-      { text: "记住这句话", next: "ch4_photo_room_04" }
-    ]
-  },
-  ch4_photo_room_04: {
-    art: "studio",
-    scene: "studio",
-    effect: "horror",
-    speaker: "张恒",
-    chapter: "第四章 · 林中会生气",
-    media: { type: "record", title: "现场录音", body: "张恒说：林中会生气的。你以为关掉一个页面就结束了？" },
-    text: "张恒站起来，声音低下去：林中会生气的。你以为关掉一个页面就结束了？我听见自己的心跳。终于，他亲口把林中和这件事连在一起。",
-    choices: [
-      { text: "白光再次出现", next: "ch4_return_01" }
-    ]
-  },
-  ch4_return_01: {
-    art: "ch2WhiteReturnTrack",
-    scene: "studio",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第四章 · 带回来的声音",
-    text: "白光从暗房里涌出来。我死死攥着那句录音，像攥着陆眠第一次说出的不。回到现实前，我听见她在身后喊：沈栀，别忘了。",
-    choices: [
-      { text: "回到现实", next: "ch5_reality_01" }
-    ]
-  },
-  ch5_reality_01: {
-    art: "source",
+  zhou04_close: {
+    art: "zhouDoor",
     scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第五章 · 录音还在",
-    media: { type: "record", title: "新增录音", body: "林中会生气的。你以为关掉一个页面就结束了？" },
-    text: "我摔回客厅地板，第一反应是摸手机。录音还在。不是梦，不是幻觉。陆眠说过的不，也终于有了一点能留下来的形状。",
+    effect: "memory",
+    speaker: "周叙",
+    chapter: "周叙线 · 近一点",
+    media: { type: "chat", title: "当年的消息", body: "周叙：沈栀，我今晚能去找你吗。发出时间：22:47。你没有回复。" },
+    text: "你们挨得很近。周叙没有动，也没有说话。雨声很大，客厅灯光昏黄。他低着头，发尖上还有水珠，某一瞬间，你忽然想伸手替他擦掉。你没有，但他好像感觉到了，侧过脸来看你。",
     choices: [
-      { text: "把录音放给他们听", next: "ch5_listen_01" }
+      { text: "别过眼睛：先说正事", next: "zhou05" },
+      { text: "你先擦掉了", next: "zhou04_touch" }
     ]
   },
-  ch5_listen_01: {
-    art: "ch1LivingThree",
+  zhou04_touch: {
+    art: "zhouDoor",
     scene: "living",
-    effect: "message",
-    speaker: "白祁",
-    chapter: "第五章 · 白祁听见了",
-    text: "录音放完，白祁很久没动。他像被那句林中会生气的按回十六岁，眼眶红得很克制：她那时候，真的说过不。",
+    effect: "memory",
+    speaker: "周叙",
+    chapter: "周叙线 · 手",
+    media: { type: "chat", title: "三年前", body: "你第一次见他时，他也是这副淋雨的样子。" },
+    text: "你伸手擦掉了他发尖上的水珠。周叙呼吸顿了一下。他没有抓住你的手，只是轻轻把脸偏过来，凑近了一点点，声音很低：你刚才是在心软还是在试探我？你的手悬在半空，答不上来。",
     choices: [
-      { text: "握住旧手机", next: "ch5_listen_02" }
+      { text: "收手：我只是看不下去", next: "zhou05" },
+      { text: "不收手，等他说完", next: "zhou_romance01" }
     ]
   },
-  ch5_listen_02: {
-    art: "ch1LivingThree",
+  zhou_romance01: {
+    art: "zhouDoor",
+    scene: "living",
+    effect: "memory",
+    speaker: "周叙",
+    chapter: "周叙线 · 你在等什么",
+    media: { type: "chat", title: "你们之间", body: "分手三年，今晚是第一次他开口叫你的名字。" },
+    text: "周叙握住你的手腕，力道很轻，轻到你可以随时抽走。他说：沈栀，你知道我三年来最不甘心的是什么吗？不是陆眠那晚的电话。是你第二天醒来，眼睛里一点我都没有。",
+    choices: [
+      { text: "抽走手：你不能这样说", next: "zhou05" },
+      { text: "不动：然后呢", next: "zhou_romance02" }
+    ]
+  },
+  zhou_romance02: {
+    art: "zhouDoor",
+    scene: "living",
+    effect: "memory",
+    speaker: "周叙",
+    chapter: "周叙线 · 然后",
+    media: { type: "chat", title: "沈栀", body: "你在等他说完，或者等他做什么。" },
+    text: "周叙笑了一下，比刚才那个笑多了点什么。他说：然后我就想，如果今晚她能再看我一次，我愿意把什么都说清楚。就算你看完以后走掉，我也认。他没有靠近，只是一直捏着你的手腕，等你开口。",
+    choices: [
+      { text: "你说：我先看 U 盘", next: "zhou05" },
+      { text: "你说：你先欠我一个解释", next: "zhou_romance03" }
+    ]
+  },
+  zhou_romance03: {
+    art: "zhouDoor",
+    scene: "living",
+    effect: "memory",
+    speaker: "周叙",
+    chapter: "周叙线 · 欠你",
+    media: { type: "chat", title: "周叙", body: "好。" },
+    text: "周叙松开你的手腕，往后退了半步，给你留出空间，像在表态他不会先乱来。他说：好。你先问，我全答。今晚的事情说完之前，我哪里都不去。你看着他，第一次觉得——他也是在等这场对话三年了。",
+    choices: [
+      { text: "让他把那晚说清楚", next: "zhou05" }
+    ]
+  },
+  zhou05: {
+    art: "phone",
+    scene: "living",
+    effect: "memory",
+    speaker: "周叙",
+    chapter: "周叙线 · 被删掉的你",
+    media: { type: "drive", title: "U 盘：23:17", body: "rooftop_raw.mp4 / lumian_final.mov / call_log.txt" },
+    text: "他说你在摄影棚顶楼。不是陆眠约你去，是你把所有人都骗开以后，自己去了那里。周叙把一个旧 U 盘推到你面前：我不敢替你想起来，但今晚你必须自己看。",
+    choices: [
+      { text: "插入 U 盘，看天台录像", next: "commonVideo01" },
+      { text: "带着 U 盘去找白祁对质", next: "bai01" },
+      { text: "求周叙带你离开这座城市", next: "oldDream01" }
+    ]
+  },
+  zhou06: {
+    art: "zhouDoor",
     scene: "living",
     effect: "rain",
     speaker: "周叙",
-    chapter: "第五章 · 证据链",
-    text: "周叙把所有文件排到桌上：短信、匿名墙、摄影社名单、录音。还差一个东西。他看向我：林中现在在哪里。",
+    chapter: "周叙线 · 逃跑邀请",
+    media: { type: "choice", title: "周叙的提议", body: "现在走。换城市。换号码。天亮之前不要再看任何东西。" },
+    text: "周叙说他不是不想说，是不敢说。他怕你一想起来，就会重新回到那天的天台。他拿起车钥匙，声音很低：如果你愿意，我现在就带你走。",
     choices: [
-      { text: "先查白玫瑰订单", next: "ch5_flower_01" }
+      { text: "跟他走，不再查了", next: "oldDream01" },
+      { text: "留下来，看 U 盘", next: "commonVideo01" },
+      { text: "你不走，也没让他走", next: "zhou06_stay" }
     ]
   },
-  ch5_flower_01: {
-    art: "flowerShop",
-    scene: "home",
-    effect: "rain",
-    speaker: "沈栀",
-    chapter: "第五章 · 白玫瑰订单",
-    text: "我忽然想起序章门口那束白玫瑰。陆眠不是会随便留下仪式感的人。她每一次放花，应该都有地址，有时间，也有一个她想让我看见的理由。",
-    choices: [
-      { text: "搜索附近花店", next: "ch5_flower_02" }
-    ]
-  },
-  ch5_flower_02: {
-    art: "flowerShop",
-    scene: "home",
-    effect: "message",
-    speaker: "店员",
-    chapter: "第五章 · 不是第一次",
-    media: { type: "chat", title: "花店客服", body: "陆小姐以前订过同款白玫瑰，备注：如果我没来取，请送到沈栀家门口。" },
-    text: "花店客服回得很快：陆小姐以前订过同款白玫瑰。备注是，如果我没来取，请送到沈栀家门口。我看着那句话，忽然不敢眨眼。",
-    choices: [
-      { text: "问她最后一次取花时间", next: "ch5_flower_03" }
-    ]
-  },
-  ch5_flower_03: {
-    art: "flowerShop",
-    scene: "home",
-    effect: "message",
-    speaker: "店员",
-    chapter: "第五章 · 五个月前晚上",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "note", title: "订单记录", body: "五个月前 21:12。陆眠取走一束白玫瑰，随后前往废弃摄影棚方向。" },
-    text: "最后一次是五个月前晚上九点十二分。她取走一束白玫瑰，没让店员包卡片。白祁低声问：她那天是去告别，还是去给自己留证？",
-    choices: [
-      { text: "没有人立刻回答", next: "ch5_flower_04" }
-    ]
-  },
-  ch5_flower_04: {
-    art: "ch1LivingThree",
+  zhou06_stay: {
+    art: "zhouDoor",
     scene: "living",
     effect: "rain",
-    speaker: "沈栀",
-    chapter: "第五章 · 她早就把我算进来了",
-    text: "我忽然明白，那束白玫瑰不是遗物。是陆眠把我算进她最后计划里的证据。她怕我不来，又怕我来得太晚，所以把花放在门口，像一只不能说话的手。",
-    choices: [
-      { text: "把订单截图备份", next: "ch5_flower_05" }
-    ]
-  },
-  ch5_flower_05: {
-    art: "source",
-    scene: "living",
-    effect: "message",
     speaker: "周叙",
-    chapter: "第五章 · 路线重合",
-    stateDelta: { zhouClue: 1, memoryCount: 1 },
-    media: { type: "drive", title: "路线拼图", body: "花店、废弃摄影棚、天台新闻照片，三条路线重合。" },
-    text: "周叙把花店地址、摄影棚地址和新闻照片定位叠在一起：路线重合。她不是漫无目的地走到天台，她沿着一条被安排好的路走过去。",
+    chapter: "周叙线 · 不走",
+    media: { type: "chat", title: "凌晨的客厅", body: "雨还在下。你们都没有动。" },
+    text: "周叙把车钥匙放回桌上。你们谁都没动，像两个人同时决定不逃了。他在沙发另一端坐下来，抬眼看你：那你要怎么办？你第一次觉得，这句话不是质问，是他在问你愿不愿意让他陪你。",
     choices: [
-      { text: "继续查 LIN PHOTO", next: "ch5_search_lin_01" }
+      { text: "你先说一件事：三年来你有没有找过我", next: "zhou06_ask" },
+      { text: "你让他先说完那晚的事", next: "zhou05" }
     ]
   },
-  ch5_search_lin_01: {
-    art: "source",
+  zhou06_ask: {
+    art: "zhouDoor",
     scene: "living",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第五章 · LIN PHOTO",
-    text: "我搜索 LIN PHOTO，跳出来的是一个停更多年的摄影账号。最后一条动态在五个月前：旧片重洗，今晚见。",
+    effect: "rain",
+    speaker: "周叙",
+    chapter: "周叙线 · 找过你",
+    media: { type: "chat", title: "未发出的消息", body: "一百四十七条。全部在草稿箱。" },
+    text: "周叙拿出手机，打开草稿箱递给你。一百四十七条未发送的消息，最早一条是陆眠死后第四天，最近一条是今年你生日。他说：我没有一条敢发。我不知道你想不想被找到。",
     choices: [
-      { text: "点开最后一条", next: "ch5_search_lin_02" }
+      { text: "翻开第一条看看", next: "zhou06_msg01" },
+      { text: "还给他：先把 U 盘看完", next: "zhou05" }
     ]
   },
-  ch5_search_lin_02: {
-    art: "studio",
+  zhou06_msg01: {
+    art: "zhouDoor",
     scene: "living",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第五章 · 五个月前",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "photo", title: "账号动态", body: "配图是废弃摄影棚门口。门牌上的数字和陆眠死亡当晚新闻照片一致。" },
-    text: "配图是一扇生锈的门。门牌号和陆眠死亡当晚新闻照片里的背景一致。五个月前，她不是随便去那里。有人约她重洗旧片。",
+    effect: "memory",
+    speaker: "周叙",
+    chapter: "周叙线 · 第一条草稿",
+    media: { type: "chat", title: "第 1 条草稿", body: "沈栀，你还好吗。（发出时间：—）" },
+    text: "第一条草稿只有五个字：沈栀，你还好吗。没有标点，像打了一半就不敢继续。你往后翻，他写过很多版本：我在外面、要不要见一面、对不起、再见。最后一条只有两个字：沈栀。你的名字就停在那里，像他说到一半咽回去的什么。",
     choices: [
-      { text: "去废弃摄影棚", next: "ch5_studio_01" }
+      { text: "把手机还给他：我知道了", next: "zhou05" },
+      { text: "你抬头看他，他也在看你", next: "zhou06_eyes" }
     ]
   },
-  ch5_studio_01: {
+  zhou06_eyes: {
+    art: "zhouDoor",
+    scene: "living",
+    effect: "memory",
+    speaker: "周叙",
+    chapter: "周叙线 · 对视",
+    media: { type: "chat", title: "客厅", body: "雨声很大。你们离得很近。" },
+    text: "你们对视了大概三秒。周叙先别开眼睛，低声说：你现在看我，我会以为你还想要。你攥着手机没有动，意识到你们之间只隔了一个靠枕的距离。",
+    choices: [
+      { text: "把靠枕拿开", next: "zhou_romance01" },
+      { text: "你先说：我们把 U 盘看完", next: "zhou05" }
+    ]
+  },
+
+  // ── 周叙专属亲密场景：深夜送回家 ──
+  zhou_sendHome: {
     art: "car",
     scene: "taxi",
     effect: "rain",
-    speaker: "沈栀",
-    chapter: "第五章 · 去摄影棚",
-    text: "出租车穿过雨后的高架。白祁坐在副驾，一路没说话。周叙把定位发给我，又补了一句：到了以后不要单独进去。",
-    choices: [
-      { text: "到达摄影棚", next: "ch5_studio_02" }
-    ]
-  },
-  ch5_studio_02: {
-    art: "studio",
-    scene: "studio",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第五章 · 废弃摄影棚",
-    text: "门没有锁。灰尘很厚，地上有被雨水踩出的新脚印。这里不像废弃，像有人每隔一段时间回来确认伤口还在不在。",
-    choices: [
-      { text: "开手机手电", next: "ch5_studio_03" }
-    ]
-  },
-  ch5_studio_03: {
-    art: "studio",
-    scene: "studio",
-    effect: "horror",
-    speaker: "白祁",
-    chapter: "第五章 · 墙上的照片",
-    text: "手电照到墙面时，白祁低低骂了一句。墙上贴着很多旧照片，不全是陆眠，还有别的学生。每张照片角落都有同一个水印：LIN PHOTO。",
-    choices: [
-      { text: "不要碰原件，先拍照", next: "ch5_studio_04" }
-    ]
-  },
-  ch5_studio_04: {
-    art: "court",
-    scene: "studio",
-    effect: "photo",
-    speaker: "周叙",
-    chapter: "第五章 · 原件",
-    stateDelta: { zhouClue: 1, memoryCount: 1 },
-    media: { type: "drive", title: "暗房证据", body: "旧照片原件、投稿墙导出记录、多个学生姓名缩写。" },
-    text: "周叙在暗房抽屉里找到一个硬盘：原件在这里。不要拔，先拍序列号。他的声音很稳，可手背上的青筋绷得很紧。",
-    choices: [
-      { text: "抽屉最底下还有信封", next: "ch5_envelope_01" }
-    ]
-  },
-  ch5_envelope_01: {
-    art: "ch1DiaryTorn",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第五章 · 陆眠的信封",
-    media: { type: "note", title: "信封", body: "如果我没有回来，请把这些交给白祁。不要让他一个人看。" },
-    text: "信封上是陆眠的字：如果我没有回来，请把这些交给白祁。不要让他一个人看。白祁伸出去的手停在半空，像终于明白她为什么总把他挡在门外。",
-    choices: [
-      { text: "问白祁要不要现在看", next: "ch5_choice_envelope" }
-    ]
-  },
-  ch5_choice_envelope: {
-    art: "ch1BaiDoorframe",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第五章 · 给不给他看",
-    text: "这是陆眠留给白祁的东西，可她也写了不要让他一个人看。我不能替她藏，也不能替他承受。",
-    choices: [
-      { text: "递给白祁，说我陪你看", next: "ch5_envelope_together_01" },
-      { text: "先收起来，等案子结束再说", next: "ch5_envelope_later_01" }
-    ]
-  },
-  ch5_envelope_together_01: {
-    art: "ch1BaiDoorframe",
-    scene: "studio",
-    effect: "memory",
-    speaker: "白祁",
-    chapter: "第五章 · 姐，我看见了",
-    stateDelta: { baiBond: 2, memoryCount: 1 },
-    text: "白祁读得很慢。读到最后一句，他把纸抵在额头上：姐，我看见了。这一次我看见了。我没有安慰他，只站在旁边，把手电照稳。",
-    choices: [
-      { text: "继续查硬盘", next: "ch5_drive_01" }
-    ]
-  },
-  ch5_envelope_later_01: {
-    art: "ch1BaiDoorframe",
-    scene: "studio",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第五章 · 先收起来",
-    stateDelta: { baiBond: -1 },
-    text: "我把信封收起来。白祁看见了，但没有拦。他只是轻声说：你们总觉得我会碎。可有时候，被瞒着才更像碎掉。",
-    choices: [
-      { text: "继续查硬盘", next: "ch5_drive_01" }
-    ]
-  },
-  ch5_drive_01: {
-    art: "source",
-    scene: "studio",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第五章 · 导出记录",
-    media: { type: "screen", title: "硬盘目录", body: "upload_wall、proof_lu、roof_meet、backup_lin。" },
-    text: "硬盘目录里有四个文件夹。upload_wall 是匿名墙上传记录，proof_lu 是陆眠整理的证据，roof_meet 是五个月前的会面记录，backup_lin 被加密。",
-    choices: [
-      { text: "先打开 proof_lu", next: "ch5_drive_02" }
-    ]
-  },
-  ch5_drive_02: {
-    art: "source",
-    scene: "studio",
-    effect: "photo",
-    speaker: "沈栀",
-    chapter: "第五章 · 她不是没有反抗",
-    stateDelta: { memoryCount: 1 },
-    media: { type: "drive", title: "proof_lu", body: "截图、录音、时间线、匿名墙后台地址。陆眠把证据整理得很清楚。" },
-    text: "文件夹里不是求救，是证据。陆眠把时间线整理得很清楚。哪天收到纸条，哪天页面更新，哪天她去找老师，哪天没有结果。她不是没有反抗。",
-    choices: [
-      { text: "打开 roof_meet", next: "ch5_drive_03" }
-    ]
-  },
-  ch5_drive_03: {
-    art: "rooftop",
-    scene: "studio",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第五章 · 五个月前的邀约",
-    media: { type: "sms", title: "roof_meet", body: "今晚十点，天台。我给你原件。一个人来。" },
-    text: "roof_meet 里只有几张截图。五个月前，有人约陆眠去天台，说可以给她当年的原件。一个人来。所有人都说她是意外，可她是去拿证据的。",
-    choices: [
-      { text: "旧手机突然来电", next: "ch5_call_01" }
-    ]
-  },
-  ch5_call_01: {
-    art: "proSmsThreat",
-    scene: "studio",
-    effect: "message",
-    speaker: "未知号码",
-    chapter: "第五章 · 电话",
-    text: "旧手机响了。来电没有号码。我按下免提，对面只有一点电流声。然后一个男人的声音说：沈栀，原件不在你那里。",
-    choices: [
-      { text: "问他是不是林中", next: "ch5_call_02" }
-    ]
-  },
-  ch5_call_02: {
-    art: "proSmsThreat",
-    scene: "studio",
-    effect: "horror",
-    speaker: "未知号码",
-    chapter: "第五章 · 他不承认",
-    text: "他笑了一声：你们这些人总喜欢给坏事找一个名字。林中、张恒、摄影社，随便哪个都行。可她当年最怕的，不就是没有人信吗？",
-    choices: [
-      { text: "别被他带着走", next: "ch5_choice_call" }
-    ]
-  },
-  ch5_choice_call: {
-    art: "proSmsThreat",
-    scene: "studio",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第五章 · 怎么回他",
-    text: "他想让我急，想让我在白祁和周叙面前说出无法证明的话。越到这里，越不能让愤怒替我选择。",
-    choices: [
-      { text: "说：我只相信陆眠留下的证据", next: "ch5_call_good_01" },
-      { text: "骂他：你们都该付出代价", next: "ch5_call_angry_01" },
-      { text: "不说话，示意周叙继续录音", next: "ch5_call_silent_01" }
-    ]
-  },
-  ch5_call_good_01: {
-    art: "proSmsThreat",
-    scene: "studio",
-    effect: "message",
-    speaker: "未知号码",
-    chapter: "第五章 · 他急了",
-    stateDelta: { memoryCount: 1 },
-    text: "电话那头沉默了一秒。我知道我戳中了他。他可以嘲笑我，可以恐吓我，但他最怕的是陆眠留下的东西被完整看见。",
-    choices: [
-      { text: "继续拖住他", next: "ch5_police_01" }
-    ]
-  },
-  ch5_call_angry_01: {
-    art: "proSmsThreat",
-    scene: "studio",
-    effect: "horror",
-    speaker: "未知号码",
-    chapter: "第五章 · 他笑了",
-    stateDelta: { memoryCount: -1 },
-    text: "他笑了：看，你也只是想赢。电话挂断前，我听见他低声说：那你会来不及。屏幕黑下去，我才意识到自己给了他想要的失控。",
-    choices: [
-      { text: "重新冷静下来", next: "ch5_police_01" }
-    ]
-  },
-  ch5_call_silent_01: {
-    art: "proSmsThreat",
-    scene: "studio",
-    effect: "message",
-    speaker: "沈栀",
-    chapter: "第五章 · 留下他的声音",
-    stateDelta: { zhouBond: 1, memoryCount: 1 },
-    text: "我没有说话，只把手机放在桌上。周叙很快明白我的意思，打开录音。白祁站在门口，把外面的脚步声挡住。我们第一次没有被他牵着走。",
-    choices: [
-      { text: "继续拖住他", next: "ch5_police_01" }
-    ]
-  },
-  ch5_police_01: {
-    art: "court",
-    scene: "studio",
-    effect: "message",
-    speaker: "周叙",
-    chapter: "第五章 · 报警不是终点",
-    text: "周叙把硬盘、录音和定位一起发出去：我联系了认识的律师，也报了警。可如果旧手机还会把你带回去，真正能改变陆眠那一天的人，还是你。",
-    choices: [
-      { text: "旧手机显示最后一次", next: "ch5_final_prep_01" }
-    ]
-  },
-  ch5_final_prep_01: {
-    art: "ch2PhoneWhiteflash",
-    scene: "studio",
-    effect: "message",
     speaker: "旁白",
-    chapter: "第五章 · 最后一次",
-    media: { type: "phone", title: "旧手机", body: "最后一次同步。目标时间：陆眠坠落前二十分钟。" },
-    text: "旧手机跳出一行字：最后一次同步。目标时间：陆眠坠落前二十分钟。我的喉咙像被什么堵住。二十分钟，够不够把一个人从边缘拉回来？",
+    chapter: "周叙线 · 深夜送你",
+    media: { type: "chat", title: "周叙", body: "我送你回去。" },
+    text: "看完 U 盘已经快凌晨两点。周叙没有问，直接拿起外套说送你回去。楼道灯坏了，他走在你前面，用手机照着地面，力道刚好够你走路不踩空。",
     choices: [
-      { text: "先想清楚：我要救的不是证据，是陆眠", next: "ch6_arrive_01" }
+      { text: "问他：你每次都这样吗", next: "zhou_sendHome02" },
+      { text: "跟着他走，不说话", next: "zhou_sendHome02" }
     ]
   },
-  ch6_arrive_01: {
-    art: "rooftop",
-    scene: "rooftop",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第六章 · 坠落前二十分钟",
-    text: "风声先涌进耳朵。我站在教学楼顶层楼梯口，校服袖口被风吹得发冷。走廊尽头的门半开着，门后是天台。",
-    choices: [
-      { text: "先找陆眠", next: "ch6_find_lu_01" },
-      { text: "先去找张恒对质", next: "ch6_wrong_zhang_01" },
-      { text: "先冲上天台", next: "ch6_wrong_roof_01" }
-    ]
-  },
-  ch6_find_lu_01: {
-    art: "ch2CorridorAfter",
-    scene: "corridor",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第六章 · 不是天台",
-    text: "我没有立刻冲上天台。陆眠现在最需要的，不是有人替她抓凶手，是有人先找到她。楼梯间旁边的广播室门虚掩着，里面传来很轻的呼吸声。",
-    choices: [
-      { text: "推开广播室门", next: "ch6_broadcast_01" }
-    ]
-  },
-  ch6_wrong_zhang_01: {
-    art: "ch2CorridorConfront",
-    scene: "corridor",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第六章 · 找错了人",
-    text: "我转身去找张恒。走廊里人很多，每张脸都像他，又都不是他。等我再跑回楼梯口，天台门已经被风撞得砰砰响。",
-    choices: [
-      { text: "冲上去", next: "ch6_fail_late_01" }
-    ]
-  },
-  ch6_wrong_roof_01: {
-    art: "rooftop",
-    scene: "rooftop",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第六章 · 太快",
-    text: "我直接冲上天台。风把门撞到墙上，声音惊动了站在边缘的人。陆眠回头看我，眼神里不是获救，是被发现后的慌乱。",
-    choices: [
-      { text: "试着解释", next: "ch6_fail_panic_01" }
-    ]
-  },
-  ch6_broadcast_01: {
-    art: "ch2FollowMirror",
-    scene: "corridor",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第六章 · 广播室",
-    text: "陆眠坐在广播桌下，膝盖抱得很紧。她看见我，没有惊讶，只说：你怎么每次都能找到我？",
-    choices: [
-      { text: "蹲下来，和她平视", next: "ch6_broadcast_02" }
-    ]
-  },
-  ch6_broadcast_02: {
-    art: "ch2FollowMirror",
-    scene: "corridor",
-    effect: "memory",
-    speaker: "沈栀",
-    chapter: "第六章 · 不说大道理",
-    text: "我蹲下来，没有说你要坚强，也没有说事情会过去。我只是把声音放得很低：我来晚过一次，所以这次跑得快了一点。",
-    choices: [
-      { text: "把发绳拿出来", next: "ch6_hairtie_01" }
-    ]
-  },
-  ch6_hairtie_01: {
-    art: "ch2EveningHairtie",
-    scene: "corridor",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第六章 · 发绳",
-    stateDelta: { luTrust: 2 },
-    text: "陆眠看见那根发绳，眼睛一点点红了：我给你的？我点头。她伸手碰了一下，又缩回去：可是我不记得。",
-    choices: [
-      { text: "说：不记得也没关系，它记得", next: "ch6_hairtie_02" }
-    ]
-  },
-  ch6_hairtie_02: {
-    art: "ch2EveningHairtie",
-    scene: "corridor",
-    effect: "memory",
-    speaker: "沈栀",
-    chapter: "第六章 · 它记得",
-    text: "它记得你在终点笑，记得你把早饭分一半给我，记得你说要是有人早一点来就好了。我看着她：陆眠，我来了。",
-    choices: [
-      { text: "等她回应", next: "ch6_lu_respond_01" }
-    ]
-  },
-  ch6_lu_respond_01: {
-    art: "ch2FollowMirror",
-    scene: "corridor",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第六章 · 我真的说过吗",
-    text: "陆眠很久才问：我真的说过吗？我说真的。她把脸埋进手臂里，声音闷闷的：那我那时候一定很想活。",
-    choices: [
-      { text: "说：你现在也可以想", next: "ch6_lu_respond_02" }
-    ]
-  },
-  ch6_lu_respond_02: {
-    art: "ch2FollowMirror",
-    scene: "corridor",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第六章 · 可以想",
-    stateDelta: { luTrust: 2, memoryCount: 1 },
-    text: "她抬起头，眼泪落得很安静：可是他们有照片，有录音，有我解释不清的东西。我说：那就不在这里解释。我们先离开这里。",
-    choices: [
-      { text: "带她往楼下走", next: "ch6_stair_01" }
-    ]
-  },
-  ch6_stair_01: {
-    art: "ch2CorridorAfter",
-    scene: "corridor",
-    effect: "horror",
-    speaker: "旁白",
-    chapter: "第六章 · 楼梯口",
-    text: "我们刚走到楼梯口，手机震了一下。陆眠也听见了。屏幕上是一条匿名消息：你走一步，所有人都会看见。",
-    choices: [
-      { text: "陆眠停住了", next: "ch6_stair_02" }
-    ]
-  },
-  ch6_stair_02: {
-    art: "proSmsThreat",
-    scene: "corridor",
-    effect: "message",
-    speaker: "陆眠",
-    chapter: "第六章 · 她又被拽回去",
-    text: "陆眠的手从我掌心里滑出去。她看着楼梯下面来来往往的人，像每个人都已经看见了她最害怕的样子。她说：我下不去。",
-    choices: [
-      { text: "叫白祁和周叙", next: "ch6_support_01" }
-    ]
-  },
-  ch6_support_01: {
-    art: "ch2SportsBaiWater",
-    scene: "corridor",
-    effect: "ambient",
-    speaker: "白祁",
-    chapter: "第六章 · 白祁在楼下",
-    text: "我推开楼梯间的窗，喊白祁。十六岁的白祁抬头，脸色一下变了。他什么都没问，转身就往上跑。",
-    choices: [
-      { text: "再找周叙", next: "ch6_support_02" }
-    ]
-  },
-  ch6_support_02: {
-    art: "ch2LibraryZhou",
-    scene: "corridor",
-    effect: "ambient",
+  zhou_sendHome02: {
+    art: "car",
+    scene: "taxi",
+    effect: "rain",
     speaker: "周叙",
-    chapter: "第六章 · 周叙拿到证据",
-    stateDelta: { zhouBond: 1 },
-    text: "周叙从另一侧走廊赶来，手里拿着打印出来的后台记录：我发给老师了，也发给了校医室。不是发给班群，不会让她被围观。",
+    chapter: "周叙线 · 楼道",
+    media: { type: "chat", title: "周叙", body: "三年前也是这个楼道。灯也坏了。" },
+    text: "周叙说：三年前我来接你，楼道灯也坏了，你拉住我外套走上来的。说完他自己笑了一下，像是觉得说这个很蠢，可他还是说了。你走到你家门口，发现他停在了两步远的地方。",
     choices: [
-      { text: "让陆眠听见这句话", next: "ch6_support_03" }
+      { text: "你没开门：你等什么", next: "zhou_sendHome03" },
+      { text: "你开门：进来坐一会儿", next: "zhou_sendHome04" }
     ]
   },
-  ch6_support_03: {
-    art: "ch2SportsBaiWater",
-    scene: "corridor",
+  zhou_sendHome03: {
+    art: "zhouDoor",
+    scene: "living",
+    effect: "rain",
+    speaker: "周叙",
+    chapter: "周叙线 · 门口",
+    media: { type: "chat", title: "周叙", body: "我在等你先进去。" },
+    text: "周叙说：我在等你先进去。你问为什么，他说：怕我进去了就不走了。说完他自己先别开了眼睛，像觉得这句话说得太快。你站在门口，手里拿着钥匙，第一次觉得今晚还没有结束。",
+    choices: [
+      { text: "你先进去，转身把门留着缝", next: "zhou_sendHome04" },
+      { text: "晚安，关上门", next: "zhou05" }
+    ]
+  },
+  zhou_sendHome04: {
+    art: "zhouDoor",
+    scene: "living",
     effect: "memory",
-    speaker: "陆眠",
-    chapter: "第六章 · 不是班群",
-    text: "陆眠抬起眼。她最怕的是所有人看见。周叙却说，不发给班群。白祁站在楼梯上，气喘吁吁：姐，我在这里。",
+    speaker: "周叙",
+    chapter: "周叙线 · 进来了",
+    media: { type: "chat", title: "凌晨客厅", body: "他把外套挂在你门口的钩子上，就像三年前一样。" },
+    text: "周叙把外套挂在你门口，走进来坐下，什么都没说，只是低头看着手机屏幕。沉默了很久，他忽然问：如果那晚我接了电话，你觉得我们现在会在哪里？你回答不了，但你知道你没有想让他走的意思。",
     choices: [
-      { text: "张恒出现了", next: "ch6_zhang_01" }
+      { text: "你去倒了两杯水，没有回答他", next: "zhou_romance03" },
+      { text: "你说：不知道，但可能不是今晚才说清楚", next: "zhou_romance03" }
     ]
   },
-  ch6_zhang_01: {
-    art: "ch2CorridorConfront",
-    scene: "corridor",
-    effect: "horror",
-    speaker: "张恒",
-    chapter: "第六章 · 最后一推",
-    text: "张恒从走廊尽头走过来，手里拿着手机。他没有看我，只看陆眠：你真要让他们替你出头？你以为他们以后不会后悔认识你？",
-    choices: [
-      { text: "不要替陆眠回答", next: "ch6_zhang_02" }
-    ]
-  },
-  ch6_zhang_02: {
-    art: "ch2CorridorConfront",
-    scene: "corridor",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第六章 · 不替她回答",
-    text: "我看着陆眠，没有看张恒。只要我和他吵起来，陆眠又会变成被迫站在中间的人。我把发绳放到她掌心，说：你可以不回答他。",
-    choices: [
-      { text: "陆眠握住发绳", next: "ch6_zhang_03" }
-    ]
-  },
-  ch6_zhang_03: {
-    art: "ch2EveningHairtie",
-    scene: "corridor",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第六章 · 不回答",
-    stateDelta: { luTrust: 1 },
-    text: "陆眠握住发绳，指节慢慢恢复血色。她说：我不回答你。张恒的表情终于变了。他往前一步，白祁立刻挡在他面前。",
-    choices: [
-      { text: "天台门被风撞开", next: "ch6_rooftop_01" }
-    ]
-  },
-  ch6_rooftop_01: {
-    art: "rooftop",
-    scene: "rooftop",
-    effect: "horror",
+  oldDream01: {
+    art: "car",
+    scene: "taxi",
+    effect: "rain",
     speaker: "旁白",
-    chapter: "第六章 · 风口",
-    text: "混乱里，陆眠还是被风声吸引着往天台走了一步。我跟上去，没有拉她。天台很空，城市在栏杆外沉默地亮着。",
+    chapter: "结局线 · 离城",
+    media: { type: "route", title: "你选择逃离", body: "车开上高架，23:43。" },
+    text: "周叙的车驶上高架。雨刷一下下刮开前挡风玻璃，后座那只 U 盘像一枚烫伤的证物。周叙说：我们可以重新开始。你知道他在等你把真相交出去。",
     choices: [
-      { text: "最后选择", next: "ch6_final_choice" }
+      { text: "把 U 盘藏进外套", next: "oldDreamKeepDrive" },
+      { text: "把 U 盘交给周叙", next: "oldDreamGiveDrive" }
     ]
   },
-  ch6_final_choice: {
-    art: "rooftop",
-    scene: "rooftop",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "第六章 · 最后选择",
-    text: "我终于站到那个位置。不是侦探，不是审判者，也不是替她活的人。我要做的，只有把她从一个人的边缘带回两个人的旁边。",
+  oldDreamKeepDrive: {
+    art: "car",
+    scene: "taxi",
+    effect: "rain",
+    speaker: "旁白",
+    chapter: "结局 B · 第一幕：带走证物",
+    media: { type: "drive", title: "U 盘仍在", body: "你没有勇气看，也没有勇气丢。" },
+    text: "你把 U 盘藏进外套内袋，像藏一颗还在跳的心。周叙看见了，却没有阻止。他只是把车开得更快，像速度足够快，就能把三年前甩在后视镜外。",
     choices: [
-      { text: "立刻公开所有证据，让所有人知道真相", next: "ch6_fail_public_01" },
-      { text: "抓住陆眠的手腕，把她往回拉", next: "ch6_fail_grab_01" },
-      { text: "把发绳递给她：我来你旁边了", next: "ch6_rescue_01" }
+      { text: "继续", next: "oldDream02" }
     ]
   },
-  ch6_rescue_01: {
-    art: "rooftop",
-    scene: "rooftop",
-    effect: "memory",
-    speaker: "沈栀",
-    chapter: "第六章 · 我来你旁边了",
-    text: "我没有碰她，只把发绳递过去。风很大，我的声音几乎被吹散：陆眠，我来你旁边了。你不用马上相信明天，你先相信这一秒。",
+  oldDreamGiveDrive: {
+    art: "car",
+    scene: "taxi",
+    effect: "rain",
+    speaker: "周叙",
+    chapter: "结局 B · 第一幕：交出证物",
+    media: { type: "drive", title: "U 盘离开你的手", body: "周叙说：我替你处理。" },
+    text: "周叙接过 U 盘，指节用力到发白。你问他会怎么处理，他说不会让它再伤害你。车窗外闪过跨江大桥，你忽然觉得自己不是在被救走，而是在被温柔地困住。",
     choices: [
-      { text: "等她伸手", next: "ch6_rescue_02" }
+      { text: "继续", next: "oldDream02" }
     ]
   },
-  ch6_rescue_02: {
-    art: "rooftop",
-    scene: "rooftop",
-    effect: "memory",
-    speaker: "陆眠",
-    chapter: "第六章 · 她伸手",
-    text: "陆眠看着我，眼泪被风吹到脸侧。她很慢很慢地伸出手，先碰到发绳，再碰到我的指尖。她说：你真的来了。",
+  oldDream02: {
+    art: "car",
+    scene: "taxi",
+    effect: "ending",
+    speaker: "结局 B",
+    chapter: "结局 · 旧梦重燃",
+    ending: "oldDream",
+    media: { type: "ending", title: "旧梦重燃", body: "有些明天，是偷来的。" },
+    text: "天亮前，你们在陌生城市下车。周叙给你买了新的电话卡，替你删掉旧联系人。你看着自己的名字从通讯录里消失，忽然明白：这个结局不是重新开始，是两个人合谋把陆眠留在昨天。",
     choices: [
-      { text: "说：这次不会走", next: "ch6_rescue_03" }
+      { text: "继续", next: "oldDreamAfter" }
     ]
   },
-  ch6_rescue_03: {
-    art: "rooftop",
-    scene: "rooftop",
-    effect: "memory",
-    speaker: "白祁",
-    chapter: "第六章 · 他们也在",
-    text: "白祁站在门口，声音抖得不像他：姐。周叙把打印件交给赶来的老师和校医，没有让人群围上来。陆眠回头看了一眼，终于往我这边走了一步。",
-    choices: [
-      { text: "接住她", next: "ch6_rescue_04" }
-    ]
-  },
-  ch6_rescue_04: {
-    art: "hospital",
-    scene: "hospital",
+  oldDreamAfter: {
+    art: "car",
+    scene: "taxi",
     effect: "ending",
     speaker: "旁白",
-    chapter: "第六章 · 明天以前",
-    text: "后来的事很乱。校医室、老师、报警、家长、硬盘、录音。可这一次，乱的不是陆眠一个人的世界。有人记录，有人作证，有人陪她坐到天亮。",
+    chapter: "结局 B · 第二幕：新城市",
+    media: { type: "reward", title: "图鉴已收录", body: "旧梦重燃：逃离不是结束，只是把真相带到更远的地方。" },
+    text: "三个月后，你在新城市的剪辑室上班。这里没人知道陆眠，没人知道 23:17，也没人会问你为什么总在雨夜请假。你应该轻松，可每段素材的时间轴都会自动停在十三秒。",
     choices: [
-      { text: "现实开始改变", next: "ch6_rescue_05" }
+      { text: "逼自己看一次", next: "oldDreamAfter2" },
+      { text: "等周叙来接你", next: "oldDreamHide" }
     ]
   },
-  ch6_rescue_05: {
-    art: "dawn",
-    scene: "home",
+  oldDreamAfter2: {
+    art: "car",
+    scene: "taxi",
     effect: "ending",
-    speaker: "沈栀",
-    chapter: "第六章 · 现实的清晨",
-    text: "我在清晨醒来。手机里没有五个月前的讣告，只有一条新消息。陆眠发来一张照片：医院花园里，一束白玫瑰插在玻璃杯里。",
+    speaker: "结局 B",
+    chapter: "结局 B · 第三幕：第一秒",
+    media: { type: "memory", title: "被暂停的画面", body: "陆眠还没有回头。你已经开始发抖。" },
+    text: "你只看了一秒。陆眠的鞋尖刚踏上天台门槛，画面还没来得及把死亡交出来，你已经喘不过气。你按下暂停，忽然恨自己：原来你连偷来的明天都没有勇气好好使用。",
     choices: [
-      { text: "点开消息", next: "ch6_rescue_06" }
+      { text: "继续", next: "oldDreamAfter3" }
     ]
   },
-  ch6_rescue_06: {
-    art: "dawn",
-    scene: "home",
+  oldDreamHide: {
+    art: "car",
+    scene: "taxi",
     effect: "ending",
-    speaker: "陆眠",
-    chapter: "结局 A · 替你活到明天",
-    ending: "rescue",
-    text: "消息下面只有一句话：沈栀，明天见。我看着那三个字，忽然哭出来。原来救一个人不是替她活下去，是终于让她可以自己说出明天。",
+    speaker: "周叙",
+    chapter: "结局 B · 第三幕：被照顾",
+    media: { type: "chat", title: "周叙", body: "别看了。我在楼下。" },
+    text: "周叙很快赶来。他没有责备你，只是替你关掉电脑，替你请假，替你把外套披上。他做得太熟练，熟练到你突然害怕：你们所谓的相爱，会不会只是互相替对方逃避。",
     choices: [
-      { text: "查看结局图鉴", action: "gallery" },
-      { text: "返回主菜单", action: "title" }
+      { text: "继续", next: "oldDreamAfter3" }
     ]
   },
-  ch6_fail_public_01: {
-    art: "rooftop",
-    scene: "rooftop",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "坏结局 · 太亮的真相",
-    text: "我打开手机，想把证据一次性发出去。可屏幕亮起的瞬间，陆眠像被那束光刺到。她退后一步，声音很轻：不要让他们都看见我。",
+  oldDreamAfter3: {
+    art: "car",
+    scene: "taxi",
+    effect: "ending",
+    speaker: "结局 B",
+    chapter: "结局 B · 第四幕：求婚",
+    media: { type: "memory", title: "没有寄出的信", body: "收件人：陆眠。内容空白。" },
+    text: "第二年冬天，周叙向你求婚。戒指盒里压着一张空白信纸，你认出那是陆眠以前最喜欢买的便签。你忽然意识到，周叙也没有真正走出来。他只是把愧疚换成了照顾你。",
     choices: [
-      { text: "伸手已经晚了", next: "ch6_fail_end_01" }
+      { text: "戴上戒指", next: "oldDreamPromise" },
+      { text: "问他还欠陆眠什么", next: "oldDreamQuestion" }
     ]
   },
-  ch6_fail_grab_01: {
-    art: "rooftop",
-    scene: "rooftop",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "坏结局 · 失控的手",
-    text: "我扑过去抓住她的手腕。陆眠被吓得整个人一颤。她不是不想被救，她只是又一次被人替她决定了身体要往哪里去。",
+  oldDreamPromise: {
+    art: "car",
+    scene: "taxi",
+    effect: "ending",
+    speaker: "旁白",
+    chapter: "结局 B · 第五幕：戒指",
+    media: { type: "note", title: "你的答案", body: "好。我们继续往前走。" },
+    text: "戒指很合适，像周叙早就量好了你所有能承受的尺寸。你说好。周叙低头吻你的手背，可你看见他睫毛上挂着一点湿意。那不是幸福，是终于有人愿意和他一起把真相埋下去。",
     choices: [
-      { text: "她挣开了", next: "ch6_fail_end_01" }
+      { text: "继续", next: "oldDreamAfter4" }
     ]
   },
-  ch6_fail_panic_01: {
-    art: "rooftop",
-    scene: "rooftop",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "坏结局 · 被发现",
-    text: "我说了很多话，证据、张恒、林中、未来。每一句都是真的，可每一句都太重。陆眠看着我，像看着另一个无法相信她的人。",
+  oldDreamQuestion: {
+    art: "car",
+    scene: "taxi",
+    effect: "ending",
+    speaker: "周叙",
+    chapter: "结局 B · 第五幕：欠账",
+    media: { type: "record", title: "周叙的回答", body: "我欠她一个接起来的电话，也欠你一个不逃跑的我。" },
+    text: "周叙没有立刻回答。他把戒指盒合上，像合上一份判决书。他说：我欠她一个接起来的电话，也欠你一个不逃跑的我。那一刻你才知道，原来逃走的路也会走到尽头。",
     choices: [
-      { text: "风声盖住回答", next: "ch6_fail_end_01" }
+      { text: "继续", next: "oldDreamAfter4" }
     ]
   },
-  ch6_fail_late_01: {
-    art: "rooftop",
-    scene: "rooftop",
-    effect: "horror",
-    speaker: "沈栀",
-    chapter: "坏结局 · 晚一步",
-    text: "我冲上天台时，风已经把所有声音吹散。白祁在楼梯口喊她，周叙手里的证据散了一地。我终于明白，找对真相不等于找对她。",
-    choices: [
-      { text: "回到现实", next: "ch6_fail_end_01" }
-    ]
-  },
-  ch6_fail_end_01: {
+  oldDreamAfter4: {
     art: "cemetery",
-    scene: "home",
+    scene: "dawn",
     effect: "ending",
-    speaker: "旁白",
-    chapter: "结局 B · 没来得及",
-    ending: "fail",
-    text: "旧手机熄灭了。现实没有再给我下一次。墓园的风很轻，白玫瑰被雨水压弯。我终于知道，真相不能代替陪伴，抓住凶手也不能替她走下天台。",
+    speaker: "结局 B",
+    chapter: "结局 B · 第六幕：迟到的墓园",
+    media: { type: "flower", title: "白玫瑰", body: "这一次，你在墓前站了很久。" },
+    text: "你们回到旧城。墓园的路比记忆里短，你却走得像过一座桥。你把空白信纸放在陆眠墓前，终于承认：你不是想和周叙重新开始，你只是希望有个人陪你一起不敢回头。",
     choices: [
-      { text: "查看结局图鉴", action: "gallery" },
-      { text: "返回主菜单", action: "title" }
+      { text: "继续", next: "oldDreamAfter5" }
     ]
   },
-  __title__: {
-    art: "dawn",
-    scene: "home",
-    effect: "ambient",
-    speaker: "旁白",
-    chapter: "返回主菜单",
-    text: "返回标题页。",
+  oldDreamAfter5: {
+    art: "cemetery",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "结局 B",
+    chapter: "结局 B · 第七幕：写给陆眠",
+    media: { type: "note", title: "信纸第一行", body: "陆眠，我没有过得很好，但我没有再删掉你。" },
+    text: "你在墓园长椅上写了很久。风把纸角吹起来，周叙坐在旁边，没有催你。你写下第一行：陆眠，我没有过得很好，但我没有再删掉你。写完以后，你第一次没有立刻崩溃。",
     choices: [
-      { text: "返回主菜单", action: "title" }
+      { text: "继续", next: "oldDreamAfter6" }
+    ]
+  },
+  oldDreamAfter6: {
+    art: "cemetery",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "结局 B",
+    chapter: "结局 B · 终幕",
+    media: { type: "ending", title: "旧梦重燃 完成", body: "成就解锁：偷来的明天，也要还利息" },
+    text: "离开墓园时，手机在 23:17 震了一下。没有短信，只有你自己设下的提醒：明年也来。你和周叙牵着手往山下走，你们依然亏欠陆眠，但至少从这一刻起，不再假装那份亏欠不存在。",
+    choices: [
+      { text: "回到标题", action: "title" },
+      { text: "查看结局图鉴", action: "gallery" }
+    ]
+  },
+
+  bai01: {
+    art: "car",
+    scene: "taxi",
+    effect: "rain",
+    speaker: "白祁",
+    chapter: "白祁线 · 定位",
+    media: { type: "location", title: "城西废弃摄影棚", body: "想知道我姐怎么死的，就来这里。" },
+    text: "你给白祁发消息。他只回了一个定位：城西废弃摄影棚。三年前，陆眠就是在那里坠楼。白祁比你小三岁，陆眠死后，他再也没有叫过你姐姐。",
+    choices: [
+      { text: "独自去摄影棚", next: "bai02" },
+      { text: "叫周叙一起去", next: "bai03" }
+    ]
+  },
+  bai02: {
+    art: "studio",
+    scene: "studio",
+    effect: "photo",
+    speaker: "旁白",
+    chapter: "白祁线 · 照片墙",
+    media: { type: "photos", title: "照片墙", body: "你上班。买药。去墓园。三分钟后离开。" },
+    text: "摄影棚没有开灯。白祁站在二楼扶梯旁，身后是一整面照片墙。照片里几乎全是你。他说：我查了三年，一直以为你是凶手。直到今晚，我姐也给我发了消息。",
+    choices: [
+      { text: "问他收到的短信", next: "bai04" },
+      { text: "看照片墙上的时间线", next: "bai05" },
+      { text: "你不看照片，你看他", next: "bai02_look" }
+    ]
+  },
+  bai02_look: {
+    art: "studio",
+    scene: "studio",
+    effect: "photo",
+    speaker: "白祁",
+    chapter: "白祁线 · 你在看什么",
+    media: { type: "photo", title: "白祁", body: "他比陆眠小三岁，但今晚他看起来不像弟弟。" },
+    text: "你没有看照片墙，你看着白祁。他比三年前高了很多，也瘦了很多，脸上还留着那道伤疤——葬礼后，他打过一架，你没有去看他。他察觉到你在看他，眼神往侧面偏了一下：看什么。",
+    choices: [
+      { text: "你说：你长大了", next: "bai02_grow" },
+      { text: "你说：伤疤是怎么来的", next: "bai02_scar" }
+    ]
+  },
+  bai02_grow: {
+    art: "studio",
+    scene: "studio",
+    effect: "photo",
+    speaker: "白祁",
+    chapter: "白祁线 · 长大了",
+    media: { type: "photo", title: "摄影棚", body: "灯光只照着你。" },
+    text: "白祁愣了一秒，嘴角往下压了一下，像是把某个表情强行按住了。他说：你才现在发现。他说这句话的语气很奇怪，不全是恨，但也不只是嘲讽，里面有一点你不敢细想的东西。",
+    choices: [
+      { text: "问他收到的短信", next: "bai04" },
+      { text: "你说：那晚以后我不敢再看你", next: "bai02_confess" }
+    ]
+  },
+  bai02_scar: {
+    art: "studio",
+    scene: "studio",
+    effect: "photo",
+    speaker: "白祁",
+    chapter: "白祁线 · 那道伤",
+    media: { type: "photo", title: "伤疤", body: "陆眠葬礼后的第三天。" },
+    text: "白祁摸了一下脸上的伤疤，说：打架打的。葬礼后第三天。他停顿了一下，补充了一句：有人说我姐是自己跳下去的，我不服。你第一次意识到，这三年他一直在替陆眠打这场架，而你连他有没有打赢都不知道。",
+    choices: [
+      { text: "问他收到的短信", next: "bai04" },
+      { text: "你说：我应该去找过你的", next: "bai02_confess" }
+    ]
+  },
+  bai02_confess: {
+    art: "studio",
+    scene: "studio",
+    effect: "photo",
+    speaker: "白祁",
+    chapter: "白祁线 · 那你为什么没来",
+    media: { type: "photo", title: "白祁", body: "他盯着你看了很久。" },
+    text: "白祁盯着你，安静得有点反常。他说：你那时候不是已经把我们全删了吗。他说的是〔我们〕，不是〔我姐〕。你终于明白，他恨你恨了三年，里面有一份是替陆眠恨的，还有一份说不清楚。",
+    choices: [
+      { text: "看照片墙，开始查", next: "bai05" },
+      { text: "你说：我没有删你", next: "bai02_notdeleted" }
+    ]
+  },
+  bai02_notdeleted: {
+    art: "studio",
+    scene: "studio",
+    effect: "memory",
+    speaker: "白祁",
+    chapter: "白祁线 · 没删",
+    media: { type: "chat", title: "沈栀的通讯录", body: "白祁。仍然存着。三年没动过。" },
+    text: "你把手机打开，给他看通讯录。他的名字还在，头像还是三年前陆眠替他拍的那张。白祁看了很久，没有说话，把眼睛移开去，下巴绷着，像在努力让某个表情不要出来。",
+    choices: [
+      { text: "继续：先把今晚的事说完", next: "bai04" },
+      { text: "你说：我也没删陆眠", next: "bai_romance01" }
+    ]
+  },
+  bai_romance01: {
+    art: "studio",
+    scene: "studio",
+    effect: "memory",
+    speaker: "白祁",
+    chapter: "白祁线 · 还在",
+    media: { type: "photo", title: "通讯录", body: "陆眠。白祁。都还在。" },
+    text: "白祁沉默了很久，才说：那你为什么从来不回来找我们？你说你害怕。他问：害怕什么？你说：害怕你们用她的眼神看我。白祁忽然往前走了一步，站得离你很近，声音压低：我用的是我自己的眼神。",
+    choices: [
+      { text: "你后退一步", next: "bai04" },
+      { text: "你没动：你的眼神里有什么", next: "bai_romance02" }
+    ]
+  },
+  bai_romance02: {
+    art: "studio",
+    scene: "studio",
+    effect: "memory",
+    speaker: "白祁",
+    chapter: "白祁线 · 什么眼神",
+    media: { type: "photo", title: "白祁", body: "他离你很近。你可以看见他的眼睫很长。" },
+    text: "白祁没有立刻回答。他低头看了一眼你和他之间的距离，说：我用这双眼睛查你三年，看你上班、买药、去墓园。你以为我是在恨你。他顿了顿，声音更低：有一半是。",
+    choices: [
+      { text: "你问：另一半呢", next: "bai_romance03" },
+      { text: "你说：把话说完，我们先查清楚", next: "bai04" }
+    ]
+  },
+  bai_romance03: {
+    art: "studio",
+    scene: "studio",
+    effect: "memory",
+    speaker: "白祁",
+    chapter: "白祁线 · 另一半",
+    media: { type: "photo", title: "白祁", body: "他没有回答这个问题。" },
+    text: "白祁没有回答。他往后退了一步，转身指向照片墙：另一半你自己想清楚再问我。他的声音恢复了那种压着什么的平静，但你注意到，他转身时顿了不到一秒。",
+    choices: [
+      { text: "去看照片墙", next: "bai05" }
+    ]
+  },
+  bai03: {
+    art: "studio",
+    scene: "studio",
+    effect: "video",
+    speaker: "旁白",
+    chapter: "白祁线 · 三人重逢",
+    media: { type: "projector", title: "投影仪已启动", body: "rooftop_raw.mp4 / 00:00:13" },
+    text: "周叙赶到摄影棚时，白祁笑了一声：当年没接电话的人，今天倒是来得很快。你站在两人中间，忽然明白一件事：所有人都被困在三年前，只有你把自己剪出了那段录像。",
+    choices: [
+      { text: "让白祁播放录像", next: "commonVideo01" },
+      { text: "先问白祁收到的短信", next: "bai04" }
+    ]
+  },
+  bai04: {
+    art: "studio",
+    scene: "studio",
+    effect: "message",
+    speaker: "白祁",
+    chapter: "白祁线 · 她的留言",
+    media: { type: "sms", title: "陆眠发给白祁", body: "别再恨沈栀了。她活着已经很难了。" },
+    text: "白祁收到的短信只有一句：别再恨沈栀了。她活着已经很难了。白祁盯着屏幕，眼眶发红。他说：我不想信。我姐那么疼你，凭什么最后死的是她？",
+    choices: [
+      { text: "说：那你就让我想起来", next: "bai05" },
+      { text: "说：你恨我是应该的", next: "trial01" }
+    ]
+  },
+  bai05: {
+    art: "studio",
+    scene: "studio",
+    effect: "photo",
+    speaker: "旁白",
+    chapter: "白祁线 · 时间线",
+    media: { type: "timeline", title: "事故前一周", body: "失眠 / 请假 / 安眠药 / 删除聊天记录 / 如果我不在了" },
+    text: "照片墙上贴着事故前一周的时间线。你失眠、请假、取走安眠药，还给陆眠发过一句：如果我不在了，你会不会轻松一点？白祁说：你不是忘了她，你是忘了你自己。",
+    choices: [
+      { text: "要求看完整录像", next: "commonVideo01" },
+      { text: "找陆眠留下的原文件", next: "luVideo01" },
+      { text: "受不了，拒绝继续看", next: "trial01" },
+      { text: "你说：你为什么要帮我拼出这些", next: "bai05_why" }
+    ]
+  },
+  bai05_why: {
+    art: "studio",
+    scene: "studio",
+    effect: "photo",
+    speaker: "白祁",
+    chapter: "白祁线 · 为什么",
+    media: { type: "photo", title: "照片墙", body: "你们对视着。" },
+    text: "白祁愣了一秒。他应该准备了很多种你的反应，但没有准备这个问题。他说：我姐让我找你，我才找你的。你说：是吗。他沉默了，最后说：不全是。",
+    choices: [
+      { text: "你说：那是什么", next: "bai05_reason" },
+      { text: "你转回去看照片墙", next: "bai05_wall" }
+    ]
+  },
+  bai05_reason: {
+    art: "studio",
+    scene: "studio",
+    effect: "memory",
+    speaker: "白祁",
+    chapter: "白祁线 · 查三年的理由",
+    media: { type: "photo", title: "白祁手机", body: "一张你不知道的合照：白祁十五岁，陆眠把你和他的手拉在一起说，这是我的两个人。" },
+    text: "白祁从口袋里摸出一张折叠的照片，展开递给你。你十七岁，他十五岁，陆眠站在你们中间，笑着说了什么。白祁说：我姐说你是她拣回来的人。我后来想——她走了以后，那个人要不要有人继续替她看着？",
+    choices: [
+      { text: "你说：你一直在看着我", next: "bai_romance04" },
+      { text: "你问：看着，还是监视", next: "bai_romance04" }
+    ]
+  },
+  bai_romance04: {
+    art: "studio",
+    scene: "studio",
+    effect: "memory",
+    speaker: "白祁",
+    chapter: "白祁线 · 继续拣",
+    media: { type: "photo", title: "白祁", body: "他皱眉了，但眼睛没有冷下来。" },
+    text: "白祁皱了一下眉，说：两者都有。他停顿了一下，补充：但今晚你来了，我才知道我查三年不全是为了替她报仇。他说这话时侧过脸去，脖子有点红，像一个二十岁的人第一次承认了不该说的事。",
+    choices: [
+      { text: "你把照片还给他", next: "bai05_wall" },
+      { text: "你说：那这张照片让我拿着", next: "bai_romance05" }
+    ]
+  },
+  bai_romance05: {
+    art: "studio",
+    scene: "studio",
+    effect: "memory",
+    speaker: "白祁",
+    chapter: "白祁线 · 拿着",
+    media: { type: "photo", title: "三个人的合照", body: "陆眠在中间，你们在两边。" },
+    text: "白祁没有立刻回应，让你拿着了。他把目光转向照片墙，声音恢复了克制：拿着没用，你还是要看完那些。但他说这话的时候，没有再叫你去死。",
+    choices: [
+      { text: "继续：看录像", next: "commonVideo01" },
+      { text: "先问：你今晚之后想怎么办", next: "bai_romance06" }
+    ]
+  },
+  bai_romance06: {
+    art: "studio",
+    scene: "studio",
+    effect: "memory",
+    speaker: "白祁",
+    chapter: "白祁线 · 之后",
+    media: { type: "photo", title: "白祁", body: "他低头想了很久。" },
+    text: "白祁低头想了很久，说：之后让你欠我一顿饭。他说这话时的语气完全不像在玩笑，更像是在签一份他认为公平的协议。你第一次在他脸上看见了一点不像陆眠的东西——只属于他自己的、笨拙的、想继续往前走的东西。",
+    choices: [
+      { text: "你说：好，先把今晚过完", next: "commonVideo01" }
+    ]
+  },
+  bai05_wall: {
+    art: "studio",
+    scene: "studio",
+    effect: "photo",
+    speaker: "旁白",
+    chapter: "白祁线 · 回到照片墙",
+    media: { type: "timeline", title: "事故前一周", body: "失眠 / 请假 / 安眠药 / 删除聊天记录 / 如果我不在了" },
+    text: "你转回去看照片墙。白祁站在你旁边，比刚才近了半步，说：你自己想想从哪里开始。",
+    choices: [
+      { text: "要求看完整录像", next: "commonVideo01" },
+      { text: "找陆眠留下的原文件", next: "luVideo01" }
+    ]
+  },
+
+  // ── 白祁专属亲密场景：手腕 ──
+  bai_wrist: {
+    art: "studio",
+    scene: "studio",
+    effect: "horror",
+    speaker: "白祁",
+    chapter: "白祁线 · 手腕",
+    media: { type: "photo", title: "白祁", body: "他抓住了你的手腕。" },
+    text: "你想转身走。白祁从背后抓住你的手腕，力道比你预想的轻——他没有要拦你，只是不想让你就这样走掉。他说：沈栀，你要逃到哪里去？这个摄影棚你已经三年没来了，今晚你走了，下次还要再等三年吗？",
+    choices: [
+      { text: "你说：放开我", next: "bai_wrist02" },
+      { text: "你没有动：你凭什么", next: "bai_wrist03" }
+    ]
+  },
+  bai_wrist02: {
+    art: "studio",
+    scene: "studio",
+    effect: "horror",
+    speaker: "白祁",
+    chapter: "白祁线 · 放开",
+    media: { type: "photo", title: "白祁", body: "他松开了。" },
+    text: "白祁松手了，比你要求的快。他低头看了一眼自己刚才握你的那只手，说：对不起。说完他转身回照片墙那边，背对着你，声音很低：但你别走。不是命令，是请求。",
+    choices: [
+      { text: "你留下来了", next: "bai05" },
+      { text: "你还是走了，联系周叙", next: "zhou01" }
+    ]
+  },
+  bai_wrist03: {
+    art: "studio",
+    scene: "studio",
+    effect: "memory",
+    speaker: "白祁",
+    chapter: "白祁线 · 凭什么",
+    media: { type: "photo", title: "白祁", body: "他没有立刻回答。" },
+    text: "白祁没有立刻回答——凭什么。他低头看着你的手腕，说：凭我在这里查了三年。凭我每次在墓园碰到你，看见你三分钟就走，没有一次留下来。他抬头对上你的眼睛：凭你今晚终于来了。",
+    choices: [
+      { text: "你说：那你把手松一点", next: "bai_wrist04" },
+      { text: "你说：我来不是来被困住的", next: "bai_wrist02" }
+    ]
+  },
+  bai_wrist04: {
+    art: "studio",
+    scene: "studio",
+    effect: "memory",
+    speaker: "白祁",
+    chapter: "白祁线 · 松一点",
+    media: { type: "photo", title: "白祁的手", body: "他的手松了一点，但没有放开。" },
+    text: "白祁把手松了一点，但没有完全放开。他说：这样行吗？他问的时候抬眼看了你一下，那个眼神有什么东西在里面，不全是恨，不全是愧疚，有一点让你没法定义的温度。",
+    choices: [
+      { text: "你把手抽走，但留下来了", next: "bai05" },
+      { text: "你没抽走，先问他一句话", next: "bai_romance02" }
+    ]
+  },
+  trial01: {
+    art: "studio",
+    scene: "studio",
+    effect: "horror",
+    speaker: "白祁",
+    chapter: "结局线 · 白祁失控",
+    media: { type: "projector", title: "多路投影", body: "哭声 / 喊声 / 迟来的奔跑声" },
+    text: "你的退缩让白祁彻底失控。他反锁摄影棚大门，把所有投影同时打开。墙上全是你忘掉的那晚。他说：我姐死在那天，我妈疯在那天，我活在那天。只有你可以第二天醒来，什么都不记得。",
+    choices: [
+      { text: "求他停下", next: "trial02" },
+      { text: "强迫自己看完", next: "commonVideo01" },
+      { text: "你叫他的名字", next: "trial01_name" }
+    ]
+  },
+  trial01_name: {
+    art: "studio",
+    scene: "studio",
+    effect: "horror",
+    speaker: "白祁",
+    chapter: "白祁线 · 叫名字",
+    media: { type: "photo", title: "白祁", body: "你叫了他的名字。他停了。" },
+    text: "你叫了他的名字：白祁。他停了一秒。他大概已经很久没有人这样叫他了，不是〔陆眠弟弟〕，不是〔那个男孩〕，就是他自己的名字。他看着你，投影的光打在你脸上，他的眼眶有点红。",
+    choices: [
+      { text: "你说：我知道你累了", next: "trial01_tired" },
+      { text: "你说：把这些关掉，我们一起看", next: "commonVideo01" }
+    ]
+  },
+  trial01_tired: {
+    art: "studio",
+    scene: "studio",
+    effect: "ending",
+    speaker: "白祁",
+    chapter: "白祁线 · 三年",
+    media: { type: "photo", title: "白祁", body: "他慢慢蹲下来，背靠着墙。" },
+    text: "白祁慢慢蹲下来，背靠着墙。他说：我查了三年，我以为查清楚了我就可以不再来这里了。他低着头，声音变得很小：但今晚我姐的消息一来，我第一反应不是复仇，是想找到你。他停了很久：我不知道这算什么。",
+    choices: [
+      { text: "你也蹲下来，陪着他", next: "trial02" },
+      { text: "你伸手拉他起来", next: "bai_romance05" }
+    ]
+  },
+  trial02: {
+    art: "studio",
+    scene: "studio",
+    effect: "ending",
+    speaker: "结局 C",
+    chapter: "结局 · 白祁的审判",
+    ending: "trial",
+    media: { type: "ending", title: "白祁的审判", body: "他说他终于替姐姐等到一个答案。" },
+    text: "白祁没有伤害你。他只是逼你看完全部录像。天快亮时，他替你报了警，也替自己报了警。警灯照进废弃摄影棚，照片墙上的每一张脸都变得苍白，像终于被迫出庭。",
+    choices: [
+      { text: "接过旧照片", next: "trialAfter" },
+      { text: "让白祁停手", next: "trialMercy" }
+    ]
+  },
+  trialMercy: {
+    art: "studio",
+    scene: "studio",
+    effect: "ending",
+    speaker: "白祁",
+    chapter: "结局 C · 第一幕：停手",
+    media: { type: "record", title: "白祁的供述", body: "我想让她记起来。我也想让自己停下来。" },
+    text: "白祁的手抖得厉害。他说他准备了三年，想过很多种让你痛苦的方法，可真正看见你想起来，他反而只剩下空。你按住他的手腕，第一次把他当成一个还活着的人看。",
+    choices: [
+      { text: "继续", next: "trialAfter" }
+    ]
+  },
+  trialAfter: {
+    art: "studio",
+    scene: "studio",
+    effect: "ending",
+    speaker: "旁白",
+    chapter: "结局 C · 第二幕：天亮以前",
+    media: { type: "reward", title: "图鉴已收录", body: "白祁的审判：真相没有救任何人，但它阻止所有人继续说谎。" },
+    text: "白祁被带走前，把那张旧照片留给你。照片里陆眠站在你和他中间，笑得像什么坏事都不会发生。你终于发现照片背面还有字：如果我不在了，别让他们互相杀死。",
+    choices: [
+      { text: "念出照片背面的字", next: "trialReadBack" },
+      { text: "去做笔录", next: "trialAfter2" }
+    ]
+  },
+  trialReadBack: {
+    art: "studio",
+    scene: "studio",
+    effect: "ending",
+    speaker: "白祁",
+    chapter: "结局 C · 第三幕：照片背面",
+    media: { type: "photo", title: "陆眠的字", body: "别让他们互相杀死。" },
+    text: "白祁听完以后低下头，肩膀一点点垮下去。他没有哭出声，只是问：那她有没有写，让我怎么办？你答不上来。陆眠留下了真相，却没有留下任何人该如何善后的说明书。",
+    choices: [
+      { text: "继续", next: "trialAfter2" }
+    ]
+  },
+  trialAfter2: {
+    art: "court",
+    scene: "studio",
+    effect: "ending",
+    speaker: "结局 C",
+    chapter: "结局 C · 第四幕：证物",
+    media: { type: "record", title: "证物袋", body: "U 盘、旧照片、陆眠自拍视频备份。" },
+    text: "警方把证物清单交给你签字。你看见自己的名字被写在受害者家属旁边，又被划掉，改成：重要证人。那一刻你才明白，白祁不是想审判你一个人，他是在审判所有把陆眠变成沉默的人。",
+    choices: [
+      { text: "补交删除记录", next: "trialConfessDelete" },
+      { text: "签下证物清单", next: "trialAfter3" }
+    ]
+  },
+  trialConfessDelete: {
+    art: "court",
+    scene: "studio",
+    effect: "ending",
+    speaker: "旁白",
+    chapter: "结局 C · 第五幕：自证",
+    media: { type: "record", title: "补充笔录", body: "沈栀承认事故后删除过部分记录。" },
+    text: "你补交了自己最想藏起来的部分：事故后，你删过陆眠求救前的聊天记录。警员抬头看你，你没有解释。你知道这不能把陆眠带回来，但至少你终于没有让白祁替你说出所有难堪。",
+    choices: [
+      { text: "继续", next: "trialAfter3" }
+    ]
+  },
+  trialAfter3: {
+    art: "court",
+    scene: "studio",
+    effect: "ending",
+    speaker: "结局 C",
+    chapter: "结局 C · 第六幕：会见",
+    media: { type: "chat", title: "探视登记", body: "探视人：沈栀。被探视人：白祁。" },
+    text: "后来你去探望白祁。他隔着玻璃问：你现在还想忘吗？你看着那张旧照片，摇了摇头。白祁沉默了很久，忽然说：那我姐赢了一半。另一半，看你怎么活。",
+    choices: [
+      { text: "继续", next: "trialAfter4" }
+    ]
+  },
+  trialAfter4: {
+    art: "court",
+    scene: "videoRoom",
+    effect: "video",
+    speaker: "陆眠",
+    chapter: "结局 C · 第七幕：证词",
+    media: { type: "video", title: "庭审播放片段", body: "陆眠：不要把我的死变成他们互相惩罚的理由。" },
+    text: "开庭那天，陆眠的视频被作为证据播放。屏幕里的她笑着，却比任何人都清醒。她说：如果我真的出事，不要让他们互相惩罚。旁听席有人哭，白祁低着头，像终于被姐姐摸了一下头。",
+    choices: [
+      { text: "继续", next: "trialAfter5" }
+    ]
+  },
+  trialAfter5: {
+    art: "court",
+    scene: "studio",
+    effect: "ending",
+    speaker: "结局 C",
+    chapter: "结局 C · 终幕",
+    media: { type: "ending", title: "白祁的审判 完成", body: "成就解锁：证词不是刀" },
+    text: "你站在证人席上，完整说出那晚发生的事。说到陆眠把你推回来时，你没有替自己开脱，也没有把白祁的恨说成错误。审判结束后，真相没有救任何人，但它终于不再只压在一个死人身上。",
+    choices: [
+      { text: "回到标题", action: "title" },
+      { text: "查看结局图鉴", action: "gallery" }
+    ]
+  },
+
+  escape01: {
+    art: "mirror",
+    scene: "bathroom",
+    effect: "horror",
+    speaker: "旁白",
+    chapter: "逃避线 · 关机",
+    media: { type: "phone", title: "你选择关机", body: "23:32。屏幕黑下去。" },
+    text: "你关机，洗澡，把白玫瑰塞进垃圾袋。你告诉自己这只是恶作剧，只要睡醒就会结束。可浴室镜子慢慢起雾，雾面上浮出一行字：你每次都这样。",
+    choices: [
+      { text: "擦掉镜子上的字", next: "escape02" },
+      { text: "打开手机回复陆眠", next: "source01" }
+    ]
+  },
+  escape02: {
+    art: "mirror",
+    scene: "bathroom",
+    effect: "horror",
+    speaker: "旁白",
+    chapter: "逃避线 · 电视",
+    media: { type: "tv", title: "客厅电视自动亮起", body: "画面时间：三年前 23:17。" },
+    text: "你擦掉字，客厅电视却自动亮起。画面里是三年前的摄影棚顶楼。你站在栏杆边，陆眠正向你跑来。视频没有声音，可你看见她的口型：沈栀，回来。",
+    choices: [
+      { text: "坐回电视前，看清天台上发生了什么", next: "commonVideo01" },
+      { text: "砸碎电视", next: "erase01" }
+    ]
+  },
+  erase01: {
+    art: "mirror",
+    scene: "bathroom",
+    effect: "horror",
+    speaker: "旁白",
+    chapter: "结局线 · 最后一次逃跑",
+    media: { type: "warning", title: "00:00 前最后提示", body: "删除后，所有记忆将恢复到安全版本。" },
+    text: "你砸碎电视，删除短信，把花和卡片全都扔进垃圾袋。手机却自己重启，弹出最后一条提示：确认删除明天？你知道只要按下去，痛苦就会消失。",
+    choices: [
+      { text: "确认删除", next: "erase02" },
+      { text: "停下，打开短信源头", next: "source01" }
+    ]
+  },
+  erase02: {
+    art: "mirror",
+    scene: "bathroom",
+    effect: "ending",
+    speaker: "结局 D",
+    chapter: "结局 · 删除明天",
+    ending: "erase",
+    media: { type: "ending", title: "删除明天", body: "你已经用完了最后一次逃跑。" },
+    text: "第二天，你照常醒来。你不记得陆眠，不记得周叙，不记得白祁，也不记得昨晚哭到喘不过气的自己。手机系统提示：安全版本恢复成功。镜子上却多了一行水雾写成的字：你已经用完了最后一次逃跑。",
+    choices: [
+      { text: "照常醒来", next: "eraseAfter" },
+      { text: "藏起玻璃碎片", next: "erasePocket" }
+    ]
+  },
+  erasePocket: {
+    art: "mirror",
+    scene: "bathroom",
+    effect: "horror",
+    speaker: "结局 D",
+    chapter: "结局 D · 第一幕：碎片",
+    media: { type: "warning", title: "异常残留", body: "一枚无法识别的玻璃碎片。" },
+    text: "你把镜面上脱落的一小片玻璃藏进口袋。你不知道为什么要这么做，只觉得那片碎片里有个女孩正看着你。她的口型模糊，你听不见，只觉得胸口空得发痛。",
+    choices: [
+      { text: "继续", next: "eraseAfter" }
+    ]
+  },
+  eraseAfter: {
+    art: "flowerShop",
+    scene: "bathroom",
+    effect: "horror",
+    speaker: "旁白",
+    chapter: "结局 D · 第二幕：空白生活",
+    media: { type: "reward", title: "图鉴已收录", body: "删除明天：你赢得了安静，也输掉了自己。" },
+    text: "一个月后，你路过花店，莫名买下一束白玫瑰。店员问要写什么卡片，你想了很久，只写下两个字：沈栀。你不明白为什么写自己的名字会难过，只觉得那两个字像从别人墓碑上拓下来。",
+    choices: [
+      { text: "继续", next: "eraseAfter2" },
+      { text: "撕掉卡片", next: "eraseNoName" }
+    ]
+  },
+  eraseNoName: {
+    art: "flowerShop",
+    scene: "bathroom",
+    effect: "horror",
+    speaker: "旁白",
+    chapter: "结局 D · 第三幕：无名花",
+    media: { type: "flower", title: "无名白玫瑰", body: "没有收件人，也没有寄件人。" },
+    text: "你把卡片撕掉。没有名字以后，白玫瑰反而更像一场无人认领的葬礼。晚上你做了一个梦，梦里有人把热牛奶放到你手里，说：栀栀，先喝一口。",
+    choices: [
+      { text: "继续", next: "eraseAfter2" }
+    ]
+  },
+  eraseAfter2: {
+    art: "mirror",
+    scene: "bathroom",
+    effect: "horror",
+    speaker: "结局 D",
+    chapter: "结局 D · 第四幕：安全版本",
+    media: { type: "warning", title: "安全版本", body: "痛苦已删除。关联人物已模糊。" },
+    text: "你的生活变得很顺。你不再失眠，也不再害怕雨夜。周叙打来电话时，你礼貌地问他是哪位；白祁在街角与你擦肩而过，你只觉得这个年轻人看你的眼神很奇怪。",
+    choices: [
+      { text: "接起周叙电话", next: "eraseZhouCall" },
+      { text: "追上白祁", next: "eraseBaiStreet" },
+      { text: "打开陌生视频", next: "eraseAfter3" }
+    ]
+  },
+  eraseZhouCall: {
+    art: "phone",
+    scene: "living",
+    effect: "message",
+    speaker: "周叙",
+    chapter: "结局 D · 第五幕：陌生前任",
+    media: { type: "call", title: "周叙", body: "你真的不记得我了？" },
+    text: "周叙在电话那头沉默很久，最后只问：你真的不记得我了？你说抱歉。他笑了一下，比哭还难听：这样也好。挂断前，他说如果哪天你看见 23:17，别再一个人待着。",
+    choices: [
+      { text: "继续", next: "eraseAfter3" }
+    ]
+  },
+  eraseBaiStreet: {
+    art: "studio",
+    scene: "studio",
+    effect: "horror",
+    speaker: "白祁",
+    chapter: "结局 D · 第五幕：陌生弟弟",
+    media: { type: "photo", title: "白祁手机里的合照", body: "一个浅黄色卫衣的女孩站在你旁边。" },
+    text: "白祁把手机屏幕举到你面前。照片里的女孩笑得很亮，站在你旁边。你盯着她看了很久，礼貌地问：这是你姐姐吗？白祁的眼神彻底碎掉。他说：沈栀，你赢了。",
+    choices: [
+      { text: "继续", next: "eraseAfter3" }
+    ]
+  },
+  eraseAfter3: {
+    art: "mirror",
+    scene: "bathroom",
+    effect: "horror",
+    speaker: "结局 D",
+    chapter: "结局 D · 第六幕：陌生视频",
+    media: { type: "video", title: "未命名素材", body: "画面人物无法识别。音频关键词：栀栀。" },
+    text: "直到某天，你剪到一段陌生视频。视频里的女孩穿着浅黄色卫衣，对镜头说：栀栀，如果你看到这里。你暂停画面，发现自己的手已经移到删除键上，动作熟练得像已经练习过很多次。",
+    choices: [
+      { text: "删除视频", next: "eraseAfter4" },
+      { text: "导出视频", next: "eraseExport" }
+    ]
+  },
+  eraseExport: {
+    art: "lumianVideo",
+    scene: "videoRoom",
+    effect: "video",
+    speaker: "旁白",
+    chapter: "结局 D · 第七幕：备份",
+    media: { type: "drive", title: "backup_final.mov", body: "你保存了它，却没有能力理解它。" },
+    text: "你导出了一份备份，命名为 backup_final.mov。文件进度到 99% 时，电脑突然黑屏。你在黑色屏幕上看见自己的倒影，身后像站着另一个女孩。你回头，房间里什么都没有。",
+    choices: [
+      { text: "继续", next: "eraseAfter4" }
+    ]
+  },
+  eraseAfter4: {
+    art: "mirror",
+    scene: "bathroom",
+    effect: "horror",
+    speaker: "结局 D",
+    chapter: "结局 D · 终幕",
+    media: { type: "ending", title: "删除明天 完成", body: "成就解锁：空白人生，空白也会回声" },
+    text: "屏幕黑下去，倒映出一个完全陌生的你。那晚你睡得很好，梦里没有雨，没有天台，也没有人喊你的名字。可第二天醒来，床头多了一束白玫瑰，卡片上只有一句：你把我也删干净了吗？",
+    choices: [
+      { text: "回到标题", action: "title" },
+      { text: "查看结局图鉴", action: "gallery" }
+    ]
+  },
+
+  commonVideo01: {
+    art: "rooftop",
+    scene: "rooftop",
+    effect: "video",
+    speaker: "旁白",
+    chapter: "真相线 · 天台录像",
+    media: { type: "video", title: "rooftop_raw.mp4", body: "栏杆断裂前 00:13。" },
+    text: "录像很晃，像是有人把手机放在地上。你看见自己站在天台边，陆眠冲过来抱住你。你挣扎，不是推她，而是想把自己从边缘拖回来。风很大，周叙的未接来电亮了三次。",
+    choices: [
+      { text: "不要暂停，硬撑着看完最后十三秒", next: "commonVideo02" },
+      { text: "暂停，先看陆眠自拍视频", next: "luVideo01" }
+    ]
+  },
+  commonVideo02: {
+    art: "rooftop",
+    scene: "rooftop",
+    effect: "memory",
+    speaker: "旁白",
+    chapter: "真相线 · 十三秒",
+    media: { type: "memory", title: "最后动作", body: "陆眠把你推回安全的地方。" },
+    text: "栏杆断开的瞬间，陆眠没有抓住你一起往下坠。她用尽最后的力气，把你推回了安全的一侧。你活下来了。你把脸埋进掌心，第一次明白：你不是忘了凶手，你是忘了救你的人。",
+    choices: [
+      { text: "崩溃道歉，查短信源头", next: "source01" },
+      { text: "认为自己必须偿命", next: "loop01" },
+      { text: "看陆眠留给你的完整视频", next: "luVideo01" }
+    ]
+  },
+  luVideo01: {
+    art: "lumianVideo",
+    scene: "videoRoom",
+    effect: "video",
+    speaker: "陆眠",
+    chapter: "真相线 · 陆眠的视频",
+    media: { type: "video", title: "给终于想起来的沈栀", body: "我喜欢你活着。很麻烦也喜欢。" },
+    text: "视频里的陆眠还活着，穿着浅黄色卫衣，坐在便利店窗边。她说：如果你看到这里，说明你又把最重要的事情忘掉了。沈栀，你不能拿我的死，当你不活下去的理由。",
+    choices: [
+      { text: "别打断她，把视频放到最后", next: "luVideo02" },
+      { text: "查短信源头", next: "source01" }
+    ]
+  },
+  luVideo02: {
+    art: "lumianVideo",
+    scene: "videoRoom",
+    effect: "video",
+    speaker: "陆眠",
+    chapter: "真相线 · 她的请求",
+    media: { type: "video", title: "陆眠的请求", body: "替我看看明天吧。看很多很多个。" },
+    text: "陆眠靠近镜头，笑得很轻：我不怪你。真的不怪。可你要答应我，别再把活着当成惩罚。如果未来的你还愿意替我做一件事，就替我看看明天吧，看很多很多个。",
+    choices: [
+      { text: "打开短信源头", next: "source01" },
+      { text: "去天台等天亮", next: "live01" }
+    ]
+  },
+  source01: {
+    art: "source",
+    scene: "source",
+    effect: "message",
+    speaker: "旁白",
+    chapter: "终章 · 短信源头",
+    media: { type: "code", title: "延迟程序", body: "触发条件：沈栀再次进入心理危机档案。" },
+    text: "你顺着短信链接查下去，发现它不是鬼魂。那是陆眠三年前写好的延迟程序。触发条件是：你的名字再次出现在心理危机档案里。她不是回来索命，她是怕你又一次一个人走到边缘。",
+    choices: [
+      { text: "读取最后一段留言", next: "finalChoice" }
+    ]
+  },
+  finalChoice: {
+    art: "source",
+    scene: "source",
+    effect: "message",
+    speaker: "旁白",
+    chapter: "终章 · 最终选择",
+    media: { type: "sms", title: "陆眠", body: "沈栀，今晚十二点前，你选择谁替你活到明天？", choices: "周叙 / 白祁 / 沈栀 / 陆眠" },
+    text: "屏幕上的候选名单重新出现。这一次，你终于知道它不是在问谁该死，而是在问：你还要不要把自己从明天里删掉。倒计时只剩最后十秒。",
+    choices: [
+      { text: "选择沈栀：我想活到明天", next: "live01" },
+      { text: "选择陆眠：我把明天还给她", next: "loop01" },
+      { text: "回复陆眠：对不起，我想起来了", next: "forgive01" }
+    ]
+  },
+  live01: {
+    art: "dawn",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "结局 A",
+    chapter: "结局 · 替我活下去",
+    ending: "live",
+    media: { type: "ending", title: "替我活下去", body: "我不会替你死了，陆眠。我会替你好好活。" },
+    text: "你选择了沈栀。不是因为你无辜，也不是因为你终于被原谅。只是因为陆眠用最后的力气，把你推向了明天。清晨 6:12，你拨通心理咨询电话。号码接通前，你差点又挂断。",
+    choices: [
+      { text: "不挂断电话", next: "liveAfter" },
+      { text: "发消息给周叙", next: "liveCallZhou" }
+    ]
+  },
+  liveCallZhou: {
+    art: "phone",
+    scene: "living",
+    effect: "message",
+    speaker: "旁白",
+    chapter: "结局 A · 第一幕：求助",
+    media: { type: "chat", title: "发给周叙", body: "我想活，但我不想靠逃跑活。" },
+    text: "你把消息发给周叙：我想活，但我不想靠逃跑活。发送成功那一刻，你手抖得几乎握不住手机。周叙只回了四个字：我在楼下。不是带你走，是陪你留下来。",
+    choices: [
+      { text: "继续", next: "liveAfter" }
+    ]
+  },
+  liveAfter: {
+    art: "hospital",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "旁白",
+    chapter: "结局 A · 第二幕：第一次说出口",
+    media: { type: "reward", title: "图鉴已收录", body: "替我活下去：你没有被治愈，但你开始向明天移动。" },
+    text: "咨询师问你现在安全吗。你看着满桌证据、白玫瑰和亮着的视频窗口，第一次没有说我没事。你说：我现在不安全，但我愿意让人知道。说完以后，你像从很深的水里浮上来。",
+    choices: [
+      { text: "继续", next: "liveAfter2" }
+    ]
+  },
+  liveAfter2: {
+    art: "hospital",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "结局 A",
+    chapter: "结局 A · 第三幕：急诊室",
+    media: { type: "record", title: "危机干预记录", body: "当事人主动求助，愿意配合短期安全计划。" },
+    text: "天亮后，你坐在医院急诊室里，身上披着周叙的外套。医生让你写下今晚不能独处时可以联系的三个人。你写得很慢：咨询师、周叙、白祁。写到白祁时，你停了很久。",
+    choices: [
+      { text: "留下白祁的名字", next: "liveBaiName" },
+      { text: "写下陆眠旧号码", next: "liveLuNumber" }
+    ]
+  },
+  liveBaiName: {
+    art: "hospital",
+    scene: "studio",
+    effect: "ending",
+    speaker: "旁白",
+    chapter: "结局 A · 第四幕：联系白祁",
+    media: { type: "chat", title: "发给白祁", body: "我想起来了。你可以恨我，但我想把证据交给你。" },
+    text: "你给白祁发消息，说自己想起来了。屏幕上方显示对方正在输入，又消失，又出现。最后他只回：我现在不想见你。但证据发来。你没有难过，反而松了一口气。他终于能拒绝你，而不是只被过去拖着走。",
+    choices: [
+      { text: "继续", next: "liveAfter3" }
+    ]
+  },
+  liveLuNumber: {
+    art: "hospital",
+    scene: "living",
+    effect: "message",
+    speaker: "旁白",
+    chapter: "结局 A · 第四幕：旧号码",
+    media: { type: "sms", title: "未发送草稿", body: "陆眠，我今天没有挂断电话。" },
+    text: "你把陆眠旧号码写在纸上，又划掉。咨询师没有阻止你，只问：如果她真的能收到，你最想告诉她什么？你想了很久，写下：我今天没有挂断电话。",
+    choices: [
+      { text: "继续", next: "liveAfter3" }
+    ]
+  },
+  liveAfter3: {
+    art: "hospital",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "结局 A",
+    chapter: "结局 A · 第五幕：第一次复诊",
+    media: { type: "record", title: "咨询记录", body: "我今天想起她时，没有只想惩罚自己。" },
+    text: "第一次复诊，你在纸上写下陆眠的名字。咨询师问你想对她说什么。你写了很久，最后只写：我今天吃早饭了。很普通的一句话，却让你在诊室里哭到停不下来。",
+    choices: [
+      { text: "继续", next: "liveAfter4" }
+    ]
+  },
+  liveAfter4: {
+    art: "dawn",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "结局 A",
+    chapter: "结局 A · 第六幕：剪完视频",
+    media: { type: "video", title: "导出文件", body: "《明天见》.mov" },
+    text: "三个月后，你第一次完整剪完陆眠留下的视频。导出文件时，你把标题改成《明天见》。你仍然会在雨夜惊醒，也仍然会在 23:17 看一眼手机。但这一次，你会把灯打开，对自己说：我在。",
+    choices: [
+      { text: "邀请白祁看成片", next: "liveScreeningBai" },
+      { text: "一个人看完", next: "liveAfter5" }
+    ]
+  },
+  liveScreeningBai: {
+    art: "lumianVideo",
+    scene: "videoRoom",
+    effect: "video",
+    speaker: "白祁",
+    chapter: "结局 A · 第七幕：放映",
+    media: { type: "video", title: "私人放映", body: "播放进度：23:17 / 27:06" },
+    text: "白祁来了，但坐得离你很远。视频播放到陆眠说替我看看明天时，他突然按下暂停，问：你真的会看吗？你说会。白祁没有看你，只说：那你最好别骗她第二次。",
+    choices: [
+      { text: "继续", next: "liveAfter5" }
+    ]
+  },
+  liveAfter5: {
+    art: "cemetery",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "结局 A",
+    chapter: "结局 A · 第八幕：墓园",
+    media: { type: "flower", title: "白玫瑰", body: "这一次，你没有只站三分钟。" },
+    text: "你带着白玫瑰去墓园。以前你总是在三分钟内离开，因为再久一点就会喘不过气。这次你坐到天色变暗，把视频里的每一句话都讲给她听。风吹过来，花瓣轻轻碰到你的手背。",
+    choices: [
+      { text: "继续", next: "liveAfter6" }
+    ]
+  },
+  liveAfter6: {
+    art: "cemetery",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "结局 A",
+    chapter: "结局 A · 终幕",
+    media: { type: "ending", title: "替我活下去 完成", body: "成就解锁：明天见，不是遗言" },
+    text: "离开前，你把手机放在墓碑前，按下播放。视频里的陆眠笑着说：替我看看明天吧。你点点头，把屏幕收回怀里。第二天早上，你给自己煮了早餐，拍照发到那个不会再回复的旧号码：明天见。",
+    choices: [
+      { text: "回到标题", action: "title" },
+      { text: "查看结局图鉴", action: "gallery" }
+    ]
+  },
+  loop01: {
+    art: "rooftop",
+    scene: "rooftop",
+    effect: "horror",
+    speaker: "隐藏坏结局",
+    chapter: "结局 · 替她停留",
+    ending: "loop",
+    media: { type: "ending", title: "替她停留", body: "你把自己关进三年前那一分钟。" },
+    text: "你选择了陆眠。你说，如果那晚死的人该是你，那就从现在开始，把明天还给她。雨滴停在半空，手机时间永远卡在 00:00。你听见系统提示：替换失败，正在重播死亡前十三秒。",
+    choices: [
+      { text: "抓住陆眠", next: "loopAfter" },
+      { text: "堵住天台门", next: "loopBlockDoor" }
+    ]
+  },
+  loopBlockDoor: {
+    art: "rooftop",
+    scene: "rooftop",
+    effect: "horror",
+    speaker: "隐藏坏结局",
+    chapter: "替她停留 · 第一幕：堵门",
+    media: { type: "memory", title: "循环尝试 001", body: "阻止陆眠进入天台。" },
+    text: "你冲向天台门，用身体抵住门板。门外的陆眠在拍门，声音又急又哑：沈栀！你别一个人待着！你捂住耳朵，以为这样就能救她。下一秒，门锁从里面自动弹开。",
+    choices: [
+      { text: "继续", next: "loopAfter" }
+    ]
+  },
+  loopAfter: {
+    art: "rooftop",
+    scene: "rooftop",
+    effect: "horror",
+    speaker: "旁白",
+    chapter: "替她停留 · 第二幕：无数第一次",
+    media: { type: "reward", title: "图鉴已收录", body: "替她停留：最痛的惩罚，是永远被爱救下。" },
+    text: "第无数次循环里，你终于学会在陆眠跑来之前喊她的名字。她愣了一下，还是向你冲过来。你想告诉她别救我，可她听不见。世界又一次白掉。你重新睁眼，时间仍是 23:17。",
+    choices: [
+      { text: "继续", next: "loopAfter2" }
+    ]
+  },
+  loopAfter2: {
+    art: "rooftop",
+    scene: "rooftop",
+    effect: "horror",
+    speaker: "隐藏坏结局",
+    chapter: "替她停留 · 第十三次",
+    media: { type: "memory", title: "循环记录", body: "你开始记得每一次失败。" },
+    text: "第十三次，你提前抓住她的手。第二十七次，你把她推向门口。第一百零一次，你跪下来求她别过来。可陆眠每一次都会选择你。她不记得循环，只记得她爱你。",
+    choices: [
+      { text: "告诉她真相", next: "loopTellTruth" },
+      { text: "放弃挣扎", next: "loopAfter3" }
+    ]
+  },
+  loopTellTruth: {
+    art: "rooftop",
+    scene: "rooftop",
+    effect: "horror",
+    speaker: "陆眠",
+    chapter: "替她停留 · 第三幕：说破",
+    media: { type: "video", title: "口型同步失败", body: "她听见了，又像没有听见。" },
+    text: "你终于在她冲过来前喊出：你救我会死！陆眠停住了半秒。那半秒长得像一生。然后她笑了一下，说：那你也先回来。她还是伸手，把你推回安全的一侧。",
+    choices: [
+      { text: "抓住她的袖口", next: "loopSleeve" }
+    ]
+  },
+  loopSleeve: {
+    art: "rooftop",
+    scene: "rooftop",
+    effect: "horror",
+    speaker: "旁白",
+    chapter: "替她停留 · 第四幕：袖口",
+    media: { type: "memory", title: "新增变量", body: "你第一次抓住了陆眠的袖口。" },
+    text: "这一次，你抓住了她的袖口。布料在掌心绷紧，陆眠的眼睛亮了一下，像她也以为结局终于改变。可是下一秒，袖口被雨水撕裂。世界没有给你奇迹，只给你一片浅黄色的布。",
+    choices: [
+      { text: "继续", next: "loopAfter3" }
+    ]
+  },
+  loopAfter3: {
+    art: "rooftop",
+    scene: "rooftop",
+    effect: "horror",
+    speaker: "隐藏坏结局",
+    chapter: "替她停留 · 第五幕：磨损",
+    media: { type: "warning", title: "循环磨损", body: "记忆保留率：沈栀 100% / 陆眠 0%" },
+    text: "后来你开始磨损。你记得每一次失败，陆眠却永远只活在第一次救你的那十三秒里。你试着背下她每一次呼吸，背到最后，连她原本的笑声都被循环里的雨声盖住。",
+    choices: [
+      { text: "继续", next: "loopAfter4" }
+    ]
+  },
+  loopAfter4: {
+    art: "rooftop",
+    scene: "rooftop",
+    effect: "horror",
+    speaker: "隐藏坏结局",
+    chapter: "替她停留 · 第六幕：纪念碑",
+    media: { type: "memory", title: "你建立的规则", body: "每轮循环，都要叫她一次陆眠。" },
+    text: "你给自己定了一条规则：每一轮，都要在她冲过来前叫她的全名。陆眠。陆眠。陆眠。名字成了这座循环里唯一的纪念碑。可纪念碑立得越高，你越清楚自己没有真的放过她。",
+    choices: [
+      { text: "继续", next: "loopAfter5" }
+    ]
+  },
+  loopAfter5: {
+    art: "rooftop",
+    scene: "rooftop",
+    effect: "horror",
+    speaker: "隐藏坏结局",
+    chapter: "替她停留 · 终幕",
+    media: { type: "ending", title: "替她停留 完成", body: "成就解锁：永远的 23:17，永远不是重逢" },
+    text: "最后你不再挣扎，也不再喊。你只是站在那里，等她向你跑来。雨停在半空，城市没有明天。陆眠抱住你的瞬间，你终于明白：你要的不是赎罪，是把她的爱变成你的刑期。",
+    choices: [
+      { text: "回到标题", action: "title" },
+      { text: "查看结局图鉴", action: "gallery" }
+    ]
+  },
+  forgive01: {
+    art: "dawn",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "隐藏结局 E",
+    chapter: "结局 · 她没有怪你",
+    ending: "forgive",
+    media: { type: "ending", title: "她没有怪你", body: "那天之后，沈栀终于开始把自己的名字写进未来。" },
+    text: "你回复那条迟到三年的短信：对不起，我想起来了。几秒后，陆眠预设的视频自动播放。她说：看到这里的时候，你肯定哭得很丑。沈栀，我不怪你。真的不怪。替我看看明天吧。",
+    choices: [
+      { text: "问她：我很想你怎么办", next: "forgiveAskMiss" },
+      { text: "存成纪念页", next: "forgiveAfter" }
+    ]
+  },
+  forgiveAskMiss: {
+    art: "lumianVideo",
+    scene: "videoRoom",
+    effect: "video",
+    speaker: "陆眠",
+    chapter: "隐藏结局 E · 第一幕：想念",
+    media: { type: "video", title: "预设回答", body: "想我可以，但别只在最痛的时候想我。" },
+    text: "你对着屏幕问：如果我还是很想你怎么办？视频像真的听见了一样，跳到下一段。陆眠托着下巴说：那就想啊。但别只在最痛的时候想我。也在吃到好吃的、看到好看的云时想我。",
+    choices: [
+      { text: "继续", next: "forgiveAfter" }
+    ]
+  },
+  forgiveAfter: {
+    art: "dawn",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "旁白",
+    chapter: "隐藏结局 E · 第二幕：纪念页",
+    media: { type: "reward", title: "隐藏图鉴已收录", body: "她没有怪你：不是原谅，是她从未把你当成罪人。" },
+    text: "第二年春天，你把陆眠的视频做成一个只有自己能打开的纪念页。页面不是墓碑，也不是忏悔书。它有日期、天气、早餐记录和一栏很小的输入框：今天替陆眠看见了什么？",
+    choices: [
+      { text: "写下第一条记录", next: "forgiveCloud" },
+      { text: "修复旧照片", next: "forgiveAfter2" }
+    ]
+  },
+  forgiveCloud: {
+    art: "dawn",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "旁白",
+    chapter: "隐藏结局 E · 第三幕：第一条记录",
+    media: { type: "record", title: "纪念页记录", body: "今天的云很像热牛奶。沈栀没有逃走。" },
+    text: "你敲下第一条记录：今天的云很像热牛奶。写完以后，你等了很久，旧号码没有回信。你却没有失望。你忽然懂了，陆眠留下这个程序，不是为了永远回答你，而是为了让你重新开始回答世界。",
+    choices: [
+      { text: "继续", next: "forgiveAfter2" }
+    ]
+  },
+  forgiveAfter2: {
+    art: "dawn",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "隐藏结局 E",
+    chapter: "她没有怪你 · 新页面",
+    media: { type: "record", title: "纪念页", body: "今天也把栀栀捡回来啦。下面新增一行：今天栀栀自己走回来了。" },
+    text: "你把相册里那张模糊照片修复了一点。陆眠蹲在你面前，手里拿着热牛奶，眼睛红得很明显。你以前只看见自己的狼狈，现在才看见她也害怕。你在照片下面加了一行字：谢谢你那天没有放开我。",
+    choices: [
+      { text: "发给白祁", next: "forgiveSendBai" },
+      { text: "先藏起来", next: "forgiveKeepPhoto" }
+    ]
+  },
+  forgiveSendBai: {
+    art: "studio",
+    scene: "studio",
+    effect: "ending",
+    speaker: "白祁",
+    chapter: "隐藏结局 E · 第四幕：发给白祁",
+    media: { type: "photo", title: "已发送图片", body: "白祁正在输入..." },
+    text: "白祁过了很久才回复：她那天是不是也哭了？你说是。对话框上方反复显示正在输入，最后只剩下一句：原来我姐也会害怕。你没有安慰他。你知道这句话已经足够让他重新认识陆眠。",
+    choices: [
+      { text: "去墓园", next: "forgiveAfter3" }
+    ]
+  },
+  forgiveKeepPhoto: {
+    art: "album",
+    scene: "videoRoom",
+    effect: "photo",
+    speaker: "旁白",
+    chapter: "隐藏结局 E · 第四幕：暂存",
+    media: { type: "photo", title: "私人收藏", body: "你还没有准备好分享，但没有再删除。" },
+    text: "你把照片放进加密相册，没有发给任何人。以前你藏东西是为了逃避，现在你只是承认自己还没准备好。第二天，你把白祁从黑名单里放出来。这也是一种开始。",
+    choices: [
+      { text: "去墓园", next: "forgiveAfter3" }
+    ]
+  },
+  forgiveAfter3: {
+    art: "cemetery",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "隐藏结局 E",
+    chapter: "她没有怪你 · 周年",
+    media: { type: "flower", title: "不是忌日", body: "你把这一天改名为：陆眠拉我回来的日子。" },
+    text: "三周年那天，你约了白祁和周叙一起去墓园。没有人说原谅，也没有人说重新开始。你们只是把三束花放在一起。白祁低声说：我姐应该会嫌我们哭得丑。你们都笑了。",
+    choices: [
+      { text: "让白祁单独说话", next: "forgiveBaiAlone" },
+      { text: "播放陆眠的视频", next: "forgiveVideoTogether" }
+    ]
+  },
+  forgiveBaiAlone: {
+    art: "cemetery",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "旁白",
+    chapter: "隐藏结局 E · 第六幕：留白",
+    media: { type: "flower", title: "十分钟", body: "你和周叙站在墓园外，没有偷听。" },
+    text: "你和周叙走到墓园门口，给白祁留下十分钟。风把白玫瑰吹得轻轻摇晃。周叙问你冷不冷，你说不冷。你们没有牵手，也没有回到从前，但终于可以安静地站在同一边。",
+    choices: [
+      { text: "继续", next: "forgiveAfter4" }
+    ]
+  },
+  forgiveVideoTogether: {
+    art: "lumianVideo",
+    scene: "videoRoom",
+    effect: "video",
+    speaker: "陆眠",
+    chapter: "隐藏结局 E · 第六幕：一起看",
+    media: { type: "video", title: "三人放映", body: "陆眠：你们要是都在哭，就轮流丢脸。" },
+    text: "你按下播放。陆眠出现在屏幕里，说：如果你们三个都在，那我先声明，谁哭得最丑谁负责买早餐。白祁笑着哭出来，周叙别过脸。你也哭，但这一次，哭声里终于有一点活人的气息。",
+    choices: [
+      { text: "继续", next: "forgiveAfter4" }
+    ]
+  },
+  forgiveAfter4: {
+    art: "dawn",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "隐藏结局 E",
+    chapter: "她没有怪你 · 第七幕：程序自毁",
+    media: { type: "warning", title: "最终提示", body: "延迟程序已完成全部使命，即将自毁。" },
+    text: "晚上回家，你收到系统提示：延迟程序已完成全部使命，即将自毁。你看着屏幕很久，忽然意识到这才是陆眠真正留下的选择：你要把她做成永远响应你的程序，还是把她还给真实的死亡与真实的爱。",
+    choices: [
+      { text: "保存只读备份", next: "forgiveSaveArchive" },
+      { text: "允许程序自毁", next: "forgiveLetGo" }
+    ]
+  },
+  forgiveSaveArchive: {
+    art: "source",
+    scene: "source",
+    effect: "message",
+    speaker: "旁白",
+    chapter: "她没有怪你 · 第八幕：备份",
+    media: { type: "drive", title: "lumian_archive.readonly", body: "不可回复。不可触发。只可播放。" },
+    text: "你保存了一份只读备份，取消了所有自动回复。它不能再在深夜替你做决定，也不能冒充陆眠活着。它只是一份声音，一段影像，一封终于可以被好好保管的信。",
+    choices: [
+      { text: "继续", next: "forgiveAfter5" }
+    ]
+  },
+  forgiveLetGo: {
+    art: "source",
+    scene: "source",
+    effect: "message",
+    speaker: "陆眠",
+    chapter: "她没有怪你 · 第八幕：放手",
+    media: { type: "sms", title: "陆眠最后一行", body: "栀栀，别总回头。我在你明天里。" },
+    text: "你没有备份。程序消失前，弹出陆眠最后一行字：栀栀，别总回头。我在你明天里。屏幕暗下去，你没有立刻哭。你只是把窗帘拉开，让清晨的光落在桌面上。",
+    choices: [
+      { text: "继续", next: "forgiveAfter5" }
+    ]
+  },
+  forgiveAfter5: {
+    art: "dawn",
+    scene: "dawn",
+    effect: "ending",
+    speaker: "隐藏结局 E",
+    chapter: "她没有怪你 · 终幕",
+    media: { type: "ending", title: "她没有怪你 完成", body: "成就解锁：很多很多个明天，不靠遗忘解锁" },
+    text: "纪念页最后没有写结局，只多了一行普通到近乎笨拙的记录：今天，沈栀活到了明天。你把电脑合上，去厨房给自己煮早餐。水汽升起来时，你听见心里有个很轻的声音说：好，明天也见。",
+    choices: [
+      { text: "回到标题", action: "title" },
+      { text: "查看结局图鉴", action: "gallery" }
     ]
   }
 };
-
-const chapterArtOverrides = {
-  ch1_start: "ch1DoorBai",
-  ch1_start_02: "ch1DoorBai",
-  ch1_start_zhou: "ch1LivingThree",
-  ch1_start_zhou_02: "ch1LivingThree",
-  ch1_living_01: "ch1LivingEmpty",
-  ch1_living_02: "ch1LivingBai",
-  ch1_living_03: "ch1LivingBai",
-  ch1_living_zhou_01: "ch1LivingThree",
-  ch1_living_zhou_02: "ch1LivingThree",
-  ch1_living_zhou_03: "ch1LivingThree",
-  ch1_living_warm_01: "ch1FridgeNoteBai",
-  ch1_room_01: "ch1RoomDoor",
-  ch1_room_02: "ch1RoomDoor",
-  ch1_room_03: "ch1RoomDoor",
-  ch1_room_memory_01: "ch1PolaroidDesk",
-  ch1_choose_search: "ch1RoomDoor",
-  ch1_desk_01: "ch1DeskSun",
-  ch1_desk_02: "ch1DeskSun",
-  ch1_desk_03: "ch1DeskSun",
-  ch1_bedside_01: "ch1TinboxClinic",
-  ch1_bedside_02: "ch1TinboxClinic",
-  ch1_bedside_03: "ch1TinboxClinic",
-  ch1_shelf_01: "ch1DiaryTorn",
-  ch1_shelf_02: "ch1DiaryTorn",
-  ch1_shelf_03: "ch1DiaryTorn",
-  ch1_shelf_04: "ch1DiaryTorn",
-  ch1_bai_appears_01: "ch1BaiDoorframe",
-  ch1_bai_appears_02: "ch1BaiDoorframe",
-  ch1_choose_answer: "ch1BaiDoorframe",
-  ch1_ans_a_01: "ch1BaiDoorframe",
-  ch1_ans_a_02: "ch1BaiDoorframe",
-  ch1_ans_b_01: "ch1BaiDoorframe",
-  ch1_ans_b_02: "ch1BaiDoorframe",
-  ch1_ans_c_01: "ch1BaiDoorframe",
-  ch1_ans_c_02: "ch1BaiDoorframe",
-  ch1_wardrobe_01: "ch1WardrobePhone",
-  ch1_wardrobe_02: "ch1WardrobePhone",
-  ch1_wardrobe_03: "ch1WardrobePhone",
-  ch1_wardrobe_04: "ch1WardrobePhone",
-  ch1_choose_take: "ch1WardrobePhone",
-  ch1_take_phone_01: "ch1OldphoneKey",
-  ch1_take_phone_02: "ch1OldphoneKey",
-  ch1_take_photo_01: "ch1PolaroidDesk",
-  ch1_take_nothing_01: "ch1WardrobePhone",
-  ch1_leave_01: "ch1UmbrellaBai",
-  ch1_leave_02: "ch1UmbrellaBai",
-  ch1_leave_03: "ch1UmbrellaBai",
-  ch1_leave_04: "ch1UmbrellaBai",
-  ch1_end_01: "ch1OldphoneKey",
-  ch1_end_02: "ch1OldphoneKey",
-  ch2_trigger: "ch2PhoneWhiteflash",
-  ch2_trigger_02: "ch2PhoneWhiteflash",
-  ch2_trigger_03: "ch2PhoneWhiteflash",
-  ch2_trigger_04: "ch2PhoneWhiteflash",
-  ch2_arrive_01: "ch2TrackArriveBg",
-  ch2_arrive_02: "ch2ArriveLu",
-  ch2_arrive_03: "ch2ArriveLu",
-  ch2_choose_respond: "ch2ArriveLu",
-  ch2_resp_a_01: "ch2ArriveLu",
-  ch2_resp_b_01: "ch2ArriveLu",
-  ch2_resp_c_01: "ch2ArriveLu",
-  ch2_classroom_01: "ch2ClassroomZhang",
-  ch2_classroom_02: "ch2ClassroomZhang",
-  ch2_classroom_03: "ch2ClassroomZhang",
-  ch2_sports_01: "ch2SportsPin",
-  ch2_sports_02: "ch2SportsPin",
-  ch2_sports_03: "ch2SportsPin",
-  ch2_sports_04: "ch2SportsBaiWater",
-  ch2_sports_05: "ch2FinishLu",
-  ch2_sports_06: "ch2SportsBaiWater",
-  ch2_store_01: "ch2StoreTrio",
-  ch2_store_02: "ch2StoreTrio",
-  ch2_ask_bai_01: "ch2StoreTrio",
-  ch2_walk_together_01: "ch2StoreTrio",
-  ch2_ask_lu_01: "ch2StoreTrio",
-  ch2_library_01: "ch2LibraryZhou",
-  ch2_library_02: "ch2LibraryZhou",
-  ch2_ask_zhou_zhang_01: "ch2LibraryZhou",
-  ch2_ask_zhou_lu_01: "ch2LibraryZhou",
-  ch2_watch_zhou_01: "ch2LibraryZhou",
-  ch2_library_03: "ch2LibraryZhou",
-  ch2_morning_01: "ch2MorningFood",
-  ch2_morning_02: "ch2MorningFood",
-  ch2_food_01: "ch2MorningFood",
-  ch2_ask_event_01: "ch2MorningFood",
-  ch2_silent_01: "ch2MorningFood",
-  ch2_corridor_01: "ch2CorridorConfront",
-  ch2_corridor_02: "ch2CorridorConfront",
-  ch2_corridor_03: "ch2CorridorConfront",
-  ch2_corridor_04: "ch2CorridorConfront",
-  ch2_choose_after: "ch2CorridorConfront",
-  ch2_ask_zhou_after_01: "ch2CorridorConfront",
-  ch2_ignore_01: "ch2CorridorAfter",
-  ch2_follow_lu_01: "ch2FollowMirror",
-  ch2_follow_lu_02: "ch2FollowMirror",
-  ch2_evening_01: "ch2EveningHairtie",
-  ch2_evening_02: "ch2EveningHairtie",
-  ch2_evening_03: "ch2WhiteReturnTrack",
-  ch2_return_01: "ch2PhoneWhiteflash",
-  ch2_return_02: "ch2PhoneWhiteflash",
-  ch3_bai_arrive_02: "ch3LuBox",
-  ch3_bai_arrive_03: "ch3LuBox",
-  ch3_box_01: "ch3LuBox",
-  ch3_box_02: "ch3LuBox",
-  ch3_box_03: "ch3LuBox",
-  ch3_school_02: "ch3YearbookTorn",
-  ch3_school_03: "ch3YearbookTorn",
-  ch3_school_04: "ch3YearbookTorn",
-  ch3_school_05: "ch3YearbookTorn",
-  ch3_threat_01: "ch3ThreatWindow",
-  ch3_choice_threat: "ch3ThreatWindow",
-  ch3_reply_01: "ch3ThreatWindow",
-  ch3_delete_01: "ch3ThreatWindow",
-  ch3_backup_01: "ch3BackupTrio",
-  ch4_class_01: "ch4NoteDesk",
-  ch4_note_01: "ch4NoteDesk",
-  ch4_lu_note_01: "ch4NoteDesk",
-  ch4_choice_after_note: "ch4NoteDesk",
-  ch4_artroom_01: "ch4ArtroomPromise",
-  ch4_artroom_02: "ch4ArtroomPromise",
-  ch4_artroom_03: "ch4ArtroomPromise",
-  ch4_artroom_04: "ch4ArtroomPromise",
-  ch4_artroom_05: "ch4ArtroomPromise",
-  ch4_update_01: "ch4WallUpdate",
-  ch4_choice_wall: "ch4WallUpdate",
-  ch4_wall_good_01: "ch4WallUpdate",
-  ch4_wall_public_01: "ch4WallUpdate",
-  ch4_wall_lu_01: "ch4WallUpdate",
-  ch4_photo_room_01: "ch4PhotoRoomZhang",
-  ch4_photo_room_02: "ch4PhotoRoomZhang",
-  ch4_photo_room_03: "ch4PhotoRoomZhang",
-  ch4_lu_speaks_01: "ch4PhotoRoomZhang",
-  ch4_photo_room_04: "ch4PhotoRoomZhang",
-  ch5_flower_01: "ch5FlowerOrder",
-  ch5_flower_02: "ch5FlowerOrder",
-  ch5_flower_03: "ch5FlowerOrder",
-  ch5_flower_04: "ch5FlowerOrder",
-  ch5_flower_05: "ch5FlowerOrder",
-  ch5_search_lin_02: "ch5StudioWall",
-  ch5_studio_02: "ch5StudioWall",
-  ch5_studio_03: "ch5StudioWall",
-  ch5_studio_04: "ch5StudioWall",
-  ch5_envelope_01: "ch5EnvelopeBai",
-  ch5_choice_envelope: "ch5EnvelopeBai",
-  ch5_envelope_together_01: "ch5EnvelopeBai",
-  ch5_envelope_later_01: "ch5EnvelopeBai",
-  ch5_drive_01: "ch5StudioWall",
-  ch5_drive_02: "ch5StudioWall",
-  ch5_call_01: "ch5CallRecording",
-  ch5_call_02: "ch5CallRecording",
-  ch5_choice_call: "ch5CallRecording",
-  ch5_call_good_01: "ch5CallRecording",
-  ch5_call_angry_01: "ch5CallRecording",
-  ch5_call_silent_01: "ch5CallRecording",
-  ch5_police_01: "ch5CallRecording",
-  ch6_find_lu_01: "ch6BroadcastRoom",
-  ch6_broadcast_01: "ch6BroadcastRoom",
-  ch6_broadcast_02: "ch6BroadcastRoom",
-  ch6_hairtie_01: "ch6BroadcastRoom",
-  ch6_hairtie_02: "ch6BroadcastRoom",
-  ch6_lu_respond_01: "ch6BroadcastRoom",
-  ch6_lu_respond_02: "ch6BroadcastRoom",
-  ch6_stair_01: "ch6StaircaseZhang",
-  ch6_stair_02: "ch6StaircaseZhang",
-  ch6_zhang_01: "ch6StaircaseZhang",
-  ch6_zhang_02: "ch6StaircaseZhang",
-  ch6_zhang_03: "ch6StaircaseZhang",
-  ch6_rooftop_01: "ch6RooftopReach",
-  ch6_final_choice: "ch6RooftopReach",
-  ch6_rescue_01: "ch6RooftopReach",
-  ch6_rescue_02: "ch6RooftopReach",
-  ch6_rescue_03: "ch6RooftopReach",
-  ch6_rescue_04: "ch6HospitalDawn",
-  ch6_rescue_05: "ch6HospitalDawn",
-  ch6_rescue_06: "ch6HospitalDawn"
-};
-
-Object.entries(chapterArtOverrides).forEach(([nodeId, art]) => {
-  if (script[nodeId]) {
-    script[nodeId].art = art;
-  }
-});
 
 const state = {
   nodeId: "start",
@@ -3774,14 +1997,7 @@ const state = {
   activeImage: "",
   selectedEnding: null,
   pendingContinue: null,
-  currentFullText: "",
-  luTrust: 0,
-  baiBond: 0,
-  zhouBond: 0,
-  baiClue: 0,
-  zhouClue: 0,
-  memoryCount: 0,
-  zhangKnown: 0
+  currentFullText: ""
 };
 
 const els = {
@@ -3843,90 +2059,6 @@ const bgmByEffect = {
   ending:  "epic"
 };
 
-
-function storyStateDefaults() {
-  return {
-    luTrust: 0,
-    baiBond: 0,
-    zhouBond: 0,
-    baiClue: 0,
-    zhouClue: 0,
-    memoryCount: 0,
-    zhangKnown: 0
-  };
-}
-
-function resetStoryState() {
-  restoreStoryState(storyStateDefaults());
-}
-
-function captureStoryState() {
-  return {
-    luTrust: state.luTrust,
-    baiBond: state.baiBond,
-    zhouBond: state.zhouBond,
-    baiClue: state.baiClue,
-    zhouClue: state.zhouClue,
-    memoryCount: state.memoryCount,
-    zhangKnown: state.zhangKnown
-  };
-}
-
-function restoreStoryState(snapshot = {}) {
-  const next = { ...storyStateDefaults(), ...(snapshot || {}) };
-  state.luTrust = Number(next.luTrust) || 0;
-  state.baiBond = Number(next.baiBond) || 0;
-  state.zhouBond = Number(next.zhouBond) || 0;
-  state.baiClue = Number(next.baiClue) || 0;
-  state.zhouClue = Number(next.zhouClue) || 0;
-  state.memoryCount = Number(next.memoryCount) || 0;
-  state.zhangKnown = Number(next.zhangKnown) || 0;
-}
-
-function normalizeHistory(history = []) {
-  return history
-    .map((entry) => {
-      if (typeof entry === "string") {
-        return { nodeId: entry, storyState: storyStateDefaults() };
-      }
-      if (!entry || !entry.nodeId) return null;
-      return {
-        nodeId: entry.nodeId,
-        storyState: { ...storyStateDefaults(), ...(entry.storyState || {}) }
-      };
-    })
-    .filter(Boolean);
-}
-
-function applyStateDelta(delta = {}) {
-  if (typeof delta.luTrust === "number") state.luTrust += delta.luTrust;
-  if (typeof delta.baiBond === "number") state.baiBond += delta.baiBond;
-  if (typeof delta.zhouBond === "number") state.zhouBond += delta.zhouBond;
-  if (typeof delta.baiClue === "number") state.baiClue += delta.baiClue;
-  if (typeof delta.zhouClue === "number") state.zhouClue += delta.zhouClue;
-  if (typeof delta.memoryCount === "number") state.memoryCount += delta.memoryCount;
-  if (typeof delta.zhangKnown === "number") state.zhangKnown = delta.zhangKnown ? 1 : 0;
-}
-
-function softenZhangText(text) {
-  const raw = String(text ?? "");
-  if (state.zhangKnown) return raw;
-  return raw
-    .replace(/张恒短信/g, "陌生短信")
-    .replace(/张恒/g, "那个人");
-}
-
-function resolveNodeText(text) {
-  return softenZhangText(typeof text === "function" ? text() : (text || ""));
-}
-
-function resolveTextForStoryState(node, snapshot) {
-  const previous = captureStoryState();
-  restoreStoryState(snapshot || storyStateDefaults());
-  const text = resolveNodeText(node.text);
-  restoreStoryState(previous);
-  return text;
-}
 
 function readStore() {
   try {
@@ -4080,8 +2212,6 @@ function setTitleVisible(visible) {
     state.typingToken += 1;
     state.nodeId = "title";
     state.history = [];
-    resetStoryState();
-    state.selectedEnding = null;
     state.pendingContinue = null;
     state.currentFullText = "";
     els.choices.innerHTML = "";
@@ -4097,12 +2227,11 @@ function setTitleVisible(visible) {
 
 function startGame(nodeId = "start", preserveHistory = false) {
   if (!preserveHistory) state.history = [];
-  if (!preserveHistory) resetStoryState();
   setTitleVisible(false);
   renderNode(nodeId);
 }
 
-function renderNode(nodeId, options = {}) {
+function renderNode(nodeId) {
   const node = script[nodeId];
   if (!node) return;
   closeMenu();
@@ -4112,9 +2241,7 @@ function renderNode(nodeId, options = {}) {
   const token = state.typingToken;
   const store = readStore();
   state.pendingContinue = null;
-  if (!options.skipStateDelta) applyStateDelta(node.stateDelta);
-  const fullText = resolveNodeText(node.text);
-  state.currentFullText = fullText;
+  state.currentFullText = node.text || "";
   els.continueHint.classList.remove("is-visible");
 
   if (node.ending) {
@@ -4136,8 +2263,8 @@ function renderNode(nodeId, options = {}) {
   if (bgmKey !== state.currentBgm) playBgm(bgmKey);
 
   applyVisual(node);
-  els.chapter.textContent = softenZhangText(node.chapter || "替你活到明天");
-  els.speaker.textContent = softenZhangText(node.speaker || "旁白");
+  els.chapter.textContent = node.chapter || "替你活到明天";
+  els.speaker.textContent = node.speaker || "旁白";
   els.nodeCount.textContent = `${Math.max(1, state.history.length + 1).toString().padStart(2, "0")}`;
 
   els.dialoguePanel.classList.remove("pulse", "shake");
@@ -4145,7 +2272,7 @@ function renderNode(nodeId, options = {}) {
   els.dialoguePanel.classList.add("pulse");
 
   renderMedia(node.media);
-  typeText(fullText, token, () => {
+  typeText(node.text, token, () => {
     if (token === state.typingToken) renderChoices(node.choices || []);
   });
   renderChoices([]);
@@ -4192,7 +2319,7 @@ function inferCast(node) {
 }
 
 function setSceneImage(candidate, fallback) {
-  const safeFallback = fallback || "./assets/scene-home.svg";
+  const safeFallback = fallback || "./assets/cg-door-gpt2.png";
   if (!candidate) {
     state.activeImage = safeFallback;
     els.sceneBg.style.setProperty("--scene-image", `url("${safeFallback}")`);
@@ -4232,10 +2359,10 @@ function renderMedia(media) {
   els.mediaCard.className = `story-prop is-visible prop-${kind}`;
   els.mediaCard.dataset.kind = kind;
   els.mediaDevice.className = `prop-device prop-device-${kind}`;
-  els.mediaTopline.textContent = softenZhangText(media.title || "线索");
+  els.mediaTopline.textContent = media.title || "线索";
 
-  const body = escapeHtml(softenZhangText(media.body || ""));
-  const extra = media.choices ? `<small>${escapeHtml(softenZhangText(media.choices))}</small>` : "";
+  const body = escapeHtml(media.body || "");
+  const extra = media.choices ? `<small>${escapeHtml(media.choices)}</small>` : "";
   const details = body ? `<p>${body}</p>${extra}` : extra;
 
   if (kind === "phone") {
@@ -4285,8 +2412,8 @@ function typeText(text, token, onDone) {
 
 function renderChoices(choices) {
   els.choices.innerHTML = "";
-  const isScreenAdvance = choices.length === 1 && Boolean(choices[0]?.next);
-  if (isScreenAdvance) {
+  const isContinueOnly = choices.length === 1 && choices[0].next && choices[0].text === "继续";
+  if (isContinueOnly) {
     state.pendingContinue = choices[0];
     els.continueHint.classList.add("is-visible");
     els.shell.classList.add("can-advance");
@@ -4298,8 +2425,10 @@ function renderChoices(choices) {
   choices.forEach((choice, index) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "choice-button";
-    button.innerHTML = `<span>选项 ${index + 1}</span>${escapeHtml(softenZhangText(choice.text))}`;
+    button.className = `choice-button ${isContinueOnly ? "is-continue" : ""}`;
+    button.innerHTML = isContinueOnly
+      ? `<span>阅读</span>继续阅读`
+      : `<span>选项 ${index + 1}</span>${escapeHtml(choice.text)}`;
     button.addEventListener("click", () => choose(choice));
     els.choices.appendChild(button);
   });
@@ -4308,8 +2437,7 @@ function renderChoices(choices) {
 function advanceByScreenClick(event) {
   if (els.title.classList.contains("is-visible")) return;
   if (els.saveModal.open || els.galleryModal.open) return;
-  if (event.target.closest("button, dialog, .top-menu, .story-prop")) return;
-  if (event.target.closest(".choice-dock") && els.choices.querySelector("button")) return;
+  if (event.target.closest("button, dialog, .top-menu, .choice-dock, .story-prop")) return;
   const node = script[state.nodeId];
   if (!node) return;
 
@@ -4337,10 +2465,7 @@ function choose(choice) {
     return;
   }
   if (choice.next) {
-    state.history.push({
-      nodeId: state.nodeId,
-      storyState: captureStoryState()
-    });
+    state.history.push(state.nodeId);
     renderNode(choice.next);
   }
 }
@@ -4356,11 +2481,7 @@ function goBack() {
     showToast("已经是当前路线的第一幕");
     return;
   }
-  const entry = typeof prev === "string"
-    ? { nodeId: prev, storyState: storyStateDefaults() }
-    : prev;
-  restoreStoryState(entry.storyState);
-  renderNode(entry.nodeId, { skipStateDelta: true });
+  renderNode(prev);
 }
 
 function saveToSlot(slot) {
@@ -4368,7 +2489,6 @@ function saveToSlot(slot) {
   store.saves[slot] = {
     nodeId: state.nodeId,
     history: [...state.history],
-    storyState: captureStoryState(),
     savedAt: new Date().toISOString()
   };
   writeStore(store);
@@ -4385,11 +2505,10 @@ function loadFromSlot(slot) {
     showToast("这个档位还是空的");
     return;
   }
-  state.history = normalizeHistory(save.history || []);
-  restoreStoryState(save.storyState);
+  state.history = save.history || [];
   els.saveModal.close();
   setTitleVisible(false);
-  renderNode(save.nodeId, { skipStateDelta: true });
+  renderNode(save.nodeId);
   showToast(`已读取档位 ${slot}`);
 }
 
@@ -4411,15 +2530,12 @@ function renderSlots(mode) {
   [1, 2, 3].forEach((slot) => {
     const save = store.saves[slot];
     const node = save ? script[save.nodeId] : null;
-    const previewText = node ? resolveTextForStoryState(node, save.storyState) : "";
-    const chapterLabel = node ? softenZhangText(node.chapter) : "";
-    const speakerLabel = node ? softenZhangText(node.speaker) : "";
     const card = document.createElement("article");
     card.className = "slot-card";
     card.innerHTML = `
       <div>
-        <strong>档位 ${slot} · ${node ? escapeHtml(chapterLabel) : "空档位"}</strong>
-        <span>${node ? escapeHtml(`${speakerLabel}：${previewText.slice(0, 42)}...`) : "还没有保存进度"}</span>
+        <strong>档位 ${slot} · ${node ? escapeHtml(node.chapter) : "空档位"}</strong>
+        <span>${node ? escapeHtml(`${node.speaker}：${node.text.slice(0, 42)}...`) : "还没有保存进度"}</span>
       </div>
       <div class="slot-foot">
         <span>${formatTime(save?.savedAt)}</span>
@@ -4443,7 +2559,7 @@ function openSlots(mode) {
 
 function getEndingImage(ending) {
   const art = artManifest[ending.thumbnail] || artManifest.dawn;
-  return art.image || art.fallback || "./assets/scene-dawn.svg";
+  return art.image || art.fallback || "./assets/cg-dawn-gpt2.png";
 }
 
 function renderEndingDetail(id, unlocked) {
@@ -4526,10 +2642,9 @@ function continueLatest() {
     beep("error");
     return;
   }
-  state.history = normalizeHistory(latest.history || []);
-  restoreStoryState(latest.storyState);
+  state.history = latest.history || [];
   setTitleVisible(false);
-  renderNode(latest.nodeId, { skipStateDelta: true });
+  renderNode(latest.nodeId);
 }
 
 document.querySelector("#startBtn").addEventListener("click", () => {

@@ -57,7 +57,7 @@ button {
 
 .scene-bg {
   z-index: 0;
-  background-image: var(--scene-image, url("./assets/scene-home.svg"));
+  background-image: var(--scene-image, url("./assets/cg-door-gpt2.png"));
   background-size: cover;
   background-position: center;
   transform: scale(1.018);
@@ -68,40 +68,40 @@ button {
 }
 
 .game-shell[data-scene="home"] .scene-bg {
-  --scene-image: url("./assets/scene-home.svg");
+  --scene-image: url("./assets/cg-door-gpt2.png");
 }
 
 .game-shell[data-scene="living"] .scene-bg {
-  --scene-image: url("./assets/scene-living.svg");
+  --scene-image: url("./assets/cg-phone-gpt2.png");
 }
 
 .game-shell[data-scene="bathroom"] .scene-bg {
-  --scene-image: url("./assets/scene-bathroom.svg");
+  --scene-image: url("./assets/cg-mirror-gpt2.png");
 }
 
 .game-shell[data-scene="taxi"] .scene-bg {
-  --scene-image: url("./assets/scene-taxi.svg");
+  --scene-image: url("./assets/cg-car-gpt2.png");
 }
 
 .game-shell[data-scene="studio"] .scene-bg {
-  --scene-image: url("./assets/scene-studio.svg");
+  --scene-image: url("./assets/cg-studio-gpt2.png");
 }
 
 .game-shell[data-scene="memory"] .scene-bg,
 .game-shell[data-scene="rooftop"] .scene-bg {
-  --scene-image: url("./assets/scene-rooftop.svg");
+  --scene-image: url("./assets/cg-rooftop-gpt2.png");
 }
 
 .game-shell[data-scene="videoRoom"] .scene-bg {
-  --scene-image: url("./assets/scene-video.svg");
+  --scene-image: url("./assets/cg-lumian-video-gpt2.png");
 }
 
 .game-shell[data-scene="source"] .scene-bg {
-  --scene-image: url("./assets/scene-source.svg");
+  --scene-image: url("./assets/cg-source-gpt2.png");
 }
 
 .game-shell[data-scene="dawn"] .scene-bg {
-  --scene-image: url("./assets/scene-dawn.svg");
+  --scene-image: url("./assets/cg-dawn-gpt2.png");
 }
 
 .scene-soft-focus {
