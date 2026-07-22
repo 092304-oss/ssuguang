@@ -113,22 +113,20 @@ button {
   background-size: 128px 128px;
 }
 
-/* Rain streaks */
+/* Rain streaks disabled: keep the rainy mood in CGs without drawing heavy diagonal UI lines. */
 .rain-layer {
   z-index: 3;
+  display: none;
   opacity: 0;
-  background-image:
-    linear-gradient(102deg, transparent 0 48%, rgba(255,255,255,0.75) 49% 50%, transparent 52% 100%),
-    linear-gradient(102deg, transparent 0 48%, rgba(184,228,236,0.55) 49% 50%, transparent 52% 100%);
-  background-size: 92px 150px, 138px 210px;
-  animation: rain-fall 0.72s linear infinite;
+  background: none;
+  animation: none;
 }
 
 .game-shell[data-effect="rain"]    .rain-layer,
 .game-shell[data-effect="message"] .rain-layer,
 .game-shell[data-effect="horror"]  .rain-layer,
 .game-shell[data-effect="ending"]  .rain-layer {
-  opacity: 0.58;
+  opacity: 0;
 }
 
 /* VHS scanlines & jitter */
