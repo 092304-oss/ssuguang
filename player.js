@@ -43,6 +43,8 @@
     history: [],
     saveKey: game ? `suguangPlayerSave:${game.id}` : "",
     nodeMap: new Map(),
+    sceneBgCache: new Map(),
+    sceneBgToken: 0,
   };
 
   async function loadGame() {
@@ -161,10 +163,44 @@
     `).join("");
   }
 
+  function extractBackgroundUrl(value) {
+    const match = String(value || "").match(/url\((["']?)(.*?)\1\)/);
+    return match ? match[2] : "";
+  }
+
+  function applySceneBackground(background) {
+    const nextBackground = background || els.sceneBg.style.background;
+    if (!nextBackground) return;
+
+    const imageUrl = extractBackgroundUrl(nextBackground);
+    const token = state.sceneBgToken + 1;
+    state.sceneBgToken = token;
+
+    if (!imageUrl || state.sceneBgCache.get(imageUrl) === true) {
+      els.sceneBg.style.background = nextBackground;
+      return;
+    }
+
+    const image = new Image();
+    image.onload = () => {
+      state.sceneBgCache.set(imageUrl, true);
+      if (state.sceneBgToken === token) {
+        els.sceneBg.style.background = nextBackground;
+      }
+    };
+    image.onerror = () => {
+      state.sceneBgCache.set(imageUrl, false);
+      if (state.sceneBgToken === token && !els.sceneBg.style.background) {
+        els.sceneBg.style.background = nextBackground;
+      }
+    };
+    image.src = imageUrl;
+  }
+
   function renderNode() {
     const node = getCurrentNode();
     if (!node) return;
-    els.sceneBg.style.background = node.bg || els.sceneBg.style.background;
+    applySceneBackground(node.bg);
     els.castPortrait.classList.toggle("is-image", Boolean(node.castImage));
     if (node.castImage) {
       els.castPortrait.style.background = `url("${node.castImage}") center top/cover no-repeat, linear-gradient(180deg, rgba(157,198,255,0.34), rgba(6,11,28,0.95))`;
@@ -348,7 +384,7 @@
     els.gameMeta.textContent = `共 ${game.nodes.length} 个节点 · ${game.characters?.length || 0} 位角色 · ${formatDate(game.createdAt) || "本地发布"}`;
 
     const firstNode = game.nodes[0];
-    els.sceneBg.style.background = firstNode.bg || els.sceneBg.style.background;
+    applySceneBackground(firstNode.bg);
     els.mediaTopline.textContent = firstNode.bgName || "00:00";
     els.mediaBody.textContent = `首节点 · ${firstNode.bgName || "场景"}`;
     els.progressPill.textContent = `01 / ${String(game.nodes.length).padStart(2, "0")}`;

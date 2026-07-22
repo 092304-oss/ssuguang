@@ -1995,6 +1995,7 @@ const state = {
   bgmAudio: null,
   imageCache: new Map(),
   activeImage: "",
+  renderedImage: "",
   selectedEnding: null,
   pendingContinue: null,
   currentFullText: ""
@@ -2320,31 +2321,41 @@ function inferCast(node) {
 
 function setSceneImage(candidate, fallback) {
   const safeFallback = fallback || "./assets/cg-door-gpt2.png";
+  const paintImage = image => {
+    state.renderedImage = image;
+    els.sceneBg.style.setProperty("--scene-image", `url("${image}")`);
+    els.shell.classList.add("is-visual-ready");
+  };
+
   if (!candidate) {
     state.activeImage = safeFallback;
-    els.sceneBg.style.setProperty("--scene-image", `url("${safeFallback}")`);
+    paintImage(safeFallback);
     return;
   }
   state.activeImage = candidate;
 
   if (state.imageCache.get(candidate) === true) {
-    els.sceneBg.style.setProperty("--scene-image", `url("${candidate}")`);
+    paintImage(candidate);
     return;
   }
   if (state.imageCache.get(candidate) === false) {
-    els.sceneBg.style.setProperty("--scene-image", `url("${safeFallback}")`);
+    if (!state.renderedImage) paintImage(safeFallback);
     return;
   }
 
-  els.sceneBg.style.setProperty("--scene-image", `url("${safeFallback}")`);
   const img = new Image();
   img.onload = () => {
     state.imageCache.set(candidate, true);
     if (state.activeImage === candidate) {
-      els.sceneBg.style.setProperty("--scene-image", `url("${candidate}")`);
+      paintImage(candidate);
     }
   };
-  img.onerror = () => state.imageCache.set(candidate, false);
+  img.onerror = () => {
+    state.imageCache.set(candidate, false);
+    if (state.activeImage === candidate && !state.renderedImage) {
+      paintImage(safeFallback);
+    }
+  };
   img.src = candidate;
 }
 
